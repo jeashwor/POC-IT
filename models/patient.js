@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const PatientSchema = new Schema({
   isProvider: {
     type: Boolean,
-    required: true,
+    required: "Are you a patient or provider?",
     default: false,
   },
   email: {
