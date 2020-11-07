@@ -1,9 +1,13 @@
 import React from "react";
+import NavBar from "../components/navbar";
+import SignupForm from "../components/signupForm";
 
 function SignUp() {
     return (
         <div>
-            <p>SignUp Test</p>
+            <NavBar />
+            <div>Nice To Meet You</div>
+            <SignupForm />
         </div>
     )
 }
