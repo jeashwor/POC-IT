@@ -7,6 +7,23 @@ import {pointDownGesture, pointLeftGesture, pointRightGesture, pointUpGesture} f
 import './gesture.css'
 let i = 1;
 
+// -----------------------------------------------------------------------------------------------------------------------
+// ADD NEW GESTURES HERE
+// -----------------------------------------------------------------------------------------------------------------------
+
+const GE = new fp.GestureEstimator([
+    // fp.Gestures.VictoryGesture,
+    // fp.Gestures.ThumbsUpGesture,
+    pointDownGesture,
+    pointUpGesture,
+    pointLeftGesture,
+    pointRightGesture
+])
+
+// -----------------------------------------------------------------------------------------------------------------------
+// 
+// -----------------------------------------------------------------------------------------------------------------------
+
 function HandGest() {
     const webcamRef = useRef(null);
 
@@ -36,20 +53,7 @@ function HandGest() {
             const hand = await net.estimateHands(video);
 
             if (hand.length > 0) {
-// -----------------------------------------------------------------------------------------------------------------------
-// ADD NEW GESTURES HERE
-// -----------------------------------------------------------------------------------------------------------------------
-                const GE = new fp.GestureEstimator([
-                    // fp.Gestures.VictoryGesture,
-                    // fp.Gestures.ThumbsUpGesture,
-                    pointDownGesture,
-                    pointUpGesture,
-                    pointLeftGesture,
-                    pointRightGesture
-                ])
-// -----------------------------------------------------------------------------------------------------------------------
-// 
-// -----------------------------------------------------------------------------------------------------------------------
+
                 // the second argument in estimate is the confidence level
                 const gesture = await GE.estimate(hand[0].landmarks, 8.3);
                 if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
@@ -61,6 +65,7 @@ function HandGest() {
 // -----------------------------------------------------------------------------------------------------------------------
 // ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
 // -----------------------------------------------------------------------------------------------------------------------
+
                     if (gest === "point_up") {
                         window.scrollBy(0, -50);
                         // document.getElementById("but"+i).focus()
@@ -78,6 +83,7 @@ function HandGest() {
                         // document.getElementById("but"+i).focus()
                         // i++
                     }
+                    
 // -----------------------------------------------------------------------------------------------------------------------
 // 
 // -----------------------------------------------------------------------------------------------------------------------
