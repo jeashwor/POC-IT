@@ -1,6 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
+const passport = require("passport");
+
+const patients = require("./routes/api/patients");
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -23,6 +27,11 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/pocIT", {
 })
   .then(() => console.log("MongoDB Connected"))
   .catch( err => console.log(err));
+
+// Setup and configure Passport
+app.use(passport.initialize());
+require("./config/passport")(passport);
+app.use("/api/patients", patients);
 
 // Start the API server
 app.listen(PORT, () =>
