@@ -20,7 +20,9 @@ app.use(routes);
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/pocIT", {
   useCreateIndex: true,
   useNewUrlParser: true,
-});
+})
+  .then(() => console.log("MongoDB Connected"))
+  .catch( err => console.log(err));
 
 // Start the API server
 app.listen(PORT, () =>
