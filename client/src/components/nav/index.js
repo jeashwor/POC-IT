@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { FaEllipsisV } from "react-icons/fa";
 import "./style.css";
 
 class Nav extends Component {
@@ -11,7 +12,7 @@ class Nav extends Component {
   updateWidth = () => {
     const newState = { width: window.innerWidth };
 
-    if (this.state.open && newState.width > 991) {
+    if (this.state.open && newState.width > 576) {
       newState.open = false;
     }
 
@@ -32,7 +33,7 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-lg">
+      <nav className="navbar navbar-expand-sm">
         <Link className="navbar-brand logo" to="/">
           POC-IT
         </Link>
@@ -45,7 +46,7 @@ class Nav extends Component {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon" />
+          <FaEllipsisV />
         </button>
         <div className={`${this.state.open ? "" : "collapse "}navbar-collapse`} id="navbarNav">
           <ul className="navbar-nav">
