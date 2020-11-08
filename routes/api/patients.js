@@ -9,6 +9,9 @@ router.route("/")
     .post(patientController.register)
     .post(patientController.login)
 
+router.route("/register")
+    .post(patientController.register)
+
 // Matches with "api/patients/:id"
 // router.route("/:id")
 //     .get(patientController.findById)
