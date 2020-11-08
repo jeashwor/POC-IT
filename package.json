@@ -22,6 +22,7 @@
     "@material-ui/core": "^4.11.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.3",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
     "is-empty": "^1.2.0",
@@ -29,9 +30,9 @@
     "mongoose": "^5.10.13",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "react-bootstrap": "^1.4.0",
+    "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
-    "validator": "^13.1.17",
-    "bootstrap": "^4.5.3",
-    "react-bootstrap": "^1.4.0"
+    "validator": "^13.1.17"
   }
 }
