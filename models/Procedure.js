@@ -15,6 +15,6 @@ const ProcedureSchema = new Schema({
   ],
 });
 
-const Procedure = mongoose.model("Provider", ProcedureSchema);
+const Procedure = mongoose.model("Procedure", ProcedureSchema);
 
 module.exports = Procedure;
