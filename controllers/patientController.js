@@ -1,5 +1,3 @@
 const db = require("../models");
 
-module.exports = {
-
-  };
+module.exports = {};
