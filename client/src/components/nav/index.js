@@ -62,7 +62,7 @@ class Nav extends Component {
             <li className="nav-item menu-item">
               <Link
                 onClick={this.toggleNav}
-                className={window.location.pathname === "/saved" ? "nav-link active" : "nav-link"}
+                className={window.location.pathname === "#about" ? "nav-link active" : "nav-link"}
                 to="#about"
               >
                 About
