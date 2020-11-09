@@ -46,6 +46,8 @@ function SignUp() {
                                 </Form.Group>
                             </Form>
                             {formRender}
+                            <br />
+                            <p>Or login <a href="/login">here</a></p>
                         </Col>
                     </Row>
                 </Container>
