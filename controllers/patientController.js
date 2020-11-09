@@ -49,7 +49,7 @@ module.exports = {
   },
   login: (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
-    
+
     if (!isValid) {
       return res.status(400).json(errors);
     }
@@ -59,7 +59,7 @@ module.exports = {
 
     db.Patient.findOne({ email }).then(user => {
       if (!user) {
-        return res.status(404).json({ emailnotfound: "Email not found"});
+        return res.status(404).json({ emailnotfound: "Email not found" });
       }
       bcrypt.compare(password, user.password).then(isMatch => {
         if (isMatch) {
@@ -81,7 +81,7 @@ module.exports = {
             }
           );
         } else {
-          return res.status(400).json({ passwordincorrect: "Password incorrect"});
+          return res.status(400).json({ passwordincorrect: "Password incorrect" });
         }
       });
     });
