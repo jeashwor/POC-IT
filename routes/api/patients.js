@@ -2,11 +2,11 @@ const router = require("express").Router();
 const patientController = require("../../controllers/patientController");
 
 // Matches with "api/patients"
-router
-  .route("/")
-  .get(patientController.findAll)
-  .post(patientController.register)
-  .post(patientController.login);
+router.route("/").get(patientController.findAll);
+
+router.route("/register").post(patientController.register);
+
+router.route("/login").post(patientController.login);
 
 // Matches with "api/patients/:id"
 // router.route("/:id")
