@@ -31,12 +31,12 @@ const patientSchema = new Schema({
   },
   height: {
     type: Number,
-    required: "Please enter a height",
+    // required: "Please enter a height",
     trim: true,
   },
   weight: {
     type: Number,
-    required: "Please enter a weight",
+    // required: "Please enter a weight",
     trim: true,
   },
   currentProvider: {

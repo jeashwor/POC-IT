@@ -28,8 +28,8 @@ module.exports = {
           email: req.body.email,
           password: req.body.password,
           dob: req.body.dob,
-          height: req.body.height,
-          weight: req.body.weight,
+          // height: req.body.height,
+          // weight: req.body.weight,
           currentProvider: req.body.currentProvider,
           currentProcedures: req.body.currentProcedures
         });
