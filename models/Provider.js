@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ProviderSchema = new Schema({
+const providerSchema = new Schema({
   isProvider: {
     type: Boolean,
     required: "Are you a patient or provider?",
@@ -32,6 +32,6 @@ const ProviderSchema = new Schema({
   ],
 });
 
-const Provider = mongoose.model("Provider", ProviderSchema);
+const Provider = mongoose.model("Provider", providerSchema);
 
 module.exports = Provider;

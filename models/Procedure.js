@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const ProcedureSchema = new Schema({
+const procedureSchema = new Schema({
   name: {
     type: String,
     required: "Please enter a name",
@@ -15,6 +15,6 @@ const ProcedureSchema = new Schema({
   ],
 });
 
-const Procedure = mongoose.model("Procedure", ProcedureSchema);
+const Procedure = mongoose.model("Procedure", procedureSchema);
 
 module.exports = Procedure;
