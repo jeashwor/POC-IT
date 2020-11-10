@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Patient from "./pages/Patient";
 import Intro from "./pages/Intro";
+import HandGest from "./handGestures/HandGest";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/patient" component={Patient} />
           <Route exact path="/intro" component={Intro} />
+          <Route exact path="/handGest" component={HandGest} />
         </Switch>
       </div>
     </Router>
