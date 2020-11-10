@@ -1,10 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const crypto = require("crypto");
+const Grid = require("gridfs-stream");
 const routes = require("./routes");
 const passport = require("passport");
-
 const patients = require("./routes/api/patients");
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -19,14 +19,14 @@ if (process.env.NODE_ENV === "production") {
 
 // Add routes, both API and view
 app.use(routes);
-
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/pocIT", {
-  useCreateIndex: true,
-  useNewUrlParser: true,
-})
+mongoose
+  .connect(process.env.MONGODB_URI || "mongodb://localhost/pocIT", {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+  })
   .then(() => console.log("MongoDB Connected"))
-  .catch( err => console.log(err));
+  .catch((err) => console.log(err));
 
 // Setup and configure Passport
 app.use(passport.initialize());

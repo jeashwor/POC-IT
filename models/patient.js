@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const PatientSchema = new Schema({
+const patientSchema = new Schema({
   isProvider: {
     type: Boolean,
-    required: true,
+    required: "Are you a patient or provider?",
     default: false,
   },
   email: {
@@ -25,7 +25,7 @@ const PatientSchema = new Schema({
     trim: true,
   },
   dob: {
-    type: Date,
+    type: Number,
     required: "Please enter a date of birth",
     trim: true,
   },
@@ -58,6 +58,6 @@ const PatientSchema = new Schema({
   ],
 });
 
-const Patient = mongoose.model("Patient", PatientSchema);
+const Patient = mongoose.model("Patient", patientSchema);
 
 module.exports = Patient;
