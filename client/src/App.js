@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import { StoreProvider } from "./utils/GlobalState";
+import Patient from "./pages/Patient";
+import Intro from "./pages/Intro";
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/patient" component={Patient} />
+            <Route exact path="/intro" component={Intro} />
           </Switch>
         </StoreProvider>
       </div>

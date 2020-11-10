@@ -1,9 +1,9 @@
 import React from "react";
 import "./style.css";
 
-function StartButton() {
+function StartButton({link, label}) {
     return (
-        <a href="/login" className="get-started-btn">Get Started</a>
+        <a href={link} className="get-started-btn">{label}</a>
     )
 }
 
