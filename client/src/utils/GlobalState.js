@@ -29,7 +29,9 @@ const reducer = (state, action) => {
       return {
         ...state,
         loading: true      
-      }
+      };
+    case GET_ERRORS:
+      return action.user;
     default:
       return state;
     }
