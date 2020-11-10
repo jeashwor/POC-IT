@@ -15,10 +15,9 @@ a:hover {
 h1, h2, h3, h4, h5, h6 {
     font-family: "Jost", sans-serif;
 }
-  
 
 /*--------------------------------------------------------------
-# Hero Section (Landing Page)
+# Hero Section
 --------------------------------------------------------------*/
 #hero {
     background: rgb(216, 238, 244);
@@ -132,4 +131,37 @@ h1, h2, h3, h4, h5, h6 {
       margin: 0 0 0 0;
       padding: 6px 20px 7px 20px;
     }
+}
+
+/*--------------------------------------------------------------
+# Blocks
+--------------------------------------------------------------*/
+#block .container-fluid {
+    padding-top: 90px;
+    justify-content: center;
+}
+
+#block h1 {
+    margin: 0 0 10px 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    color: rgb(9, 19, 48);
+    text-align: center;
+
+}
+
+#block h2 {
+    color: rgb(9, 19, 48);
+    margin-bottom: 50px;
+    font-size: 24px;
+    text-align: center;
+}
+
+/*--------------------------------------------------------------
+# Steps
+--------------------------------------------------------------*/
+.steps {
+    background-color: rgb(223, 229, 238);
+    padding-bottom: 50px;
 }

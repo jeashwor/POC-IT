@@ -1,0 +1,16 @@
+#step-card {
+    border: none;
+    max-width: 700px;
+    overflow: hidden;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-family: "Jost", sans-serif;
+}
+
+.card-text {
+    font-family: "Jost", sans-serif;
+    font-size: 15px;
+}

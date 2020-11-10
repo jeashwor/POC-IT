@@ -17,7 +17,7 @@ function Home() {
                             <h1>POC-IT</h1>
                             <h2>Say hi to personalized, point of care healthcare all within your pocket</h2>
                             <div>
-                                <StartButton />
+                                <StartButton link="/login" label="Get Started"/>
                             </div>
                         </Col>
                         <Col lg={6} className="hero-img">
