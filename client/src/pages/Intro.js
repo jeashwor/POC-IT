@@ -1,6 +1,6 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import Nav from "../components/nav";
+import Nav from "../components/Nav";
 import StepCard from "../components/StepCard";
 import StartButton from "../components/StartButton";
 import "./style.css";
