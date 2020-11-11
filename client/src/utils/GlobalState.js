@@ -16,14 +16,14 @@ const reducer = (state, action) => {
     case ADD_USER:
       return {
         ...state,
-        patients: [action.patient, ...state.patient],
+        users: [action.user, ...state.user],
         loading: false
       };
     case SET_CURRENT_USER:
       return {
         ...state,
-        isAuthenticated: !isEmpty(action.patient),
-        currentPatient: action.patient
+        isAuthenticated: !isEmpty(action.user),
+        user: action.user
       };
     case USER_LOADING:
       return {
@@ -31,7 +31,7 @@ const reducer = (state, action) => {
         loading: true      
       };
     case GET_ERRORS:
-      return action.patient;
+      return action.user;
     default:
       return state;
     }
@@ -39,34 +39,17 @@ const reducer = (state, action) => {
 
   const StoreProvider = ({ value = [], ...props }) => {
     const [state, dispatch] = useReducer(reducer, {
-      patients: [],
-      currentPatient: {
+      users: [],
+      currentUser: {
         name: "",
         email: "",
         password: "",
         password2: "",
         errors: {}
       },
-      providers: [],
-      currentProvider: {
-          name: "",
-          email: "",
-          password: "",
-          password2: "",
-          errors: {}
-      },
-      procedures: [],
-      currentProcedure: {
-          name: "",
-          instructions: "",
-          numSteps: 0,
-          currentStep: 0,
-          currentImage: ""
-      },
       isAuthenticated: false,
       user: {},
       loading: false
-
     });
   
     return <Provider value={[state, dispatch]} {...props} />;

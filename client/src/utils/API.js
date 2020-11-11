@@ -2,10 +2,6 @@
 import axios from "axios";
 
 export default {
-    createPatient: (patientData) => {
-        console.log(patientData);
-        return axios.post("/api/patients/register", patientData);
-    },
     setAuthToken: (token) => {
         if (token) {
             axios.defaults.headers.common["Authorization"] = token;
@@ -16,7 +12,8 @@ export default {
     registerUser: (userData) => {
         return axios.post("/api/users/register", userData);
     },
-    loginUser: (patientData) => {
-        return axios.post("/api/patients/login", patientData);
+    loginUser: (userData) => {
+        console.log(userData);
+        return axios.post("/api/users/login", userData);
     }
 };
