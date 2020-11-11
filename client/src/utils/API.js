@@ -13,8 +13,8 @@ export default {
             delete axios.defaults.headers.common["Authorization"];
         }
     },
-    registerUser: (patientData) => {
-        return axios.post("/api/patients/register", patientData);
+    registerUser: (userData) => {
+        return axios.post("/api/users/register", userData);
     },
     loginUser: (patientData) => {
         return axios.post("/api/patients/login", patientData);

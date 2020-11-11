@@ -1,9 +1,7 @@
-/* eslint-disable no-restricted-globals */
 import React, { useState, useRef } from "react";
 import { useStoreContext } from "../../utils/GlobalState";
-import {GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "../../utils/actions";
+import {GET_ERRORS, USER_LOADING } from "../../utils/actions";
 import API from "../../utils/API";
-import jwt_decode from "jwt-decode";
 import { withRouter } from "react-router-dom";
 import Form from 'react-bootstrap/Form';
 import Col from "react-bootstrap/Col";
@@ -11,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 
 function PatientForm(props) {
   const [validated, setValidated] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [state, dispatch] = useStoreContext();
   const firstNameRef = useRef();
   const lastNameRef = useRef();
@@ -18,6 +17,7 @@ function PatientForm(props) {
   const dobRef = useRef();
   const passwordRef = useRef();
   const password2Ref = useRef();
+
   const handleSubmit = (event) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
@@ -27,12 +27,13 @@ function PatientForm(props) {
     event.preventDefault();
     setValidated(true);
     dispatch({ type: USER_LOADING });
-    API.createPatient({
+    API.registerUser({
       name: firstNameRef.current.value,
       email: emailRef.current.value,
-      dob: dobRef.current.value,
       password: passwordRef.current.value,
-      password2: password2Ref.current.value
+      password2: password2Ref.current.value,
+      dob: dobRef.current.value,
+      isProvider: false
     }).then(res => props.history.push("/login"))
     .catch(err => {
       dispatch({ 

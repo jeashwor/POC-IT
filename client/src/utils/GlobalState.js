@@ -1,6 +1,6 @@
 import React, { createContext, useReducer, useContext } from "react";
 import {
-  ADD_PATIENT,
+  ADD_USER,
   GET_ERRORS,
   USER_LOADING,
   SET_CURRENT_USER
@@ -13,7 +13,7 @@ const isEmpty = require("is-empty");
 
 const reducer = (state, action) => {
     switch (action.type) {
-    case ADD_PATIENT:
+    case ADD_USER:
       return {
         ...state,
         patients: [action.patient, ...state.patient],
@@ -66,6 +66,7 @@ const reducer = (state, action) => {
       isAuthenticated: false,
       user: {},
       loading: false
+
     });
   
     return <Provider value={[state, dispatch]} {...props} />;
