@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Carousel from 'react-bootstrap/Carousel'
 import Nav from "../components/Nav";
+import StartButton from "../components/StartButton";
 import StepCard from "../components/StepCard";
 import HandGest from "../handGestures/HandGest";
 import "./style.css";
@@ -71,6 +72,9 @@ function Procedure() {
                             <h1>You're all set!</h1>
                             <StepCard title="Kudos to keeping it clean" text="Time to remove the gloves." />
                         </Container>
+                        <div className="text-center">
+                            <StartButton link="/patient" label="Back to Dashboard" />
+                        </div>
                     </div>
                 </Carousel.Item>
             </Carousel>
