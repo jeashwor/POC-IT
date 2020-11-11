@@ -18,12 +18,11 @@ function Intro() {
                     <StepCard title="3. Put on sterile gloves" text="Always wear sterile gloves when handling an open wound, cut or burned skin." />
                     <StepCard title="4. Let POC-IT know you're ready" text="Facing the camera, give POC-IT a thumbs up to begin, or click the button below." />
                     <div className="text-center">
-                        <StartButton  link="/login" label="Start"/>
+                        <StartButton  link="/procedure" label="Start"/>
                     </div>
                 </Container>
             </div>
         </div>
-
     )
 }
 
