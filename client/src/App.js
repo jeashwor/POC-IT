@@ -6,6 +6,7 @@ import SignUp from "./pages/SignUp";
 import { StoreProvider } from "./utils/GlobalState";
 import Patient from "./pages/Patient";
 import Intro from "./pages/Intro";
+import Procedure from "./pages/Procedure";
 import HandGest from "./handGestures/HandGest";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/patient" component={Patient} />
             <Route exact path="/intro" component={Intro} />
+            <Route exact path="/procedure" component={Procedure} />
             <Route exact path="/handGest" component={HandGest} />
           </Switch>
         </StoreProvider>
