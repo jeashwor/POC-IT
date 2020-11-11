@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Carousel from 'react-bootstrap/Carousel'
 import Nav from "../components/Nav";
+import StartButton from "../components/StartButton";
 import StepCard from "../components/StepCard";
+import HandGest from "../handGestures/HandGest";
 import "./style.css";
 
-function Intro() {
+function Procedure() {
     // update later to take procedures from API call
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex, e) => {
@@ -13,14 +15,14 @@ function Intro() {
     };
 
     return (
-        <div>
+        <div id="block" className="steps">
             <Nav />
-            <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
+            <Carousel activeIndex={index} onSelect={handleSelect} interval={null} wrap={false}>
                 <Carousel.Item>
                     <div id="block" className="steps">
                         <Container fluid>
                             <h1>Step 1</h1>
-                            <StepCard title="Remove the Dressing" text="Use drops of either water or saline solution around the tape on their skin to loosen the tape. Gently remove the dressing." />
+                            <StepCard title="Remove the Dressing" text="Use drops of either water or saline solution around the tape on the skin to loosen the tape. Gently remove the dressing." />
                         </Container>
                     </div>
                 </Carousel.Item>
@@ -28,7 +30,7 @@ function Intro() {
                     <div id="block" className="steps">
                         <Container fluid>
                             <h1>Step 2</h1>
-                            <StepCard title="Inspect the Wound" text="Check to see if there are any signs of infection, such as pus or a foul smell. If you notice any of them, note the issues and let the patient’s healthcare provider know." />
+                            <StepCard title="Inspect the Wound" text="Check to see if there are any signs of infection, such as pus or a foul smell. If you notice any of them, note the issues and let the patient’s healthcare provider know once you're done with the dressing change." />
                         </Container>
                     </div>
                 </Carousel.Item>
@@ -60,13 +62,27 @@ function Intro() {
                     <div id="block" className="steps">
                         <Container fluid>
                             <h1>Step 6</h1>
-                            <StepCard title="Place a new wound dressing" text="apply a new non-stick pad to the wound and extra gauze if needed. Once covered, gently secure with wound tape." />
+                            <StepCard title="Place a new wound dressing" text="Apply a new non-stick pad to the wound and extra gauze if needed. Once covered, gently secure with wound tape." />
                         </Container>
                     </div>
                 </Carousel.Item>
+                <Carousel.Item>
+                    <div id="block" className="steps">
+                        <Container fluid>
+                            <h1>You're all set!</h1>
+                            <StepCard title="Kudos to keeping it clean" text="Time to remove the gloves." />
+                        </Container>
+                        <div className="text-center">
+                            <StartButton link="/patient" label="Back to Dashboard" />
+                        </div>
+                    </div>
+                </Carousel.Item>
             </Carousel>
+            <div>
+                <HandGest />
+            </div>
         </div >
     )
 }
 
-export default Intro;
+export default Procedure;
