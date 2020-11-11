@@ -1,96 +1,130 @@
 import React, { useRef, useEffect } from 'react'
-import * as tf from '@tensorflow/tfjs';
-import * as handpose from '@tensorflow-models/handpose';
 import * as Webcam from 'react-webcam';
-import * as fp from 'fingerpose'
-import {pointDownGesture, pointLeftGesture, pointRightGesture, pointUpGesture} from './gestures'
+import * as ml5 from 'ml5';
 import './gesture.css'
-let i = 1;
+let brain;
+let inputs;
+let pose;
+const classifySpeed = 300;
 
-// -----------------------------------------------------------------------------------------------------------------------
-// ADD NEW GESTURES HERE
-// -----------------------------------------------------------------------------------------------------------------------
-
-const GE = new fp.GestureEstimator([
-    // fp.Gestures.VictoryGesture,
-    // fp.Gestures.ThumbsUpGesture,
-    pointDownGesture,
-    pointUpGesture,
-    pointLeftGesture,
-    pointRightGesture
-])
-
-// -----------------------------------------------------------------------------------------------------------------------
-// 
-// -----------------------------------------------------------------------------------------------------------------------
 
 function HandGest() {
+    let working = false;
     const webcamRef = useRef(null);
 
     const runHandpose = async () => {
-        const net = await handpose.load();
-        console.log("handpose model loaded.");
+        // set up the video parameters to work with the model
+        const video = await webcamRef.current.video;
+        const videoWidth = video.videoWidth;
+        const videoHeight = video.videoHeight;
+        video.width = videoWidth;
+        video.height = videoHeight;
+        console.log(video.width);
 
-        setInterval(() => {
-            detect(net)
-        }, 300)
+        // load the pre-made handpose model and pass the video into it
+        // and notify when its loaded
+        const handpose = ml5.handpose(video, modelLoaded);
+        function modelLoaded() {
+            console.log('Model Loaded!');
+        }
+
+        // anytime the handpose model sees a hand, run the detect funtion
+        handpose.on('predict', detect);
+
+        // set up my neural network parameters
+        let options = {
+            inputs: 42,
+            outputs: 4,
+            task: 'classification',
+            debug: true
+        }
+        brain = ml5.neuralNetwork(options);
+
+        // load the trained gesture data from the files and 
+        // notify when it's ready
+        const modelInfo = {
+            model: 'data/model.json',
+            metadata: 'data/model_meta.json',
+            weights: 'data/model.weights.bin'
+        }
+        brain.load(modelInfo, brainReady);
+        function brainReady() {
+            console.log('brain ready');
+        }
     };
 
     useEffect(() => {
         runHandpose()
     }, [])
 
-    const detect = async (net) => {
+    // Start collecting the poses if there are any
+    function detect(poses) {
+        if (poses.length > 0) {
+            working = true
+            pose = poses[0];
+        } else {
+            working = false
+        }
+    };
 
-        if (typeof webcamRef.current !== "undefined" && webcamRef.current !== null && webcamRef.current.video.readyState === 4) {
-            const video = webcamRef.current.video;
-            const videoWidth = video.videoWidth;
-            const videoHeight = video.videoHeight;
+    // tell the app to start classifying the poses at the 
+    // speed determined by the 'classifySpeed' variable at the top
+    let inter;
+    function startClass() {
+        working = true
+        inter = setInterval(() => {
+            classifyPose()
+        }, classifySpeed);
+    }
 
-            video.width = videoWidth;
-            video.height = videoHeight;
+    // send the incoming pose data to the model and
+    // classify the data from each pose into gestures
+    function classifyPose() {
+        if (pose && working) {
+            inputs = [];
+            for (let i = 0; i < pose.landmarks.length; i++) {
+                inputs.push(pose.landmarks[i][0]);
+                inputs.push(pose.landmarks[i][1]);
+            }
+            brain.classify(inputs, gotResult)
+        }
+    }
 
-            const hand = await net.estimateHands(video);
-
-            if (hand.length > 0) {
-
-                // the second argument in estimate is the confidence level
-                const gesture = await GE.estimate(hand[0].landmarks, 8.3);
-                if (gesture.gestures !== undefined && gesture.gestures.length > 0) {
-                    const confidence = await gesture.gestures.map(prediction => prediction.confidence);
-                    const maxConfidence = await confidence.indexOf(Math.max.apply(null, confidence));
-                    let gest = gesture.gestures[maxConfidence].name;
-                    console.log(gest)
+    // do something with the gesture results
+    function gotResult(error, results) {
+        if (results[0].confidence > 0.75) {
+            const gesture = results[0].label
+            console.log(gesture)
 
 // -----------------------------------------------------------------------------------------------------------------------
 // ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
 // -----------------------------------------------------------------------------------------------------------------------
 
-                    if (gest === "point_up") {
-                        window.scrollBy(0, -50);
-                        // document.getElementById("but"+i).focus()
-                        // i--
-                    } else if (gest === "point_down") {
-                        window.scrollBy(0, 50);
-                        // document.getElementById("but"+i).focus()
-                        // i++
-                    }else if (gest === "point_left") {
-                        // window.scrollBy(0, 50);
-                        // document.getElementById("but"+i).focus()
-                        // i++
-                    }else if (gest === "point_right") {
-                        // window.scrollBy(0, 50);
-                        // document.getElementById("but"+i).focus()
-                        // i++
-                    }
-                    
+            if (gesture === "Up") {
+                window.scrollBy(0, -50);
+
+            } else if (gesture === "Down") {
+                window.scrollBy(0, 50);
+
+            } else if (gesture === "Left") {
+                // window.scrollBy(0, 50);
+
+            } else if (gesture === "Right") {
+                // window.scrollBy(0, 50);
+
+            }
+
+        }
+    }
 // -----------------------------------------------------------------------------------------------------------------------
 // 
 // -----------------------------------------------------------------------------------------------------------------------
-                }
-            }
-        }
-    };
+
+    // stop reading gestures
+    function stopClass() {
+        working = false
+        clearInterval(inter)
+    }
 
     return (
         <div>
@@ -99,7 +133,8 @@ function HandGest() {
                     width: 640,
                     height: 480,
                 }} />
-
+            <button onClick={() => startClass()}>Classify</button>
+            <button onClick={() => stopClass()}>Stop</button>
         </div>
     );
 }
