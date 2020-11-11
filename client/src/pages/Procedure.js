@@ -74,6 +74,7 @@ function Procedure() {
                     </div>
                 </Carousel.Item>
             </Carousel>
+            <HandGest />
         </div >
     )
 }
