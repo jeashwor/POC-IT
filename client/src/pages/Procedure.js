@@ -14,7 +14,7 @@ function Procedure() {
     };
 
     return (
-        <div>
+        <div id="block" className="steps">
             <Nav />
             <Carousel activeIndex={index} onSelect={handleSelect} interval={null} wrap={false}>
                 <Carousel.Item>
@@ -69,12 +69,14 @@ function Procedure() {
                     <div id="block" className="steps">
                         <Container fluid>
                             <h1>You're all set!</h1>
-                            <StepCard title="Kudos to keeping it clean" text="Time to remove the gloves."/>
+                            <StepCard title="Kudos to keeping it clean" text="Time to remove the gloves." />
                         </Container>
                     </div>
                 </Carousel.Item>
             </Carousel>
-            <HandGest />
+            <div>
+                <HandGest />
+            </div>
         </div >
     )
 }
