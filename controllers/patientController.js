@@ -15,6 +15,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   register: (req, res) => {
+    console.log("register api hit");
     const { errors, isValid } = validateRegisterInput(req.body);
     if (!isValid) {
       return res.status(400).json(errors);

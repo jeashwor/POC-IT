@@ -31,7 +31,7 @@ const reducer = (state, action) => {
         loading: true      
       };
     case GET_ERRORS:
-      return action.user;
+      return action.patient;
     default:
       return state;
     }

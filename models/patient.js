@@ -25,7 +25,7 @@ const patientSchema = new Schema({
     trim: true,
   },
   dob: {
-    type: Number,
+    type: Date,
     required: "Please enter a date of birth",
     trim: true,
   },

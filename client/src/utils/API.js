@@ -3,7 +3,8 @@ import axios from "axios";
 
 export default {
     createPatient: (patientData) => {
-        return axios.post("/api/patient/register", patientData);
+        console.log(patientData);
+        return axios.post("/api/patients/register", patientData);
     },
     setAuthToken: (token) => {
         if (token) {
@@ -11,5 +12,11 @@ export default {
         } else {
             delete axios.defaults.headers.common["Authorization"];
         }
+    },
+    registerUser: (patientData) => {
+        return axios.post("/api/patients/register", patientData);
+    },
+    loginUser: (patientData) => {
+        return axios.post("/api/patients/login", patientData);
     }
 };
