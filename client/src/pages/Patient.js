@@ -1,6 +1,6 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import Nav from "../components/nav";
+import Nav from "../components/Nav";
 import CareButton from "../components/CareButton";
 import "./style.css";
 
