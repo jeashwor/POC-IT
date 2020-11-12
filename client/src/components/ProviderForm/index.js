@@ -24,10 +24,10 @@ class ProviderForm extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/patient")
+      this.props.history.push("/provider")
     }
   }
-  
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({
