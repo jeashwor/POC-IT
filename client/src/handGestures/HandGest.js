@@ -121,8 +121,7 @@ function HandGest(props) {
 // -----------------------------------------------------------------------------------------------------------------------
                 // OK Gesture:
                 if (gesture === poseParameters.pose1) {
-                    
-                }
+
                 // Thumbs Up Gesture
                 } else if (gesture === poseParameters.pose2) {
                     if (window.location.href.indexOf("procedure") > -1) {
