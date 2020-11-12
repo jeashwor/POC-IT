@@ -105,7 +105,7 @@ function HandGest(props) {
 
     // do something with the gesture results
     function gotResult(error, results) {
-        if (results[0].confidence > 0.95) {
+        if (results[0].confidence > 0.89) {
             const gesture = results[0].label
             console.log(gesture)
             if(gesture === poseParameters.pose1){
