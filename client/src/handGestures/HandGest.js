@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import * as Webcam from 'react-webcam';
 import * as ml5 from 'ml5';
+import { useHistory } from "react-router-dom";
 import './gesture.css'
 let brain;
 let inputs;
@@ -22,6 +23,7 @@ let carNum = 0;
 function HandGest(props) {
     let working = false;
     const webcamRef = useRef(null);
+    let history = useHistory();
 
 
     const runHandpose = async () => {
@@ -105,37 +107,49 @@ function HandGest(props) {
 
     // do something with the gesture results
     function gotResult(error, results) {
-        if (results[0].confidence > 0.89) {
-            const gesture = results[0].label
-            console.log(gesture)
-            if(gesture === poseParameters.pose1){
-                clearInterval(inter)
-                setTimeout(startClass(), 2000)
-            }
-
+        if (results) {
+            if (results[0].confidence > 0.95) {
+                const gesture = results[0].label
+                console.log(gesture)
+                if (gesture === poseParameters.pose1) {
+                    clearInterval(inter)
+                    setTimeout(startClass(), 2000)
+                }
 
 // -----------------------------------------------------------------------------------------------------------------------
 // ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
 // -----------------------------------------------------------------------------------------------------------------------
-            // OK Gesture:
-            if (gesture === poseParameters.pose1) {
-                carNum += 1;
-                props.setIndex(carNum);
+                // OK Gesture:
+                if (gesture === poseParameters.pose1) {
+                    
+                }
+                // Thumbs Up Gesture
+                } else if (gesture === poseParameters.pose2) {
+                    if (window.location.href.indexOf("procedure") > -1) {
+                        if(carNum >= 0 && carNum <= 6){
+                            carNum += 1;
+                            props.setIndex(carNum);
+                        } else {
+                            return;
+                        }
+                    } else {
+                        history.push("/procedure")
+                    }
 
-            // Thumbs Up Gesture
-            } else if (gesture === poseParameters.pose2) {
-                // carNum -= 1;
-                // props.setIndex(carNum);
+                // Go Back Gesture
+                } else if (gesture === poseParameters.pose3) {
+                    if(carNum >= 0 && carNum <= 6){
+                        carNum -= 1;
+                        props.setIndex(carNum);
+                    } else {
+                        return;
+                    }
 
-            } else if (gesture === poseParameters.pose3) {
-                carNum -= 1;
-                props.setIndex(carNum);
+                } else if (gesture === poseParameters.pose4) {
+                    // window.scrollBy(0, 50);
 
-            } else if (gesture === poseParameters.pose4) {
-                // window.scrollBy(0, 50);
-
+                }
             }
-
         }
     }
 // -----------------------------------------------------------------------------------------------------------------------
@@ -156,5 +170,5 @@ function HandGest(props) {
 }
 
 export default HandGest;
-    
+
 
