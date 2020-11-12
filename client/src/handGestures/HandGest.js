@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
 import * as Webcam from 'react-webcam';
 import * as ml5 from 'ml5';
 import './gesture.css'
@@ -7,21 +7,22 @@ let inputs;
 let pose;
 
 const poseParameters = {
-    pose1: "Up",
-    pose2: "Down",
+    pose1: "OK",
+    pose2: "Thumbs Up",
     pose3: "Left",
     pose4: "Right",
-    classifySpeed: 300,
+    classifySpeed: 1000,
     webcamWidth: 640,
     webcamHeight: 480,
     videoHidden: false
 }
+let carNum = 0;
 
 
-
-function HandGest() {
+function HandGest(props) {
     let working = false;
     const webcamRef = useRef(null);
+
 
     const runHandpose = async () => {
         // set up the video parameters to work with the model
@@ -30,14 +31,15 @@ function HandGest() {
         const videoHeight = video.videoHeight;
         video.width = videoWidth;
         video.height = videoHeight;
-        console.log(video.width);
 
         // load the pre-made handpose model and pass the video into it
         // and notify when its loaded
         const handpose = ml5.handpose(video, modelLoaded);
         function modelLoaded() {
             console.log('Model Loaded!');
+            startClass()
         }
+
 
         // anytime the handpose model sees a hand, run the detect funtion
         handpose.on('predict', detect);
@@ -88,12 +90,6 @@ function HandGest() {
         }, poseParameters.classifySpeed);
     }
 
-    // stop reading gestures
-    function stopClass() {
-        working = false
-        clearInterval(inter)
-    }
-
     // send the incoming pose data to the model and
     // classify the data from each pose into gestures
     function classifyPose() {
@@ -109,20 +105,27 @@ function HandGest() {
 
     // do something with the gesture results
     function gotResult(error, results) {
-        if (results[0].confidence > 0.75) {
+        if (results[0].confidence > 0.95) {
             const gesture = results[0].label
             console.log(gesture)
+            if(gesture === poseParameters.pose1){
+                clearInterval(inter)
+                setTimeout(startClass(), 2000)
+            }
 
 
 // -----------------------------------------------------------------------------------------------------------------------
 // ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
 // -----------------------------------------------------------------------------------------------------------------------
-
+            // OK Gesture:
             if (gesture === poseParameters.pose1) {
-                window.scrollBy(0, -50);
+                carNum += 1;
+                props.setIndex(carNum);
 
+            // Thumbs Up Gesture
             } else if (gesture === poseParameters.pose2) {
-                window.scrollBy(0, 50);
+                carNum -= 1;
+                props.setIndex(carNum);
 
             } else if (gesture === poseParameters.pose3) {
                 // window.scrollBy(0, 50);
@@ -141,12 +144,12 @@ function HandGest() {
     return (
         <div>
             <Webcam ref={webcamRef}
+                audio={false}
+                mirrored={true}
                 style={{
                     width: poseParameters.webcamWidth,
-                    height: poseParameters.webcamHeight,
+                    height: poseParameters.webcamHeight
                 }} />
-            <button onClick={() => startClass()}>Classify</button>
-            <button onClick={() => stopClass()}>Stop</button>
         </div>
     );
 }

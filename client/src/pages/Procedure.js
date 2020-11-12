@@ -79,7 +79,7 @@ function Procedure() {
                 </Carousel.Item>
             </Carousel>
             <div>
-                <HandGest />
+                <HandGest index={index} setIndex={setIndex}/>
             </div>
         </div >
     )
