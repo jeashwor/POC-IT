@@ -35,7 +35,7 @@ class Nav extends Component {
     return (
       <nav className="navbar navbar-expand-sm">
         <Link className="navbar-brand logo" to="/">
-          POC-IT
+          <img src="./assets/headerIcon.png" alt="logo name" />
         </Link>
         <button
           onClick={this.toggleNav}

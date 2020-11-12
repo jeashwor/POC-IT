@@ -2,7 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Nav from "../components/nav";
+import Nav from "../components/Nav";
 import StartButton from "../components/StartButton";
 import "./style.css";
 
@@ -14,7 +14,7 @@ function Home() {
                 <Container fluid>
                     <Row>
                         <Col lg={6}>
-                            <h1>POC-IT</h1>
+                            <h1><img src="./assets/transIcon.png" alt="POC-IT" /></h1>
                             <h2>Say hi to personalized, point of care healthcare all within your pocket</h2>
                             <div>
                                 <StartButton link="/login" label="Get Started"/>

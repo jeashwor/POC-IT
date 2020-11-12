@@ -1,6 +1,6 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import Nav from "../components/nav";
+import Nav from "../components/Nav";
 import StepCard from "../components/StepCard";
 import StartButton from "../components/StartButton";
 import "./style.css";
@@ -9,7 +9,7 @@ function Intro() {
     return (
         <div>
             <Nav />
-            <div id="block" className="steps">
+            <div className="block steps">
                 <Container fluid>
                     <h1>Wound Care</h1>
                     <h2>Let's make sure you're ready to begin.</h2>
@@ -18,12 +18,11 @@ function Intro() {
                     <StepCard title="3. Put on sterile gloves" text="Always wear sterile gloves when handling an open wound, cut or burned skin." />
                     <StepCard title="4. Let POC-IT know you're ready" text="Facing the camera, give POC-IT a thumbs up to begin, or click the button below." />
                     <div className="text-center">
-                        <StartButton  link="/login" label="Start"/>
+                        <StartButton  link="/procedure" label="Start"/>
                     </div>
                 </Container>
             </div>
         </div>
-
     )
 }
 
