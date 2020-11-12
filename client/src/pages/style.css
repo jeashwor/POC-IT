@@ -136,12 +136,12 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Blocks
 --------------------------------------------------------------*/
-#block .container-fluid {
+.block .container-fluid {
     padding-top: 90px;
     justify-content: center;
 }
 
-#block h1 {
+.block h1 {
     margin: 0 0 10px 0;
     font-size: 48px;
     font-weight: 700;
@@ -151,7 +151,7 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
-#block h2 {
+.block h2 {
     color: rgb(9, 19, 48);
     margin-bottom: 50px;
     font-size: 24px;
@@ -164,4 +164,17 @@ h1, h2, h3, h4, h5, h6 {
 .steps {
     background-color: rgb(223, 229, 238);
     padding-bottom: 50px;
+}
+
+.treatment {
+    background-color: rgb(9, 19, 48);
+    height: 100vh;
+}
+
+.treatment h1 {
+    color: white;
+}
+
+.treatment h2 {
+    color: white;
 }
