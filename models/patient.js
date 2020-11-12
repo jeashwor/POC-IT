@@ -25,18 +25,18 @@ const patientSchema = new Schema({
     trim: true,
   },
   dob: {
-    type: Number,
+    type: Date,
     required: "Please enter a date of birth",
     trim: true,
   },
   height: {
     type: Number,
-    required: "Please enter a height",
+    // required: "Please enter a height",
     trim: true,
   },
   weight: {
     type: Number,
-    required: "Please enter a weight",
+    // required: "Please enter a weight",
     trim: true,
   },
   currentProvider: {

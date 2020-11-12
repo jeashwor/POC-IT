@@ -1,4 +1,3 @@
-const { Patient } = require("../models");
 const db = require("../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -15,6 +14,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   register: (req, res) => {
+    console.log("register api hit");
     const { errors, isValid } = validateRegisterInput(req.body);
     if (!isValid) {
       return res.status(400).json(errors);
@@ -28,8 +28,8 @@ module.exports = {
           email: req.body.email,
           password: req.body.password,
           dob: req.body.dob,
-          height: req.body.height,
-          weight: req.body.weight,
+          // height: req.body.height,
+          // weight: req.body.weight,
           currentProvider: req.body.currentProvider,
           currentProcedures: req.body.currentProcedures
         });
@@ -49,7 +49,7 @@ module.exports = {
   },
   login: (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
-    
+
     if (!isValid) {
       return res.status(400).json(errors);
     }
@@ -59,7 +59,7 @@ module.exports = {
 
     db.Patient.findOne({ email }).then(user => {
       if (!user) {
-        return res.status(404).json({ emailnotfound: "Email not found"});
+        return res.status(404).json({ emailnotfound: "Email not found" });
       }
       bcrypt.compare(password, user.password).then(isMatch => {
         if (isMatch) {
@@ -81,7 +81,7 @@ module.exports = {
             }
           );
         } else {
-          return res.status(400).json({ passwordincorrect: "Password incorrect"});
+          return res.status(400).json({ passwordincorrect: "Password incorrect" });
         }
       });
     });

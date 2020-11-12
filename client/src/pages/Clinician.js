@@ -5,7 +5,7 @@ import SearchForm from "../components/SearchForm";
 import PatientCard from "../components/PatientCard";
 import "./style.css";
 
-function Provider() {
+function Clinician() {
     return (
         <div>
             <Nav />
@@ -25,4 +25,4 @@ function Provider() {
     )
 }
 
-export default Provider;
+export default Clinician;
