@@ -1,0 +1,23 @@
+#patient-card {
+    background-color: rgb(9, 19, 48);
+    border: none;
+    max-width: 400px;
+    overflow: hidden;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#patient-card .card-title {
+    font-family: "Jost", sans-serif;
+}
+
+#patient-card .card-text {
+    font-family: "Jost", sans-serif;
+    font-size: 15px;
+    color: white;
+}
+
+#patient-card a {
+    color: white;
+}

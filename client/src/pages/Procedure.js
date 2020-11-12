@@ -15,7 +15,7 @@ function Procedure() {
     };
 
     return (
-        <div id="block" className="steps">
+        <div className="block steps">
             <Nav />
             <Carousel activeIndex={index} onSelect={handleSelect} interval={null} wrap={false}>
                 <Carousel.Item>

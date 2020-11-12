@@ -9,7 +9,7 @@ function Intro() {
     return (
         <div>
             <Nav />
-            <div id="block" className="steps">
+            <div className="block steps">
                 <Container fluid>
                     <h1>Wound Care</h1>
                     <h2>Let's make sure you're ready to begin.</h2>
