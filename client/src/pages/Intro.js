@@ -4,6 +4,7 @@ import Nav from "../components/Nav";
 import StepCard from "../components/StepCard";
 import StartButton from "../components/StartButton";
 import "./style.css";
+import HandGest from "../handGestures/HandGest";
 
 function Intro() {
     return (
@@ -19,6 +20,9 @@ function Intro() {
                     <StepCard title="4. Let POC-IT know you're ready" text="Facing the camera, give POC-IT a thumbs up to begin, or click the button below." />
                     <div className="text-center">
                         <StartButton  link="/procedure" label="Start"/>
+                    </div>
+                    <div className="handgest">
+                        <HandGest />
                     </div>
                 </Container>
             </div>
