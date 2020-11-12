@@ -52,15 +52,4 @@ router.get("/files/:filename", (req, res) => {
   });
 });
 
-// db.Procedure.create({
-//   name: "testingmore",
-//   instructions: ["step1", "step2", "step3"],
-// }).then(({ _id }) =>
-//   db.Patient.findOneAndUpdate(
-//     {},
-//     { $push: { currentProcedures: _id } },
-//     { new: true }
-//   )
-// );
-
 module.exports = router;
