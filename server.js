@@ -5,6 +5,7 @@ const Grid = require("gridfs-stream");
 const routes = require("./routes");
 const passport = require("passport");
 const patients = require("./routes/api/patients");
+const { db } = require("./models/");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
