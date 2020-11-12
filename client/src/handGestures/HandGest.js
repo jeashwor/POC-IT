@@ -5,7 +5,18 @@ import './gesture.css'
 let brain;
 let inputs;
 let pose;
-const classifySpeed = 300;
+
+const poseParameters = {
+    pose1: "Up",
+    pose2: "Down",
+    pose3: "Left",
+    pose4: "Right",
+    classifySpeed: 300,
+    webcamWidth: 640,
+    webcamHeight: 480,
+    videoHidden: false
+}
+
 
 
 function HandGest() {
@@ -74,7 +85,13 @@ function HandGest() {
         working = true
         inter = setInterval(() => {
             classifyPose()
-        }, classifySpeed);
+        }, poseParameters.classifySpeed);
+    }
+
+    // stop reading gestures
+    function stopClass() {
+        working = false
+        clearInterval(inter)
     }
 
     // send the incoming pose data to the model and
@@ -96,20 +113,21 @@ function HandGest() {
             const gesture = results[0].label
             console.log(gesture)
 
+
 // -----------------------------------------------------------------------------------------------------------------------
 // ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
 // -----------------------------------------------------------------------------------------------------------------------
 
-            if (gesture === "Up") {
+            if (gesture === poseParameters.pose1) {
                 window.scrollBy(0, -50);
 
-            } else if (gesture === "Down") {
+            } else if (gesture === poseParameters.pose2) {
                 window.scrollBy(0, 50);
 
-            } else if (gesture === "Left") {
+            } else if (gesture === poseParameters.pose3) {
                 // window.scrollBy(0, 50);
 
-            } else if (gesture === "Right") {
+            } else if (gesture === poseParameters.pose4) {
                 // window.scrollBy(0, 50);
 
             }
@@ -120,18 +138,12 @@ function HandGest() {
 // 
 // -----------------------------------------------------------------------------------------------------------------------
 
-    // stop reading gestures
-    function stopClass() {
-        working = false
-        clearInterval(inter)
-    }
-
     return (
         <div>
             <Webcam ref={webcamRef}
                 style={{
-                    width: 640,
-                    height: 480,
+                    width: poseParameters.webcamWidth,
+                    height: poseParameters.webcamHeight,
                 }} />
             <button onClick={() => startClass()}>Classify</button>
             <button onClick={() => stopClass()}>Stop</button>
@@ -140,4 +152,5 @@ function HandGest() {
 }
 
 export default HandGest;
+    
 
