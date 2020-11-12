@@ -1,10 +1,14 @@
 const path = require("path");
-const router = require("express").Router();
-const patientsRoutes = require("./patients");
-const providersRoutes = require("./providers");
+const express = require("express");
+const router = express.Router();
+const usersRoutes = require("./users");
+// const patientsRoutes = require("./patients");
+
 // Patients routes
-router.use("/patients", patientsRoutes);
-router.use("/providers", providersRoutes);
+// router.use("/patients", patientsRoutes);
+
+// Users routes
+router.use("/users", usersRoutes);
 
 // For anything else, render the html page
 router.use(function (req, res) {

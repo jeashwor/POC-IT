@@ -1,0 +1,16 @@
+#care-card {
+    border: none;
+    max-width: 500px;
+    overflow: hidden;
+    border-radius: 40px;
+    margin-bottom: 30px;
+}
+
+.card-title {
+    font-family: "Jost", sans-serif;
+}
+
+.card-text {
+    font-family: "Jost", sans-serif;
+    font-size: 20px;
+}

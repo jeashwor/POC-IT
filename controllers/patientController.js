@@ -1,4 +1,3 @@
-const { Patient } = require("../models");
 const db = require("../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -15,6 +14,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   register: (req, res) => {
+    console.log("register api hit");
     const { errors, isValid } = validateRegisterInput(req.body);
     if (!isValid) {
       return res.status(400).json(errors);
@@ -28,8 +28,8 @@ module.exports = {
           email: req.body.email,
           password: req.body.password,
           dob: req.body.dob,
-          height: req.body.height,
-          weight: req.body.weight,
+          // height: req.body.height,
+          // weight: req.body.weight,
           currentProvider: req.body.currentProvider,
           currentProcedures: req.body.currentProcedures,
         });

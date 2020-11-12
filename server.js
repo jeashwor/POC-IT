@@ -1,11 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const crypto = require("crypto");
-const Grid = require("gridfs-stream");
 const routes = require("./routes");
 const passport = require("passport");
-const patients = require("./routes/api/patients");
-const { db } = require("./models/");
+const users = require("./routes/api/users");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -32,7 +29,7 @@ mongoose
 // Setup and configure Passport
 app.use(passport.initialize());
 require("./config/passport")(passport);
-app.use("/api/patients", patients);
+app.use("/api/users", users);
 
 // Start the API server
 app.listen(PORT, () =>
