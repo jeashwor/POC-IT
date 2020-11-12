@@ -41,6 +41,7 @@
     "react-bootstrap": "^1.4.0",
     "react-icons": "^3.11.0",
     "react-router-dom": "^5.2.0",
+    "redux-devtools-extension": "^2.13.8",
     "validator": "^13.1.17"
   }
 }
