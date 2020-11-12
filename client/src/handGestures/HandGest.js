@@ -9,7 +9,7 @@ let pose;
 const poseParameters = {
     pose1: "OK",
     pose2: "Thumbs Up",
-    pose3: "Left",
+    pose3: "Go Back",
     pose4: "Right",
     classifySpeed: 1000,
     webcamWidth: 640,
@@ -124,11 +124,12 @@ function HandGest(props) {
 
             // Thumbs Up Gesture
             } else if (gesture === poseParameters.pose2) {
-                carNum -= 1;
-                props.setIndex(carNum);
+                // carNum -= 1;
+                // props.setIndex(carNum);
 
             } else if (gesture === poseParameters.pose3) {
-                // window.scrollBy(0, 50);
+                carNum -= 1;
+                props.setIndex(carNum);
 
             } else if (gesture === poseParameters.pose4) {
                 // window.scrollBy(0, 50);
