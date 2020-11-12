@@ -99,18 +99,20 @@ module.exports = {
   assignProcedure: (req, res) => {
     db.Procedure.findOneAndUpdate({ name: req.body.name }).then(({ _id }) => {
       db.User.findOneAndUpdate(
-        { email: "test@test.com" },
+        { email: req.params.email },
         { $push: { currentProcedures: _id } },
         { new: true }
-      ).then((patient) => {
-        res.json(patient);
-      });
+      )
+        .then((patient) => {
+          res.json(patient);
+        })
+        .catch((err) => res.status(422).json(err));
     });
   },
   assignPatientProvider: (req, res) => {
     db.User.find({ email: req.body.email }).then((provider) => {
       db.User.findOneAndUpdate(
-        { email: "test@test.com" },
+        { email: req.params.email },
         { $set: { currentProvider: provider } },
         { new: true }
       ).then((patient) => {
@@ -118,9 +120,11 @@ module.exports = {
           { email: req.body.email },
           { $push: { currentPatients: patient } },
           { new: true }
-        ).then((provider) => {
-          res.json(provider);
-        });
+        )
+          .then((provider) => {
+            res.json(provider);
+          })
+          .catch((err) => res.status(422).json(err));
       });
     });
   },
