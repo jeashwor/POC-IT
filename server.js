@@ -22,6 +22,8 @@ mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/pocIT", {
     useCreateIndex: true,
     useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
   })
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
