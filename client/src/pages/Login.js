@@ -27,14 +27,14 @@ class Login extends Component {
         }
     }
 
-    static getDerivedStateFromProps(props, state) {
-        if (props.auth.isAuthenticated) {
-            props.history.push("/patient");
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.auth.isAuthenticated) {
+            this.props.history.push("/patient");
         }
-        if (props.errors) {
-            return {
-                errors: props.errors
-            };
+        if (nextProps.errors) {
+            this.setState({
+                errors: nextProps.errors
+            });
         }
     }
 

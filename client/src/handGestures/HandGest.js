@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as Webcam from "react-webcam";
 import * as ml5 from "ml5";
 import { useHistory } from "react-router-dom";
@@ -67,7 +67,6 @@ function HandGest(props) {
 
   useEffect(() => {
     runHandpose();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Start collecting the poses if there are any

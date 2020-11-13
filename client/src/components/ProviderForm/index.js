@@ -28,11 +28,11 @@ class ProviderForm extends Component {
     }
   }
 
-  static getDerivedStateFromProps(props, state) {
-    if (props.errors) {
-      return {
-        errors: props.errors
-      };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
     }
   }
 
