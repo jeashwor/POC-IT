@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3001/",
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "@tensorflow-models/handpose": "0.0.6",
     "@tensorflow/tfjs": "^2.7.0",
