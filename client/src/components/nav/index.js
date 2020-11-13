@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FaEllipsisV } from "react-icons/fa";
 import StartButton from "../StartButton";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { logoutUser } from "../../actions/authActions";
 import "./style.css";
 
 class Nav extends Component {
@@ -23,6 +26,11 @@ class Nav extends Component {
   toggleNav = () => {
     this.setState({ open: !this.state.open });
   };
+
+  onLogoutClick = e => {
+    e.preventDefault();
+    this.props.logoutUser();
+  }
 
   componentDidMount() {
     window.addEventListener("resize", this.updateWidth);
@@ -72,11 +80,23 @@ class Nav extends Component {
           </ul>
         </div>
         <div className="logout">
-          <a href="/logout" className="logoutBtn">Logout</a>
+          <a href="/" onClick={this.onLogoutClick} className="logoutBtn">Logout</a>
         </div>
       </nav>
     );
   }
 }
 
-export default Nav;
+Nav.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { logoutUser }
+) (Nav);
