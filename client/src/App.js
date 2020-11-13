@@ -41,11 +41,11 @@ function App() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
           <PrivateRoute exact path="/patient" component={Patient} />
-          <Route exact path="/intro" component={Intro} />
-          <Route exact path="/procedure" component={Procedure} />
-          <Route exact path="/clinician" component={Clinician} />
+          <PrivateRoute exact path="/intro" component={Intro} />
+          <PrivateRoute exact path="/procedure" component={Procedure} />
+          <PrivateRoute exact path="/clinician" component={Clinician} />
           {/* update to treatment/:id where id is patient id */}
-          <Route exact path="/treatment" component={Treatment} />
+          <PrivateRoute exact path="/treatment" component={Treatment} />
         </Switch>
       </div>
     </Router>

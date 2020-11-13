@@ -29,11 +29,11 @@ class PatientForm extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors
-      });
+  static getDerivedStateFromProps(props, state) {
+    if (props.errors) {
+      return {
+        errors: props.errors
+      };
     }
   }
 
@@ -94,8 +94,8 @@ class PatientForm extends Component {
         <Form.Row>
           <Form.Group as={Col} md="4">
             <Form.Label>Email</Form.Label>
-            <Form.Control 
-              type="text" 
+            <Form.Control
+              type="text"
               onChange={this.onChange}
               value={this.state.email}
               error={errors.email}
@@ -104,19 +104,19 @@ class PatientForm extends Component {
               className={classnames("", {
                 invalid: errors.email
               })}
-              />
-              <span className="red-text">{errors.email}</span>
+            />
+            <span className="red-text">{errors.email}</span>
           </Form.Group>
           <Form.Group as={Col} md="4">
             <Form.Label>Date of Birth</Form.Label>
-            <Form.Control 
+            <Form.Control
               type="date"
               onChange={this.onChange}
-              value={this.state.dob} 
+              value={this.state.dob}
               error={errors.dob}
               id="dob"
               placeholder="Date of Birth"
-              />
+            />
           </Form.Group>
         </Form.Row>
         <Form.Row>
@@ -171,4 +171,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { registerUser }
- )(withRouter(PatientForm));
+)(withRouter(PatientForm));
