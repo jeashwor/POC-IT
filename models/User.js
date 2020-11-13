@@ -24,6 +24,30 @@ const userSchema = new Schema({
     required: "Please enter a name",
     trim: true,
   },
+  currentProvider: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  currentProcedures: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Procedure",
+    },
+  ],
+  currentPatients: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+    },
+  ],
+  storedImages: [
+    {
+      type: Buffer,
+      contentType: String,
+    },
+  ],
 });
 
 const User = mongoose.model("User", userSchema);

@@ -1,3 +1,4 @@
+const { Provider } = require("../models");
 const db = require("../models");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -9,34 +10,31 @@ const validateLoginInput = require("../validation/login");
 
 module.exports = {
   findAll: (req, res) => {
-    console.log(req.query);
-
-    db.User.find(req.query)
-      .then((dbUser) => res.json(dbUser))
+    db.Provider.find(req.query)
+      .then((dbProvider) => res.json(dbProvider))
       .catch((err) => res.status(422).json(err));
   },
   register: (req, res) => {
-    console.log("register api hit");
     const { errors, isValid } = validateRegisterInput(req.body);
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    db.User.findOne({ email: req.body.email }).then((user) => {
+    db.Provider.findOne({ email: req.body.email }).then((user) => {
       if (user) {
         return res.status(400).json({ email: "Email already exists" });
       } else {
-        const newUser = new db.User({
+        const newProvider = new db.Provider({
           name: req.body.name,
           email: req.body.email,
           password: req.body.password,
-          isProvider: req.body.isProvider,
+          currentPatients: req.body.currentPatients,
         });
 
         bcrypt.genSalt(10, (err, salt) => {
-          bcrypt.hash(newUser.password, salt, (err, hash) => {
+          bcrypt.hash(newProvider.password, salt, (err, hash) => {
             if (err) throw err;
-            newUser.password = hash;
-            newUser
+            newProvider.password = hash;
+            newProvider
               .save()
               .then((user) => res.json(user))
               .catch((err) => console.log(err));
@@ -55,7 +53,7 @@ module.exports = {
     const email = req.body.email;
     const password = req.body.password;
 
-    db.User.findOne({ email }).then((user) => {
+    db.Provider.findOne({ email }).then((user) => {
       if (!user) {
         return res.status(404).json({ emailnotfound: "Email not found" });
       }
@@ -86,61 +84,17 @@ module.exports = {
       });
     });
   },
-  displayProcedures: (req, res) => {
-    db.User.find({ email: req.body.email })
-      .populate("currentProcedures", "instructions")
-      .then((user) => {
-        res.json(user);
-      })
-      .catch((err) => {
-        res.json(err);
-      });
-  },
   assignProcedure: (req, res) => {
     db.Procedure.findOneAndUpdate({ name: req.body.name }).then(({ _id }) => {
-      db.User.findOneAndUpdate(
-        { email: req.params.email },
+      console.log({ _id });
+      db.Patient.findOneAndUpdate(
+        { email: "test@test.com" },
         { $push: { currentProcedures: _id } },
         { new: true }
-      )
-        .then((patient) => {
-          res.json(patient);
-        })
-        .catch((err) => res.status(422).json(err));
-    });
-  },
-  assignPatientProvider: (req, res) => {
-    db.User.find({ email: req.body.email }).then((provider) => {
-      db.User.findOneAndUpdate(
-        { email: req.params.email },
-        { $set: { currentProvider: provider } },
-        { new: true }
       ).then((patient) => {
-        db.User.findOneAndUpdate(
-          { email: req.body.email },
-          { $push: { currentPatients: patient } },
-          { new: true }
-        )
-          .then((provider) => {
-            res.json(provider);
-          })
-          .catch((err) => res.status(422).json(err));
+        res.json(patient);
       });
+      console.log("hit?");
     });
-  },
-  findAllPatients: (req, res) => {
-    db.User.find({ isProvider: false })
-      .then((dbUser) => res.json(dbUser))
-      .catch((err) => res.status(422).json(err));
-  },
-  displayPatients: (req, res) => {
-    db.User.find({ email: req.body.email })
-      .populate("currentPatients", ["name", "email"])
-      .then((user) => {
-        res.json(user);
-      })
-      .catch((err) => {
-        res.json(err);
-      });
   },
 };
