@@ -10,8 +10,8 @@ const validateLoginInput = require("../validation/login");
 module.exports = {
   findAll: (req, res) => {
     db.Patient.find(req.query)
-      .then(dbPatient => res.json(dbPatient))
-      .catch(err => res.status(422).json(err));
+      .then((dbPatient) => res.json(dbPatient))
+      .catch((err) => res.status(422).json(err));
   },
   register: (req, res) => {
     console.log("register api hit");
@@ -19,7 +19,7 @@ module.exports = {
     if (!isValid) {
       return res.status(400).json(errors);
     }
-    db.Patient.findOne({ email: req.body.email }).then(user => {
+    db.Patient.findOne({ email: req.body.email }).then((user) => {
       if (user) {
         return res.status(400).json({ email: "Email already exists" });
       } else {
@@ -31,7 +31,7 @@ module.exports = {
           // height: req.body.height,
           // weight: req.body.weight,
           currentProvider: req.body.currentProvider,
-          currentProcedures: req.body.currentProcedures
+          currentProcedures: req.body.currentProcedures,
         });
 
         bcrypt.genSalt(10, (err, salt) => {
@@ -40,8 +40,8 @@ module.exports = {
             newPatient.password = hash;
             newPatient
               .save()
-              .then(user => res.json(user))
-              .catch(err => console.log(err));
+              .then((user) => res.json(user))
+              .catch((err) => console.log(err));
           });
         });
       }
@@ -57,33 +57,45 @@ module.exports = {
     const email = req.body.email;
     const password = req.body.password;
 
-    db.Patient.findOne({ email }).then(user => {
+    db.Patient.findOne({ email }).then((user) => {
       if (!user) {
         return res.status(404).json({ emailnotfound: "Email not found" });
       }
-      bcrypt.compare(password, user.password).then(isMatch => {
+      bcrypt.compare(password, user.password).then((isMatch) => {
         if (isMatch) {
           const payload = {
             id: user.id,
-            name: user.name
+            name: user.name,
           };
           jwt.sign(
             payload,
             keys.secretOrKey,
             {
-              expiresIn: 31556926
+              expiresIn: 31556926,
             },
             (err, token) => {
               res.json({
                 success: true,
-                token: "Bearer " + token
+                token: "Bearer " + token,
               });
             }
           );
         } else {
-          return res.status(400).json({ passwordincorrect: "Password incorrect" });
+          return res
+            .status(400)
+            .json({ passwordincorrect: "Password incorrect" });
         }
       });
     });
-  }
+  },
+  procedures: (req, res) => {
+    db.Patient.find({ email: req.body.email })
+      .populate("currentProcedures")
+      .then((user) => {
+        res.json(user);
+      })
+      .catch((err) => {
+        res.json(err);
+      });
+  },
 };
