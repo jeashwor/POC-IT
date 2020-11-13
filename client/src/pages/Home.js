@@ -14,7 +14,7 @@ function Home() {
                 <Container fluid>
                     <Row>
                         <Col lg={6}>
-                            <h1><img src="./assets/transIcon.png" alt="POC-IT" /></h1>
+                            <h1><img src={process.env.PUBLIC_URL + "./assets/transIcon.png"} alt="POC-IT" /></h1>
                             <h2>Say hi to personalized, point of care healthcare all within your pocket</h2>
                             <div>
                                 <StartButton link="/login" label="Get Started"/>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { FaEllipsisV } from "react-icons/fa";
+import StartButton from "../StartButton";
 import "./style.css";
 
 class Nav extends Component {
@@ -69,6 +70,9 @@ class Nav extends Component {
               </Link>
             </li>
           </ul>
+        </div>
+        <div className="logout">
+          <a href="/logout" className="logoutBtn">Logout</a>
         </div>
       </nav>
     );
