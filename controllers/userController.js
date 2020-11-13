@@ -143,4 +143,13 @@ module.exports = {
         res.json(err);
       });
   },
+  getUserData: (req, res) => {
+    db.User.find({ _id: req.params._id })
+      .then(dbUser => {
+        res.json(dbUser);
+      })
+      .catch((err) => {
+        res.status(422).json(err);
+      });
+  }
 };
