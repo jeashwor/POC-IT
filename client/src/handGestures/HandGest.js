@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import React, { useRef, useEffect } from 'react'
 import * as Webcam from 'react-webcam';
 import * as ml5 from 'ml5';
 import { useHistory } from "react-router-dom";
