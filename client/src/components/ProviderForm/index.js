@@ -29,6 +29,7 @@ class ProviderForm extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
+    console.log(props);
     if (props.errors) {
       return {
         errors: props.errors
@@ -147,12 +148,14 @@ class ProviderForm extends Component {
 ProviderForm.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  user: PropTypes.object
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  user: state.user
 });
 
 export default connect(

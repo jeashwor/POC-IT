@@ -15,6 +15,7 @@ class Login extends Component {
     constructor() {
         super();
         this.state = {
+            user: {},
             email: "",
             password: "",
             errors: {}
