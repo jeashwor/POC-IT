@@ -12,7 +12,7 @@ const poseParameters = {
   pose2: "Thumbs Up",
   pose3: "Go Back",
   pose4: "Right",
-  classifySpeed: 1000,
+  classifySpeed: 2000,
   webcamWidth: 640,
   webcamHeight: 480,
   videoHidden: false,
@@ -109,9 +109,9 @@ function HandGest(props) {
       if (results[0].confidence > 0.95) {
         const gesture = results[0].label;
         console.log(gesture);
-        if (gesture === poseParameters.pose1) {
+        if (gesture === poseParameters.pose1 || gesture === poseParameters.pose3) {
           clearInterval(inter);
-          setTimeout(startClass(), 2000);
+          setTimeout(startClass(), 3000);
         }
 
 // -----------------------------------------------------------------------------------------------------------------------
