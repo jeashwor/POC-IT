@@ -12,7 +12,7 @@ const poseParameters = {
   pose2: "Thumbs Up",
   pose3: "Go Back",
   pose4: "Right",
-  classifySpeed: 1000,
+  classifySpeed: 2000,
   webcamWidth: 640,
   webcamHeight: 480,
   videoHidden: false,
@@ -109,21 +109,22 @@ function HandGest(props) {
       if (results[0].confidence > 0.95) {
         const gesture = results[0].label;
         console.log(gesture);
-        if (gesture === poseParameters.pose1) {
+        if (gesture === poseParameters.pose1 || gesture === poseParameters.pose3) {
           clearInterval(inter);
-          setTimeout(startClass(), 2000);
+          setTimeout(startClass(), 3000);
         }
 
-        // -----------------------------------------------------------------------------------------------------------------------
-        // ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
-        // -----------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------
+// ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
+// -----------------------------------------------------------------------------------------------------------------------
         // OK Gesture:
         if (gesture === poseParameters.pose1) {
           // Thumbs Up Gesture
         } else if (gesture === poseParameters.pose2) {
           if (window.location.href.indexOf("procedure") > -1) {
-            if (carNum >= 0 && carNum <= 6) {
+            if (carNum >= 0 && carNum <= 5) {
               carNum += 1;
+              console.log(carNum)
               props.setIndex(carNum);
             } else {
               return;
@@ -134,8 +135,9 @@ function HandGest(props) {
 
           // Go Back Gesture
         } else if (gesture === poseParameters.pose3) {
-          if (carNum >= 0 && carNum <= 6) {
+          if (carNum >= 1 && carNum <= 6) {
             carNum -= 1;
+            console.log(carNum)
             props.setIndex(carNum);
           } else {
             return;
