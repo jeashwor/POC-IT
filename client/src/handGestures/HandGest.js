@@ -114,16 +114,17 @@ function HandGest(props) {
           setTimeout(startClass(), 2000);
         }
 
-        // -----------------------------------------------------------------------------------------------------------------------
-        // ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
-        // -----------------------------------------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------------------------------------
+// ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
+// -----------------------------------------------------------------------------------------------------------------------
         // OK Gesture:
         if (gesture === poseParameters.pose1) {
           // Thumbs Up Gesture
         } else if (gesture === poseParameters.pose2) {
           if (window.location.href.indexOf("procedure") > -1) {
-            if (carNum >= 0 && carNum <= 6) {
+            if (carNum >= 0 && carNum <= 5) {
               carNum += 1;
+              console.log(carNum)
               props.setIndex(carNum);
             } else {
               return;
@@ -134,8 +135,9 @@ function HandGest(props) {
 
           // Go Back Gesture
         } else if (gesture === poseParameters.pose3) {
-          if (carNum >= 0 && carNum <= 6) {
+          if (carNum >= 1 && carNum <= 6) {
             carNum -= 1;
+            console.log(carNum)
             props.setIndex(carNum);
           } else {
             return;
