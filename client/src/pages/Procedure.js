@@ -14,10 +14,29 @@ function Procedure() {
         setIndex(selectedIndex);
     };
 
+    // from the results of get(/api/users/:id) where id is patient _id logged in global state:
+    // store currentProcedure 'procedure' steps in an array, const procedureArray
+
+
     return (
         <div className="block steps">
             <Nav />
             <Carousel activeIndex={index} onSelect={handleSelect} interval={null} wrap={false}>
+                {/* procedureArray.map((step, index) => {
+                        return (
+                            <Carousel.Item>
+                                <div id="block" className="steps">
+                                    <Container fluid>
+                                        <h1>Step {index+1}</h1>
+                                        <StepCard title={step.title} text={step.description}/>
+                                    </Container>
+                                </div>
+                            </Carousel.Item>
+                        )
+                        
+                        remove the Carousel.Items below
+                }) */}
+
                 <Carousel.Item>
                     <div id="block" className="steps">
                         <Container fluid>
@@ -79,7 +98,7 @@ function Procedure() {
                 </Carousel.Item>
             </Carousel>
             <div className="handgest">
-                <HandGest index={index} setIndex={setIndex}/>
+                <HandGest index={index} setIndex={setIndex} />
             </div>
         </div >
     )
