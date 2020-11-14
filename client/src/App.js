@@ -16,6 +16,7 @@ import Intro from "./pages/Intro";
 import Procedure from "./pages/Procedure";
 import Treatment from "./pages/Treatment";
 import PrivateRoute from "./components/private-route/PrivateRoute";
+import ClinicianRoute from "./components/clinician-route/ClinicianRoute";
 
 // Check localStorage to see if user is already signed in.
 if (localStorage.jwtToken) {
@@ -43,7 +44,7 @@ function App() {
           <PrivateRoute exact path="/patient" component={Patient} />
           <PrivateRoute exact path="/intro" component={Intro} />
           <PrivateRoute exact path="/procedure" component={Procedure} />
-          <PrivateRoute exact path="/clinician" component={Clinician} />
+          <ClinicianRoute exact path="/clinician" component={Clinician} />
           {/* update to treatment/:id where id is patient id */}
           <Route exact path="/treatment" component={Treatment} />
         </Switch>
