@@ -17,8 +17,6 @@ export const registerUser = (userData, history) => dispatch => {
 export const getUser = userData => dispatch => {
     axios.get("/api/users/" + userData)
         .then((res, req) => {
-            console.log(res);
-            console.log(req);
             dispatch({
                 type: SET_USER,
                 payload: res.data
@@ -39,7 +37,6 @@ export const loginUser = userData => dispatch => {
             localStorage.setItem("jwtToken", token);
             setAuthToken(token);
             const decoded = jwt_decode(token);
-            console.log(decoded.id);
             dispatch(getUser(decoded.id));
             dispatch(setCurrentUser(decoded));
         })

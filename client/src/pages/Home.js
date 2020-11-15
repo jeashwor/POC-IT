@@ -1,4 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getUser } from "../actions/authActions";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,7 +9,23 @@ import Nav from "../components/Nav";
 import StartButton from "../components/StartButton";
 import "./style.css";
 
-function Home() {
+class Home extends Component {
+    constructor() {
+        super();
+        this.state = {
+            user: {}
+        };
+    }
+
+    componentDidMount() {
+        if (this.props.auth.isAuthenticated) {
+            console.log("ComponentDidMount");
+            console.log(this.props.auth.user.id);
+            getUser(this.props.auth.user.id)
+        }
+    }
+
+    render() {
     return (
         <div>
             <Nav />
@@ -28,7 +47,18 @@ function Home() {
             </div>
         </div>
 
-    )
+    )};
 }
 
-export default Home;
+Home.propTypes = {
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors,
+    user: state.user
+});
+
+export default connect(mapStateToProps)(Home);
