@@ -11,12 +11,14 @@ router.route("/login").post(userController.login);
 
 router.route("/patients").get(userController.findAllPatients);
 
-router.route("/assign/:email").put(userController.assignPatientProvider);
+router.route("/assign").put(userController.assignPatientProvider);
 
 router.route("/displaypatients").get(userController.displayPatients);
 
 router.route("/procedures").get(userController.displayProcedures);
 
-router.route("/addprocedure/:email").put(userController.assignProcedure);
+router.route("/addprocedure").put(userController.assignProcedure);
+
+router.route("/newprocedure").post(userController.registerProcedure);
 
 module.exports = router;

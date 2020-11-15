@@ -97,9 +97,10 @@ module.exports = {
       });
   },
   assignProcedure: (req, res) => {
+    console.log(req.params);
     db.Procedure.findOneAndUpdate({ name: req.body.name }).then(({ _id }) => {
       db.User.findOneAndUpdate(
-        { email: req.params.email },
+        { email: req.query.email },
         { $push: { currentProcedures: _id } },
         { new: true }
       )
@@ -112,7 +113,7 @@ module.exports = {
   assignPatientProvider: (req, res) => {
     db.User.find({ email: req.body.email }).then((provider) => {
       db.User.findOneAndUpdate(
-        { email: req.params.email },
+        { email: req.query.email },
         { $set: { currentProvider: provider } },
         { new: true }
       ).then((patient) => {
@@ -142,5 +143,24 @@ module.exports = {
       .catch((err) => {
         res.json(err);
       });
+  },
+  registerProcedure: (req, res) => {
+    db.Procedure.findOne({ name: req.body.name }).then((procedure) => {
+      if (procedure) {
+        return res.status(400).json({ name: "Name already exists" });
+      } else {
+        const newProcedure = new db.Procedure({
+          name: req.body.name,
+          description: req.body.description,
+          image: req.body.image,
+          preperation: req.body.preperation,
+          instructions: req.body.instructions,
+        });
+        newProcedure
+          .save()
+          .then((user) => res.json(user))
+          .catch((err) => console.log(err));
+      }
+    });
   },
 };
