@@ -1,4 +1,7 @@
-import React from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getUser } from "../actions/authActions";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -6,7 +9,32 @@ import Nav from "../components/Nav";
 import StartButton from "../components/StartButton";
 import "./style.css";
 
-function Home() {
+class Home extends Component {
+    constructor() {
+        super();
+        this.state = {
+            user: {}
+        };
+    }
+
+    componentDidMount() {
+        if (this.props.auth.isAuthenticated) {
+            console.log("ComponentDidMount");
+            console.log(this.props.auth.user.id);
+            getUser(this.props.auth.user.id)
+        }
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if (props.auth.isAuthenticated) {
+            console.log("Derived State");
+            console.log(props.auth.user.id);
+            getUser(props.auth.user.id)
+            return;
+        }
+    }
+
+    render() {
     return (
         <div>
             <Nav />
@@ -28,7 +56,19 @@ function Home() {
             </div>
         </div>
 
-    )
+    )};
 }
 
-export default Home;
+Home.propTypes = {
+    getUser: PropTypes.func,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors,
+    user: state.user
+});
+
+export default connect(mapStateToProps)(Home);

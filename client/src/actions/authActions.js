@@ -15,10 +15,9 @@ export const registerUser = (userData, history) => dispatch => {
 };
 
 export const getUser = userData => dispatch => {
+    console.log("getUser");
     axios.get("/api/users/" + userData)
         .then((res, req) => {
-            console.log(res);
-            console.log(req);
             dispatch({
                 type: SET_USER,
                 payload: res.data
@@ -39,7 +38,6 @@ export const loginUser = userData => dispatch => {
             localStorage.setItem("jwtToken", token);
             setAuthToken(token);
             const decoded = jwt_decode(token);
-            console.log(decoded.id);
             dispatch(getUser(decoded.id));
             dispatch(setCurrentUser(decoded));
         })
@@ -52,6 +50,7 @@ export const loginUser = userData => dispatch => {
 };
 
 export const setCurrentUser = decoded => {
+    console.log("setting current user");
     return {
         type: SET_CURRENT_USER,
         payload: decoded

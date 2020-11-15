@@ -23,13 +23,17 @@ class Login extends Component {
     }
 
     componentDidMount() {
-        if (this.props.auth.isAuthenticated) {
-            this.props.history.push("/patient")
+        if (this.props.auth.isAuthenticated && this.props.user.user.isProvider) {
+            this.props.history.push("/clinician");
+        } else if (this.props.auth.isAuthenticated && this.props.user.user.isProvider === false) {
+            this.props.history.push("/patient");
         }
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (props.auth.isAuthenticated) {
+        if (props.auth.isAuthenticated && props.user.user.isProvider) {
+            props.history.push("/clinician");
+        } else if (props.auth.isAuthenticated && props.user.user.isProvider === false) {
             props.history.push("/patient");
         }
         if (props.errors) {
@@ -122,12 +126,14 @@ class Login extends Component {
 Login.propTypes = {
     loginUser: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
-    errors: PropTypes.object.isRequired
+    errors: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    errors: state.errors
+    errors: state.errors,
+    user: state.user
 });
 
 export default connect(
