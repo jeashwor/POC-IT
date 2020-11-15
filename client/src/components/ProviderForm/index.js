@@ -44,7 +44,7 @@ class ProviderForm extends Component {
   onSubmit = e => {
     e.preventDefault();
     const newUser = {
-      name: this.state.firstName + " " + this.state.lastName,
+      name: (this.state.firstName + " " + this.state.lastName),
       email: this.state.email,
       password: this.state.password,
       password2: this.state.password2,
