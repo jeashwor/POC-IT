@@ -3,11 +3,11 @@ import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-const PrivateRoute = ({ component: Component, auth, user, ...rest }) => (
+const ClinicianRoute = ({ component: Component, auth, user, ...rest }) => (
     <Route
         {...rest}
         render={props =>
-            auth.isAuthenticated === true ? (
+            auth.isAuthenticated === true && user.user.isProvider === true ? (
                 <Component {...props} />
             ) : ( 
                  <Redirect to="/" />
@@ -15,9 +15,9 @@ const PrivateRoute = ({ component: Component, auth, user, ...rest }) => (
     />
 );
 
-PrivateRoute.propTypes = {
+ClinicianRoute.propTypes = {
     auth: PropTypes.object.isRequired,
-    user: PropTypes.object
+    user: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -25,4 +25,4 @@ const mapStateToProps = state => ({
     user: state.user
 });
 
-export default connect(mapStateToProps) (PrivateRoute);
+export default connect(mapStateToProps) (ClinicianRoute);

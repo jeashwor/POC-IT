@@ -16,7 +16,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   register: (req, res) => {
-    console.log("register api hit");
+    // console.log("register api hit");
     const { errors, isValid } = validateRegisterInput(req.body);
     if (!isValid) {
       return res.status(400).json(errors);
@@ -162,5 +162,14 @@ module.exports = {
           .catch((err) => console.log(err));
       }
     });
+  },
+  getUserData: (req, res) => {
+    db.User.findOne({ _id: req.params._id })
+      .then((dbUser) => {
+        res.json(dbUser);
+      })
+      .catch((err) => {
+        res.status(422).json(err);
+      });
   },
 };

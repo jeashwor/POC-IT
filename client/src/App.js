@@ -1,5 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./utils/setAuthToken";
+import { setCurrentUser, logoutUser } from "./actions/authActions";
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -12,6 +15,22 @@ import Clinician from "./pages/Clinician";
 import Intro from "./pages/Intro";
 import Procedure from "./pages/Procedure";
 import Treatment from "./pages/Treatment";
+import PrivateRoute from "./components/private-route/PrivateRoute";
+import ClinicianRoute from "./components/clinician-route/ClinicianRoute";
+
+// Check localStorage to see if user is already signed in.
+if (localStorage.jwtToken) {
+  const token = localStorage.jwtToken;
+  setAuthToken(token);
+  const decoded = jwt_decode(token);
+  store.dispatch(setCurrentUser(decoded));
+  // Check for expired token and log user out if it is expired
+  const currentTime = Date.now() / 1000;
+  if (decoded.exp < currentTime) {
+    store.dispatch(logoutUser());
+    window.location.href = "./login";
+  }
+}
 
 function App() {
   return (
@@ -22,10 +41,10 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={SignUp} />
-          <Route exact path="/patient" component={Patient} />
-          <Route exact path="/intro" component={Intro} />
-          <Route exact path="/procedure" component={Procedure} />
-          <Route exact path="/clinician" component={Clinician} />
+          <PrivateRoute exact path="/patient" component={Patient} />
+          <PrivateRoute exact path="/intro" component={Intro} />
+          <PrivateRoute exact path="/procedure" component={Procedure} />
+          <ClinicianRoute exact path="/clinician" component={Clinician} />
           {/* update to treatment/:id where id is patient id */}
           <Route exact path="/treatment" component={Treatment} />
         </Switch>

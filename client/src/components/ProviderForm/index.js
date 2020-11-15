@@ -24,15 +24,16 @@ class ProviderForm extends Component {
 
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/patient")
+      this.props.history.push("/provider")
     }
   }
-  
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors
-      });
+
+  static getDerivedStateFromProps(props, state) {
+    console.log(props);
+    if (props.errors) {
+      return {
+        errors: props.errors
+      };
     }
   }
 
@@ -147,12 +148,14 @@ class ProviderForm extends Component {
 ProviderForm.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  user: PropTypes.object
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  user: state.user
 });
 
 export default connect(

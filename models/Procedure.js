@@ -9,7 +9,7 @@ const procedureSchema = new Schema({
   },
   description: {
     type: String,
-    required: "Please enter a description",
+    required: "Please enter procedure description",
     trim: true,
   },
   image: {
