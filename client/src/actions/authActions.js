@@ -15,6 +15,7 @@ export const registerUser = (userData, history) => dispatch => {
 };
 
 export const getUser = userData => dispatch => {
+    console.log("getUser");
     axios.get("/api/users/" + userData)
         .then((res, req) => {
             dispatch({
@@ -49,6 +50,7 @@ export const loginUser = userData => dispatch => {
 };
 
 export const setCurrentUser = decoded => {
+    console.log("setting current user");
     return {
         type: SET_CURRENT_USER,
         payload: decoded

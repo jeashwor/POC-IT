@@ -25,6 +25,15 @@ class Home extends Component {
         }
     }
 
+    static getDerivedStateFromProps(props, state) {
+        if (props.auth.isAuthenticated) {
+            console.log("Derived State");
+            console.log(props.auth.user.id);
+            getUser(props.auth.user.id)
+            return;
+        }
+    }
+
     render() {
     return (
         <div>
@@ -51,6 +60,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
+    getUser: PropTypes.func,
     auth: PropTypes.object.isRequired,
     errors: PropTypes.object.isRequired
 };
