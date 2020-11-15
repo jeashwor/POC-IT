@@ -9,8 +9,6 @@ const validateLoginInput = require("../validation/login");
 
 module.exports = {
   findAll: (req, res) => {
-    console.log(req.query);
-
     db.User.find(req.query)
       .then((dbUser) => res.json(dbUser))
       .catch((err) => res.status(422).json(err));
@@ -87,8 +85,9 @@ module.exports = {
     });
   },
   displayProcedures: (req, res) => {
+    console.log("hit?");
     db.User.find({ email: req.body.email })
-      .populate("currentProcedures", "instructions")
+      .populate("currentProcedures")
       .then((user) => {
         res.json(user);
       })

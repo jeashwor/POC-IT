@@ -17,22 +17,26 @@ const procedureSchema = new Schema({
   },
   preperation: [
     {
-      type: String,
-      required: "Please enter procedure preperation instructions",
+      title: {
+        type: String,
+        required: "Please enter preperation title",
+      },
+      step: {
+        type: String,
+        required: "Please enter preperation steps",
+      },
     },
   ],
   instructions: [
     {
-      name: {
+      title: {
         type: String,
-        required: "Please enter procedure name",
+        required: "Please enter procedure title",
       },
-      steps: [
-        {
-          type: String,
-          required: "Please enter procedure steps",
-        },
-      ],
+      step: {
+        type: String,
+        required: "Please enter procedure steps",
+      },
     },
   ],
 });
