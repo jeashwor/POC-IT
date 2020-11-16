@@ -165,7 +165,17 @@ module.exports = {
   getUserData: (req, res) => {
     db.User.findOne({ _id: req.params._id })
       .then((dbUser) => {
-        res.json(dbUser);
+        const userData = {
+          email: dbUser.email,
+          isProvider: dbUser.isProvider,
+          name: dbUser.name,
+          storedImages: dbUser.storedImages,
+          _id: dbUser.id,
+          currentPatients: dbUser.currentPatients,
+          currentProcedures: dbUser.currentProcedures,
+          currentProvider: dbUser.currentProvider,
+        };
+        res.json(userData);
       })
       .catch((err) => {
         res.status(422).json(err);

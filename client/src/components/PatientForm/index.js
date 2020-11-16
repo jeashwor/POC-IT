@@ -44,7 +44,7 @@ class PatientForm extends Component {
   onSubmit = e => {
     e.preventDefault();
     const newUser = {
-      name: this.state.firstName + " " + this.state.lastName,
+      name: (this.state.firstName + " " + this.state.lastName),
       email: this.state.email,
       dob: this.state.dob,
       password: this.state.password,

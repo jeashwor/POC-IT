@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Nav from "../components/Nav";
 import CareButton from "../components/CareButton";
 import "./style.css";
 // import API from "../utils/API";
 
-function Patient() {
+function Patient(props) {
+    console.log(props.user.user.name);
     // const [user, setUser] = useState("");
     // const [id, setId] = useState("");
 
@@ -26,8 +29,7 @@ function Patient() {
             <Nav />
             <div className="block">
                 <Container fluid>
-                    {/* get(/api/users/) then record name * _id of current user in state, then replace "Jack" in next line with name of current user in state */}
-                    <h1>Hi Jack!</h1>
+                    <h1>{props.user.user.name}</h1>
                     <h2>Here's your home care regimen</h2>
                     <div>
                         {/* get(/api/users/:id) with current id in state,  then replace image prop with procedure image, title prop value with procedure name, text prop with procedure description*/}
@@ -40,4 +42,12 @@ function Patient() {
     )
 }
 
-export default Patient;
+Patient.propTypes = {
+    user: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+    user: state.user
+});
+
+export default connect(mapStateToProps)(Patient);

@@ -8,8 +8,8 @@ let inputs;
 let pose;
 
 const poseParameters = {
-  pose1: "OK",
-  pose2: "Thumbs Up",
+  pose1: "Thumbs Up",
+  pose2: "OK",
   pose3: "Go Back",
   pose4: "Right",
   classifySpeed: 2000,
