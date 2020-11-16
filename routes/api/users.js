@@ -5,8 +5,6 @@ const userController = require("../../controllers/userController");
 // Matches with "api/users"
 router.route("/").get(userController.findAll);
 
-// router.route("/:_id").get(userController.getUserData);
-
 router.route("/register").post(userController.register);
 
 router.route("/login").post(userController.login);
@@ -23,4 +21,5 @@ router.route("/addprocedure").put(userController.assignProcedure);
 
 router.route("/newprocedure").post(userController.registerProcedure);
 
+router.route("/:_id").get(userController.getUserData);
 module.exports = router;
