@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Nav from "../components/Nav";
 import SearchForm from "../components/SearchForm";
@@ -31,4 +33,12 @@ function Clinician(props) {
     )
 }
 
-export default Clinician;
+Clinician.propTypes = {
+    user: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+    user: state.user
+})
+
+export default connect(mapStateToProps)(Clinician);
