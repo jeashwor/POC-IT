@@ -11,7 +11,6 @@ function Clinician(props) {
             <Nav />
             <div className="block">
                 <Container fluid>
-                    {/* from get(/api/users/), record .name & ._id of current user in state (res.data[0].name, res.data[0]._id), then replace "Jane" in next line with name of current user in state */}
                     <h1>{props.user.user.name}</h1>
                     <h2>Let's find your patient</h2>
                     <SearchForm />
