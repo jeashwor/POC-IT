@@ -2,6 +2,7 @@ const path = require("path");
 const express = require("express");
 const router = express.Router();
 const usersRoutes = require("./users");
+const apiRoute = require("./api");
 // const patientsRoutes = require("./patients");
 
 // Patients routes
@@ -9,6 +10,7 @@ const usersRoutes = require("./users");
 
 // Users routes
 router.use("/users", usersRoutes);
+router.use("/image", apiRoute);
 
 // For anything else, render the html page
 router.use(function (req, res) {
