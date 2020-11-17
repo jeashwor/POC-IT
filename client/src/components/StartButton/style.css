@@ -7,13 +7,13 @@
     transition: 0.3s;
     font-size: 14px;
     display: inline-block;
-    border: 2px solid #47b2e4;
-    background: #47b2e4;
+    /* background: #47b2e4; */
+    background: rgb(99, 115, 209);
     font-weight: 600;
 }
   
 .get-started-btn:hover {
-    background: #31a9e1;
+    background: rgb(168, 136, 228);
     color: #fff;
     text-decoration: none;
 }

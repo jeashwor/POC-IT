@@ -12,23 +12,19 @@ a:hover {
     text-decoration: none;
 }
   
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, p {
     font-family: "Jost", sans-serif;
 }
-
-.handgest {
-    text-align: center;
-}
-
-
 
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
 #hero {
-    background: rgb(216, 238, 244);
-    height: 100vh;
-}
+    /* background: rgb(216, 238, 244); */
+    background: #C9D6FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right,  #D8EEF4, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right,  #D8EEF4, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
 
 #hero .container-fluid {
     padding-top: 90px;
@@ -36,7 +32,6 @@ h1, h2, h3, h4, h5, h6 {
 
 #hero h1 {
     margin: 0 0 10px 0;
-    font-size: 48px;
     font-weight: 700;
     line-height: 56px;
     color: rgb(9, 19, 48);
@@ -45,7 +40,6 @@ h1, h2, h3, h4, h5, h6 {
 #hero h2 {
     color: rgb(9, 19, 48);
     margin-bottom: 50px;
-    font-size: 24px;
 }
 
 #hero img {
@@ -111,6 +105,43 @@ h1, h2, h3, h4, h5, h6 {
   }
 
 /*--------------------------------------------------------------
+# Wave Container
+--------------------------------------------------------------*/
+.wave-container {
+    background: #C9D6FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #D8EEF4, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right,  #D8EEF4, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.wave-container > svg {
+    display: block;
+}
+
+/*--------------------------------------------------------------
+# About Section
+--------------------------------------------------------------*/
+
+#about {
+    background-color: rgb(9, 19, 48);
+    color: white;
+    text-align: center;
+    padding-bottom: 200px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#about .card-deck{
+    margin-top: 30px;
+    color: black;
+    text-align: left;
+}
+
+#about .card-img-top{
+    width: 20%;
+    align-self: center;
+    padding-top: 20px;
+}
+
+/*--------------------------------------------------------------
 # Buttons
 --------------------------------------------------------------*/
 #any-btn {
@@ -121,13 +152,13 @@ h1, h2, h3, h4, h5, h6 {
     transition: 0.3s;
     font-size: 14px;
     display: inline-block;
-    border: 2px solid #47b2e4;
+    border: none;
     background: #47b2e4;
     font-weight: 600;
 }
   
 #any-btn:hover {
-    background: #31a9e1;
+    background: rgb(168, 136, 228);
     color: #fff;
     text-decoration: none;
 }
@@ -137,6 +168,41 @@ h1, h2, h3, h4, h5, h6 {
       margin: 0 0 0 0;
       padding: 6px 20px 7px 20px;
     }
+}
+
+/*--------------------------------------------------------------
+# Hero-Login Section
+--------------------------------------------------------------*/
+#hero-login {
+    background: #C9D6FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #D8EEF4, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right,  #D8EEF4, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: 100vh;
+}
+
+#hero-login .container-fluid {
+    padding-top: 90px;
+}
+
+#hero-login h1 {
+    margin: 0 0 10px 0;
+    font-weight: 700;
+    line-height: 56px;
+    color: rgb(9, 19, 48);
+}
+
+#hero-login h2 {
+    color: rgb(9, 19, 48);
+    margin-bottom: 50px;
+}
+
+#hero-login a {
+    color: #47b2e4;
+}
+  
+#hero-login a:hover {
+    color: rgb(168, 136, 228);
+    text-decoration: none;
 }
 
 /*--------------------------------------------------------------
@@ -183,4 +249,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .treatment h2 {
     color: white;
+}
+
+/*--------------------------------------------------------------
+# HandGest
+--------------------------------------------------------------*/
+.handgest {
+    padding-top: 20px;
+    text-align: center;
+    width: 100%;
+    height: auto;
 }

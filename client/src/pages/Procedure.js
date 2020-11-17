@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Carousel from 'react-bootstrap/Carousel'
-import Nav from "../components/Nav";
+import AppBar from "../components/AppBar";
+// import Nav from "../components/Nav";
 import StartButton from "../components/StartButton";
 import StepCard from "../components/StepCard";
 import HandGest from "../handGestures/HandGest";
@@ -20,7 +21,7 @@ function Procedure() {
 
     return (
         <div className="block steps">
-            <Nav />
+            <AppBar />
             <Carousel activeIndex={index} onSelect={handleSelect} interval={null} wrap={false}>
                 {/* procedureArray.map((step, index) => {
                         return (
