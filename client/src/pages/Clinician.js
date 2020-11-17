@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import Nav from "../components/Nav";
+import AppBar from "../components/AppBar";
+// import Nav from "../components/Nav";
 import SearchForm from "../components/SearchForm";
 import PatientCard from "../components/PatientCard";
 import "./style.css";
@@ -8,7 +9,7 @@ import "./style.css";
 function Clinician(props) {
     return (
         <div>
-            <Nav />
+            <AppBar />
             <div className="block">
                 <Container fluid>
                     {/* from get(/api/users/), record .name & ._id of current user in state (res.data[0].name, res.data[0]._id), then replace "Jane" in next line with name of current user in state */}
