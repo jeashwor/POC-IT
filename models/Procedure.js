@@ -14,28 +14,30 @@ const procedureSchema = new Schema({
   },
   image: {
     type: String,
-    required: "Reference an image for the procedure format: '/assets/wound.png'",
-    trim: true,
   },
-  preparation: [
+  preperation: [
     {
-      type: String,
-      required: "Please enter preparation step title",
+      title: {
+        type: String,
+        required: "Please enter preperation title",
+      },
+      step: {
+        type: String,
+        required: "Please enter preperation steps",
+      },
     },
-    {
-      type: String,
-      required: "Please enter preparation step description",
-    }
   ],
   instructions: [
     {
-      type: String,
-      required: "Please enter procedure step title",
+      title: {
+        type: String,
+        required: "Please enter procedure title",
+      },
+      step: {
+        type: String,
+        required: "Please enter procedure steps",
+      },
     },
-    {
-      type: String,
-      required: "Please enter procedure step instructions",
-    }
   ],
 });
 
