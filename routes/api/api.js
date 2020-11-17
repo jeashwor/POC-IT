@@ -40,13 +40,18 @@ const upload = multer({ storage });
 // Save images
 router.put("/upload", upload.single("image"), (req, res) => {
   let uploadId = req.file.filename;
+  console.log("req.query: ", req.query.email);
   db.User.findOneAndUpdate(
     { email: req.query.email },
-    { $push: { storedImages: uploadId } },
+    { $set: { storedImages: uploadId } },
     { new: true }
-  ).then((patient) => {
-    res.json(patient);
-  });
+  )
+    .then((patient) => {
+      res.json(patient);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 });
 
 // Retrieve images
