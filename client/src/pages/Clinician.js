@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Nav from "../components/Nav";
 import SearchForm from "../components/SearchForm";
@@ -11,7 +13,6 @@ function Clinician(props) {
             <Nav />
             <div className="block">
                 <Container fluid>
-                    {/* from get(/api/users/), record .name & ._id of current user in state (res.data[0].name, res.data[0]._id), then replace "Jane" in next line with name of current user in state */}
                     <h1>{props.user.user.name}</h1>
                     <h2>Let's find your patient</h2>
                     <SearchForm />
@@ -32,4 +33,12 @@ function Clinician(props) {
     )
 }
 
-export default Clinician;
+Clinician.propTypes = {
+    user: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+    user: state.user
+})
+
+export default connect(mapStateToProps)(Clinician);
