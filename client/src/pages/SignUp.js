@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Nav from "../components/Nav";
+import AppBar from "../components/AppBar";
+// import Nav from "../components/Nav";
 import Form from 'react-bootstrap/Form';
 import PatientForm from "../components/PatientForm";
 import ProviderForm from "../components/ProviderForm";
@@ -26,8 +27,8 @@ function SignUp() {
 
     return (
         <div>
-            <Nav />
-            <div id="hero">
+            <AppBar />
+            <div id="hero-login">
                 <Container fluid>
                     <Row>
                         <Col lg={6}>

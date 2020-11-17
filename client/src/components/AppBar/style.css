@@ -1,0 +1,42 @@
+.navbar {
+  border-radius: 0;
+  background: white;
+}
+
+.logo {
+  font-size: 30px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgb(9, 19, 48);
+}
+
+.logo:hover {
+  color: rgb(168, 136, 228);
+  text-decoration: none;
+}
+
+.app-item {
+  white-space: nowrap;
+  display: inline-block;
+  padding: 10px 0 10px 28px;
+  color: black;
+}
+
+.app-item a {
+  display: block;
+  color: rgb(9, 19, 48);
+  transition: 0.3s;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  font-family: "Open Sans", sans-serif;
+}
+
+.app-item a:hover, .app-item .active > a, .app-item li:hover > a {
+  color: rgb(168, 136, 228);
+  text-decoration: none;
+}
