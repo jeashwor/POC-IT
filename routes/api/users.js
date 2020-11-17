@@ -22,4 +22,5 @@ router.route("/addprocedure").put(userController.assignProcedure);
 router.route("/newprocedure").post(userController.registerProcedure);
 
 router.route("/:_id").get(userController.getUserData);
+
 module.exports = router;
