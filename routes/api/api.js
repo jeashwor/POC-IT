@@ -38,9 +38,20 @@ const storage = new GridFsStorage({
 const upload = multer({ storage });
 
 // Save images
-router.post("/upload", upload.single("image"), (req, res) => {
-  res.json({ file: req.file });
-  console.log({ file: req.file });
+router.put("/upload", upload.single("image"), (req, res) => {
+  let uploadId = req.file.filename;
+  console.log("req.query: ", req.query.email);
+  db.User.findOneAndUpdate(
+    { email: req.query.email },
+    { $set: { storedImages: uploadId } },
+    { new: true }
+  )
+    .then((patient) => {
+      res.json(patient);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 });
 
 // Retrieve images
@@ -48,7 +59,6 @@ router.get("/files/:filename", (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     let readstream = gfs.createReadStream(file.filename);
     readstream.pipe(res);
-    console.log(file);
   });
 });
 

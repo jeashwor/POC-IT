@@ -44,8 +44,7 @@ const userSchema = new Schema({
   ],
   storedImages: [
     {
-      type: Buffer,
-      contentType: String,
+      type: String,
     },
   ],
 });
