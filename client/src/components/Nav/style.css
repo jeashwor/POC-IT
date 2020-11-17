@@ -1,22 +1,8 @@
-.navbar {
+#navbar-custom {
   border-radius: 0;
-  background: white;
-}
-
-.logo {
-  font-size: 30px;
-  margin: 0;
-  padding: 0;
-  line-height: 1;
-  font-weight: 800;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgb(9, 19, 48);
-}
-
-.logo:hover {
-  color: #47b2e4;
-  text-decoration: none;
+  background: #C9D6FF;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #D8EEF4, #C9D6FF);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right,  #D8EEF4, #C9D6FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .menu-item {
@@ -24,6 +10,11 @@
   display: inline-block;
   padding: 10px 0 10px 28px;
   color: black;
+}
+
+#logo {
+  width: 70px;
+  height: auto;
 }
 
 .menu-item a {
@@ -37,28 +28,22 @@
 }
 
 .menu-item a:hover, .menu-item .active > a, .menu-item li:hover > a {
-  color: #47b2e4;
+  color: rgb(168, 136, 228);
   text-decoration: none;
 }
 
-.logout {
-  float: right;
-}
-
 .logoutBtn {
-  color: rgb(9, 19, 48);
-  border-radius: 50px;
-  border: 2px solid #47b2e4;
-  padding: 6px 25px 6px 25px;
+  color: rgb(99, 115, 209);
+  padding: 10px 0 10px 28px;
   transition: 0.3s;
   font-size: 15px;
   letter-spacing: 0.5px;
   font-weight: 600;
   font-family: "Open Sans", sans-serif;
-  background: transparent;
+  display: inline-block;
 }
 
 .logoutBtn:hover {
-  color: #47b2e4;
+  color: rgb(168, 136, 228);
   text-decoration: none;
 }

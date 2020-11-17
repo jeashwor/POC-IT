@@ -2,7 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Container from "react-bootstrap/Container";
-import Nav from "../components/Nav";
+import AppBar from "../components/AppBar";
+// import Nav from "../components/Nav";
 import SearchForm from "../components/SearchForm";
 import PatientCard from "../components/PatientCard";
 import "./style.css";
@@ -10,7 +11,7 @@ import "./style.css";
 function Clinician(props) {
     return (
         <div>
-            <Nav />
+            <AppBar />
             <div className="block">
                 <Container fluid>
                     <h1>{props.user.user.name}</h1>

@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import Nav from "../components/Nav";
+import AppBar from "../components/AppBar";
+// import Nav from "../components/Nav";
 import StepCard from "../components/StepCard";
 import StartButton from "../components/StartButton";
 import "./style.css";
@@ -11,7 +12,7 @@ function Intro() {
     // store currentProcedure 'preparation' steps in an array, const preparationArray
     return (
         <div>
-            <Nav />
+            <AppBar />
             <div className="block steps">
                 <Container fluid>
                     <h1>Wound Care</h1>
