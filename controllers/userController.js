@@ -85,7 +85,6 @@ module.exports = {
     });
   },
   displayProcedures: (req, res) => {
-    console.log("hit?");
     db.User.find({ email: req.body.email })
       .populate("currentProcedures")
       .then((user) => {
@@ -96,7 +95,6 @@ module.exports = {
       });
   },
   assignProcedure: (req, res) => {
-    console.log(req.params);
     db.Procedure.findOneAndUpdate({ name: req.body.name }).then(({ _id }) => {
       db.User.findOneAndUpdate(
         { email: req.query.email },
