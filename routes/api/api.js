@@ -43,7 +43,7 @@ router.put("/upload", upload.single("image"), (req, res) => {
   console.log("req.query: ", req.query.email);
   db.User.findOneAndUpdate(
     { email: req.query.email },
-    { $set: { storedImages: uploadId } },
+    { $push: { storedImages: uploadId } },
     { new: true }
   )
     .then((patient) => {
