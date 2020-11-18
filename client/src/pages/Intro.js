@@ -8,9 +8,6 @@ import "./style.css";
 import HandGest from "../handGestures/HandGest";
 
 function Intro() {
-    const [loading, setLoading] = useState(true);
-    // from the results of get(/api/users/:id) where id is patient _id logged in global state:
-    // store currentProcedure 'preparation' steps in an array, const preparationArray
     return (
         <div>
             <AppBar />
@@ -31,7 +28,7 @@ function Intro() {
                         <StartButton  link="/procedure" label="Start"/>
                     </div>
                     <div className="handgest">
-                        <HandGest setLoading={setLoading} />
+                        <HandGest />
                     </div>
                 </Container>
             </div>
