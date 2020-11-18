@@ -55,7 +55,7 @@ class Nav extends Component {
       <nav className="navbar navbar-expand-sm" id="navbar-custom">
         <Link className="navbar-brand" to="/">
           {/* <img src="./assets/headerIcon.png" alt="logo name" /> */}
-          <img id="logo" src="./assets/pocit.png" alt="logo name" />
+          <img id="logo" src={process.env.PUBLIC_URL + "/assets/pocit.png"} alt="logo name" />
         </Link>
         <button
           onClick={this.toggleNav}

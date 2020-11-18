@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import * as Webcam from "react-webcam";
 import * as ml5 from "ml5";
 import { useHistory } from "react-router-dom";
+import Loader from "../components/Loader";
 import "./gesture.css";
 let brain;
 let inputs;
@@ -24,19 +25,13 @@ function HandGest(props) {
   const webcamRef = useRef(null);
   let history = useHistory();
   const [loading, setLoading] = useState(true);
-
+  const [visible, setVisible] = useState("hidden");
+ 
   const runHandpose = async () => {
 
-  // -----------------------------------------------------------------------------------------------------------------------
-  // Set Pre-Load
-  // -----------------------------------------------------------------------------------------------------------------------
-    if(loading){
-
-
-    }
-  // -----------------------------------------------------------------------------------------------------------------------
-  //
-  // -----------------------------------------------------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------------------------
+    //
+    // -----------------------------------------------------------------------------------------------------------------------
 
 
     // set up the video parameters to work with the model
@@ -51,7 +46,8 @@ function HandGest(props) {
     const handpose = ml5.handpose(video, modelLoaded);
     function modelLoaded() {
       console.log("Model Loaded!");
-      setLoading(false)
+      setLoading(false);
+      setVisible("visible");
       startClass();
     }
 
@@ -82,7 +78,7 @@ function HandGest(props) {
 
   useEffect(() => {
     runHandpose();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Start collecting the poses if there are any
@@ -129,9 +125,9 @@ function HandGest(props) {
           setTimeout(startClass(), 3000);
         }
 
-// -----------------------------------------------------------------------------------------------------------------------
-// ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
-// -----------------------------------------------------------------------------------------------------------------------
+        // -----------------------------------------------------------------------------------------------------------------------
+        // ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
+        // -----------------------------------------------------------------------------------------------------------------------
         // OK Gesture:
         if (gesture === poseParameters.pose1) {
           // Thumbs Up Gesture
@@ -169,6 +165,9 @@ function HandGest(props) {
 
   return (
     <div>
+      {loading ? (
+        <Loader />
+      ) : null}
       <Webcam
         ref={webcamRef}
         audio={false}
@@ -176,6 +175,7 @@ function HandGest(props) {
         style={{
           width: poseParameters.webcamWidth,
           height: poseParameters.webcamHeight,
+          visibility: {visible}
         }}
       />
     </div>
