@@ -46,8 +46,7 @@ function App() {
           <PrivateRoute exact path="/intro" component={Intro} />
           <PrivateRoute exact path="/procedure" component={Procedure} />
           <ClinicianRoute exact path="/clinician" component={Clinician} />
-          {/* update to treatment/:id where id is patient id */}
-          <Route exact path="/treatment" component={Treatment} />
+          <ClinicianRoute exact path="/treatment" component={Treatment} />
         </Switch>
       </div>
     </Router>

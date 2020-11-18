@@ -69,7 +69,8 @@ const data = [
         name: "Wound Care",
         description:
           "A step-by-step guide for wound dressing change using clean technique",
-        preperation: [
+        image: "/assets/wound.png",
+        preparation: [
           {
             title: "Gather Supplies Needed",
             step:
