@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import AppBar from "../components/AppBar";
 // import Nav from "../components/Nav";
@@ -8,6 +8,7 @@ import "./style.css";
 import HandGest from "../handGestures/HandGest";
 
 function Intro() {
+    const [loading, setLoading] = useState(true);
     // from the results of get(/api/users/:id) where id is patient _id logged in global state:
     // store currentProcedure 'preparation' steps in an array, const preparationArray
     return (
@@ -30,7 +31,7 @@ function Intro() {
                         <StartButton  link="/procedure" label="Start"/>
                     </div>
                     <div className="handgest">
-                        <HandGest />
+                        <HandGest setLoading={setLoading} />
                     </div>
                 </Container>
             </div>

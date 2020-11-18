@@ -37,6 +37,7 @@ function HandGest(props) {
     const handpose = ml5.handpose(video, modelLoaded);
     function modelLoaded() {
       console.log("Model Loaded!");
+      props.setLoading(false)
       startClass();
     }
 
