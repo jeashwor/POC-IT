@@ -40,3 +40,7 @@
   color: rgb(168, 136, 228);
   text-decoration: none;
 }
+
+.logoutBtn {
+  display: inline-block;
+}
