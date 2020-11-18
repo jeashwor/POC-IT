@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as Webcam from "react-webcam";
 import * as ml5 from "ml5";
 import { useHistory } from "react-router-dom";
@@ -23,8 +23,22 @@ function HandGest(props) {
   let working = false;
   const webcamRef = useRef(null);
   let history = useHistory();
+  const [loading, setLoading] = useState(true);
 
   const runHandpose = async () => {
+
+  // -----------------------------------------------------------------------------------------------------------------------
+  // Set Pre-Load
+  // -----------------------------------------------------------------------------------------------------------------------
+    if(loading){
+
+
+    }
+  // -----------------------------------------------------------------------------------------------------------------------
+  //
+  // -----------------------------------------------------------------------------------------------------------------------
+
+
     // set up the video parameters to work with the model
     const video = await webcamRef.current.video;
     const videoWidth = video.videoWidth;
@@ -37,7 +51,7 @@ function HandGest(props) {
     const handpose = ml5.handpose(video, modelLoaded);
     function modelLoaded() {
       console.log("Model Loaded!");
-      props.setLoading(false)
+      setLoading(false)
       startClass();
     }
 
