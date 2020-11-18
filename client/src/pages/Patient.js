@@ -16,8 +16,7 @@ function Patient(props) {
                     <h1>{props.user.user.name}</h1>
                     <h2>Here's your home care regimen</h2>
                     <div>
-                        {/* get(/api/users/:id) with current id in state,  then replace image prop with procedure image, title prop value with procedure name, text prop with procedure description*/}
-                        <CareButton image={process.env.PUBLIC_URL + "/assets/wound.png"} title="Wound Care" text="A step-by-step guide for wound dressing change using clean technique" link="/intro" />
+                        <CareButton image={process.env.PUBLIC_URL + props.user.user.currentProcedures[0].image} title={props.user.user.currentProcedures[0].name} text={props.user.user.currentProcedures[0].description} link="/intro" />
                     </div>
                 </Container>
             </div>
