@@ -11,6 +11,7 @@ import "./style.css";
 function Procedure() {
     // update later to take procedures from API call
     const [index, setIndex] = useState(0);
+    const [loading, setLoading] = useState(true);
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
@@ -99,7 +100,7 @@ function Procedure() {
                 </Carousel.Item>
             </Carousel>
             <div className="handgest">
-                <HandGest index={index} setIndex={setIndex} />
+                <HandGest index={index} setIndex={setIndex} setLoading={setLoading} />
             </div>
         </div >
     )
