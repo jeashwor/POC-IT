@@ -14,8 +14,8 @@ const poseParameters = {
   pose3: "Go Back",
   pose4: "Right",
   classifySpeed: 2000,
-  webcamWidth: 640,
-  webcamHeight: 480,
+  webcamWidth: 0,
+  webcamHeight: 0,
   videoHidden: false,
 };
 let carNum = 0;
@@ -25,8 +25,6 @@ function HandGest(props) {
   const webcamRef = useRef(null);
   let history = useHistory();
   const [loading, setLoading] = useState(true);
-  const [visible, setVisible] = useState("hidden");
- 
   const runHandpose = async () => {
 
     // -----------------------------------------------------------------------------------------------------------------------
@@ -47,7 +45,8 @@ function HandGest(props) {
     function modelLoaded() {
       console.log("Model Loaded!");
       setLoading(false);
-      setVisible("visible");
+      poseParameters.webcamWidth = 320;
+      poseParameters.webcamHeight = 240;
       startClass();
     }
 
@@ -128,9 +127,9 @@ function HandGest(props) {
         // -----------------------------------------------------------------------------------------------------------------------
         // ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
         // -----------------------------------------------------------------------------------------------------------------------
-        // OK Gesture:
+        // Thumbs Up Gesture
         if (gesture === poseParameters.pose1) {
-          // Thumbs Up Gesture
+          // OK Gesture
         } else if (gesture === poseParameters.pose2) {
           if (window.location.href.indexOf("procedure") > -1) {
             if (carNum >= 0 && carNum <= 5) {
@@ -175,7 +174,6 @@ function HandGest(props) {
         style={{
           width: poseParameters.webcamWidth,
           height: poseParameters.webcamHeight,
-          visibility: {visible}
         }}
       />
     </div>
