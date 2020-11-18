@@ -1,15 +1,16 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
-import Nav from "../components/Nav";
+import AppBar from "../components/AppBar";
+// import Nav from "../components/Nav";
 import CareButton from "../components/CareButton";
 import "./style.css";
 
-function Treatment() {
+function Treatment(props) {
     // need patient _id selected from previous /provider page
     // get(/api/users/:id)
     return (
         <div>
-            <Nav />
+            <AppBar />
             <div className="block treatment">
                 <Container fluid>
                     {/* replace "Jack Joe" with patient name {name} */}

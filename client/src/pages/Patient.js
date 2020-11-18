@@ -2,31 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Container from "react-bootstrap/Container";
-import Nav from "../components/Nav";
+import AppBar from "../components/AppBar";
+// import Nav from "../components/Nav";
 import CareButton from "../components/CareButton";
 import "./style.css";
-// import API from "../utils/API";
 
 function Patient(props) {
-    console.log(props.user.user.name);
-    // const [user, setUser] = useState("");
-    // const [id, setId] = useState("");
-
-    // API.getUser()
-    //     .then(res => {
-    //         setUser(res.data[0].name);
-    //         setId(res.data[0]._id);
-    //     })
-    //     .then(res => {
-    //         console.log(user)
-    //         console.log(id)
-
-    //     })
-    // // )
-
     return (
         <div>
-            <Nav />
+            <AppBar />
             <div className="block">
                 <Container fluid>
                     <h1>{props.user.user.name}</h1>

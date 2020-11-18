@@ -9,8 +9,6 @@ const validateLoginInput = require("../validation/login");
 
 module.exports = {
   findAll: (req, res) => {
-    console.log(req.query);
-
     db.User.find(req.query)
       .then((dbUser) => res.json(dbUser))
       .catch((err) => res.status(422).json(err));
@@ -88,7 +86,7 @@ module.exports = {
   },
   displayProcedures: (req, res) => {
     db.User.find({ email: req.body.email })
-      .populate("currentProcedures", "instructions")
+      .populate("currentProcedures")
       .then((user) => {
         res.json(user);
       })
@@ -99,7 +97,7 @@ module.exports = {
   assignProcedure: (req, res) => {
     db.Procedure.findOneAndUpdate({ name: req.body.name }).then(({ _id }) => {
       db.User.findOneAndUpdate(
-        { email: req.params.email },
+        { email: req.query.email },
         { $push: { currentProcedures: _id } },
         { new: true }
       )
@@ -112,7 +110,7 @@ module.exports = {
   assignPatientProvider: (req, res) => {
     db.User.find({ email: req.body.email }).then((provider) => {
       db.User.findOneAndUpdate(
-        { email: req.params.email },
+        { email: req.query.email },
         { $set: { currentProvider: provider } },
         { new: true }
       ).then((patient) => {
@@ -143,9 +141,28 @@ module.exports = {
         res.json(err);
       });
   },
+  registerProcedure: (req, res) => {
+    db.Procedure.findOne({ name: req.body.name }).then((procedure) => {
+      if (procedure) {
+        return res.status(400).json({ name: "Name already exists" });
+      } else {
+        const newProcedure = new db.Procedure({
+          name: req.body.name,
+          description: req.body.description,
+          image: req.body.image,
+          preperation: req.body.preperation,
+          instructions: req.body.instructions,
+        });
+        newProcedure
+          .save()
+          .then((user) => res.json(user))
+          .catch((err) => console.log(err));
+      }
+    });
+  },
   getUserData: (req, res) => {
     db.User.findOne({ _id: req.params._id })
-      .then(dbUser => {
+      .then((dbUser) => {
         const userData = {
           email: dbUser.email,
           isProvider: dbUser.isProvider,
@@ -154,12 +171,12 @@ module.exports = {
           _id: dbUser.id,
           currentPatients: dbUser.currentPatients,
           currentProcedures: dbUser.currentProcedures,
-          currentProvider: dbUser.currentProvider
-      };
+          currentProvider: dbUser.currentProvider,
+        };
         res.json(userData);
       })
       .catch((err) => {
         res.status(422).json(err);
       });
-  }
+  },
 };
