@@ -5,7 +5,7 @@ import AppBar from "../components/AppBar";
 import CareButton from "../components/CareButton";
 import "./style.css";
 
-function Treatment() {
+function Treatment(props) {
     // need patient _id selected from previous /provider page
     // get(/api/users/:id)
     return (
