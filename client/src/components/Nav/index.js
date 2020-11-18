@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Link as ScrollLink } from 'react-scroll';
 import { FaEllipsisV } from "react-icons/fa";
-// import StartButton from "../StartButton";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
@@ -42,9 +42,10 @@ class Nav extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-sm">
-        <Link className="navbar-brand logo" to="/">
-          <img src="./assets/headerIcon.png" alt="logo name" />
+      <nav className="navbar navbar-expand-sm" id="navbar-custom">
+        <Link className="navbar-brand" to="/">
+          {/* <img src="./assets/headerIcon.png" alt="logo name" /> */}
+          <img id="logo" src="./assets/pocit.png" alt="logo name" />
         </Link>
         <button
           onClick={this.toggleNav}
@@ -69,18 +70,22 @@ class Nav extends Component {
               </Link>
             </li>
             <li className="nav-item menu-item">
-              <Link
+              <ScrollLink
                 onClick={this.toggleNav}
-                className={window.location.pathname === "#about" ? "nav-link active" : "nav-link"}
-                to="#about"
+                className={window.location.pathname === "/#about" ? "nav-link active" : "nav-link"}
+                to="about"
+                activeClass="active"
+                spy={true}
+                smooth={true}
+                duration={200}
               >
                 About
-              </Link>
+              </ScrollLink>
             </li>
           </ul>
-        </div>
-        <div className="logout">
+          <div className="logout">
           <a href="/" onClick={this.onLogoutClick} className="logoutBtn">Logout</a>
+        </div>
         </div>
       </nav>
     );

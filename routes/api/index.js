@@ -3,10 +3,6 @@ const express = require("express");
 const router = express.Router();
 const usersRoutes = require("./users");
 const apiRoute = require("./api");
-// const patientsRoutes = require("./patients");
-
-// Patients routes
-// router.use("/patients", patientsRoutes);
 
 // Users routes
 router.use("/users", usersRoutes);

@@ -40,7 +40,6 @@ const upload = multer({ storage });
 // Save images
 router.put("/upload", upload.single("image"), (req, res) => {
   let uploadId = req.file.filename;
-  console.log("req.query: ", req.query.email);
   db.User.findOneAndUpdate(
     { email: req.query.email },
     { $push: { storedImages: uploadId } },
@@ -55,10 +54,13 @@ router.put("/upload", upload.single("image"), (req, res) => {
 });
 
 // Retrieve images
-router.get("/files/:filename", (req, res) => {
-  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
-    let readstream = gfs.createReadStream(file.filename);
-    readstream.pipe(res);
+router.get("/files", (req, res) => {
+  db.User.findOne({ email: req.body.email }).then((patient) => {
+    let imageFilename = patient.storedImages[0];
+    gfs.files.findOne({ filename: imageFilename }, (err, file) => {
+      let readstream = gfs.createReadStream(file.filename);
+      readstream.pipe(res);
+    });
   });
 });
 
