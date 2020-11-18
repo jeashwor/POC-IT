@@ -11,6 +11,17 @@ class AppBar extends Component {
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
+    this.loggedOutBtn();
+  }
+
+  loggedOutBtn = () => {
+    if(!this.props.auth.isAuthenticated){
+      document.querySelector(".logoutBtn").style.display = "none";
+    }
+  }
+
+  componentDidMount() {
+    this.loggedOutBtn();
   }
 
   render() {
@@ -18,7 +29,7 @@ class AppBar extends Component {
       <nav className="navbar navbar-expand">
         <Link className="navbar-brand logo" to="/">
           {/* <img src="./assets/headerIcon.png" alt="logo name" /> */}
-          <img id="logo" src="./assets/pocit.png" alt="logo name" />
+          <img id="logo" src={process.env.PUBLIC_URL + "/assets/pocit.png"} alt="logo name" />
         </Link>
         <div id="navbarNav">
           <ul className="navbar-nav">
@@ -30,7 +41,7 @@ class AppBar extends Component {
                 <FaHome />
               </Link>
             </li>
-            <li className="nav-item app-item">
+            <li className="nav-item app-item logoutBtn">
               <Link
                 onClick={this.onLogoutClick}
                 className={window.location.pathname === "/" ? "nav-link active" : "nav-link"}
@@ -53,6 +64,7 @@ AppBar.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth
+  // add user prop for logout
 });
 
 export default connect(

@@ -1,7 +1,8 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as Webcam from "react-webcam";
 import * as ml5 from "ml5";
 import { useHistory } from "react-router-dom";
+import Loader from "../components/Loader";
 import "./gesture.css";
 let brain;
 let inputs;
@@ -13,8 +14,8 @@ const poseParameters = {
   pose3: "Go Back",
   pose4: "Right",
   classifySpeed: 2000,
-  webcamWidth: 640,
-  webcamHeight: 480,
+  webcamWidth: 0,
+  webcamHeight: 0,
   videoHidden: false,
 };
 let carNum = 0;
@@ -23,8 +24,14 @@ function HandGest(props) {
   let working = false;
   const webcamRef = useRef(null);
   let history = useHistory();
-
+  const [loading, setLoading] = useState(true);
   const runHandpose = async () => {
+
+    // -----------------------------------------------------------------------------------------------------------------------
+    //
+    // -----------------------------------------------------------------------------------------------------------------------
+
+
     // set up the video parameters to work with the model
     const video = await webcamRef.current.video;
     const videoWidth = video.videoWidth;
@@ -37,6 +44,9 @@ function HandGest(props) {
     const handpose = ml5.handpose(video, modelLoaded);
     function modelLoaded() {
       console.log("Model Loaded!");
+      setLoading(false);
+      poseParameters.webcamWidth = 320;
+      poseParameters.webcamHeight = 240;
       startClass();
     }
 
@@ -67,7 +77,7 @@ function HandGest(props) {
 
   useEffect(() => {
     runHandpose();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Start collecting the poses if there are any
@@ -114,12 +124,12 @@ function HandGest(props) {
           setTimeout(startClass(), 3000);
         }
 
-// -----------------------------------------------------------------------------------------------------------------------
-// ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
-// -----------------------------------------------------------------------------------------------------------------------
-        // OK Gesture:
+        // -----------------------------------------------------------------------------------------------------------------------
+        // ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
+        // -----------------------------------------------------------------------------------------------------------------------
+        // Thumbs Up Gesture
         if (gesture === poseParameters.pose1) {
-          // Thumbs Up Gesture
+          // OK Gesture
         } else if (gesture === poseParameters.pose2) {
           if (window.location.href.indexOf("procedure") > -1) {
             if (carNum >= 0 && carNum <= 5) {
@@ -154,6 +164,9 @@ function HandGest(props) {
 
   return (
     <div>
+      {loading ? (
+        <Loader />
+      ) : null}
       <Webcam
         ref={webcamRef}
         audio={false}

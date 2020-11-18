@@ -13,6 +13,14 @@ class Nav extends Component {
     width: window.innerWidth
   };
 
+  loggedOutBtn = () => {
+    if(!this.props.auth.isAuthenticated){
+      // console.log(this.props.auth)
+      document.querySelector(".logoutBtn").style.display = "none";
+    }
+  }
+
+
   updateWidth = () => {
     const newState = { width: window.innerWidth };
 
@@ -28,12 +36,14 @@ class Nav extends Component {
   };
 
   onLogoutClick = e => {
-    e.preventDefault();
+    // e.preventDefault();
     this.props.logoutUser();
+    this.loggedOutBtn();
   }
 
   componentDidMount() {
     window.addEventListener("resize", this.updateWidth);
+    this.loggedOutBtn();
   }
 
   componentWillUnmount() {
@@ -45,7 +55,7 @@ class Nav extends Component {
       <nav className="navbar navbar-expand-sm" id="navbar-custom">
         <Link className="navbar-brand" to="/">
           {/* <img src="./assets/headerIcon.png" alt="logo name" /> */}
-          <img id="logo" src="./assets/pocit.png" alt="logo name" />
+          <img id="logo" src={process.env.PUBLIC_URL + "/assets/pocit.png"} alt="logo name" />
         </Link>
         <button
           onClick={this.toggleNav}
@@ -84,7 +94,7 @@ class Nav extends Component {
             </li>
           </ul>
           <div className="logout">
-          <a href="/" onClick={this.onLogoutClick} className="logoutBtn">Logout</a>
+          <a href="/" id="logout" onClick={this.onLogoutClick} className="logoutBtn">Logout</a>
         </div>
         </div>
       </nav>
