@@ -1,0 +1,10 @@
+#loader {
+    max-width: 150px;
+    animation: pulse 3s linear infinite;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }

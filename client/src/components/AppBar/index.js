@@ -29,7 +29,7 @@ class AppBar extends Component {
       <nav className="navbar navbar-expand">
         <Link className="navbar-brand logo" to="/">
           {/* <img src="./assets/headerIcon.png" alt="logo name" /> */}
-          <img id="logo" src="./assets/pocit.png" alt="logo name" />
+          <img id="logo" src={process.env.PUBLIC_URL + "/assets/pocit.png"} alt="logo name" />
         </Link>
         <div id="navbarNav">
           <ul className="navbar-nav">
