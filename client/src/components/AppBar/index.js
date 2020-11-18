@@ -53,6 +53,7 @@ AppBar.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth
+  // add user prop for logout
 });
 
 export default connect(
