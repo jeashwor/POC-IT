@@ -12,7 +12,7 @@ function Intro() {
     // eslint-disable-next-line no-unused-vars
     const [loading, setLoading] = useState(true);
     const procedures = useSelector(state => state.user.user.currentProcedures);
-    let prepArr = (!procedures) ? [{title: "No Entries to List", text: "No Entries Found"}] : procedures[0].preperation;
+    let prepArr = (!procedures) ? [{title: "No Entries to List", text: "No Entries Found"}] : procedures[0].preparation;
 
     return (
         <div>
