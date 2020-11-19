@@ -39,7 +39,7 @@ const userSchema = new Schema({
       image: {
         type: String,
       },
-      preperation: [
+      preparation: [
         {
           title: {
             type: String,

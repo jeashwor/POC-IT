@@ -29,7 +29,7 @@ const data = [
           description:
             "A step-by-step guide for wound dressing change using clean technique",
           image: "/assets/wound.png",
-          preperation: [
+          preparation: [
             {
               title: "Gather Supplies Needed",
               step:
@@ -100,7 +100,7 @@ const data = [
           description:
             "A step-by-step guide for wound dressing change using clean technique",
           image: "/assets/wound.png",
-          preperation: [
+          preparation: [
             {
               title: "Gather Supplies Needed",
               step:
@@ -171,7 +171,7 @@ const data = [
           description:
             "A step-by-step guide for wound dressing change using clean technique",
           image: "/assets/wound.png",
-          preperation: [
+          preparation: [
             {
               title: "Gather Supplies Needed",
               step:
@@ -242,7 +242,7 @@ const data = [
           description:
             "A step-by-step guide for wound dressing change using clean technique",
           image: "/assets/wound.png",
-          preperation: [
+          preparation: [
             {
               title: "Gather Supplies Needed",
               step:
@@ -313,7 +313,7 @@ const data = [
           description:
             "A step-by-step guide for wound dressing change using clean technique",
           image: "/assets/wound.png",
-          preperation: [
+          preparation: [
             {
               title: "Gather Supplies Needed",
               step:
@@ -402,7 +402,7 @@ const data = [
           description:
             "A step-by-step guide for wound dressing change using clean technique",
           image: "/assets/wound.png",
-          preperation: [
+          preparation: [
             {
               title: "Gather Supplies Needed",
               step:
