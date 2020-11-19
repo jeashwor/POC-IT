@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
 import AppBar from "../components/AppBar";
@@ -8,8 +8,6 @@ import "./style.css";
 import HandGest from "../handGestures/HandGest";
 
 function Intro() {
-    // eslint-disable-next-line no-unused-vars
-    const [loading, setLoading] = useState(true);
     const procedures = useSelector(state => state.user.user.currentProcedures);
     let prepArr = (!procedures) ? [{title: "No Entries to List", text: "No Entries Found"}] : procedures[0].preparation;
 
@@ -25,7 +23,7 @@ function Intro() {
                         <StartButton  link="/procedure" label="Start"/>
                     </div>
                     <div className="handgest">
-                        <HandGest setLoading={setLoading} />
+                        <HandGest />
                     </div>
                 </Container>
             </div>
