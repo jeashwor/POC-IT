@@ -29,8 +29,9 @@ class Home extends Component {
     static getDerivedStateFromProps(props, state) {
         if (props.auth.isAuthenticated) {
             getUser(props.auth.user.id)
-            return;
+            return null;
         }
+        return null;
     }
 
     render() {
