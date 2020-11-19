@@ -3,24 +3,18 @@ import { useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Carousel from 'react-bootstrap/Carousel'
 import AppBar from "../components/AppBar";
-// import Nav from "../components/Nav";
 import StartButton from "../components/StartButton";
 import StepCard from "../components/StepCard";
 import HandGest from "../handGestures/HandGest";
 import "./style.css";
 
 function Procedure() {
-    // update later to take procedures from API call
     const [index, setIndex] = useState(0);
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
     const procedures = useSelector(state => state.user.user.currentProcedures);
     let instrArr = (!procedures) ? [{title: "No Entries to List", text: "No Entries Found"}] : procedures[0].instructions;
-    // from the results of get(/api/users/:id) where id is patient _id logged in global state:
-    // store currentProcedure 'procedure' steps in an array, const procedureArray
-
-
     return (
         <div className="block steps">
             <AppBar />
@@ -38,6 +32,17 @@ function Procedure() {
                         )
 
                 })}
+                <Carousel.Item>
+                    <div id="block" className="steps">
+                        <Container fluid>
+                            <h1>You're all set!</h1>
+                            <StepCard title="Kudos to keeping it clean" text="Time to remove the gloves." />
+                        </Container>
+                        <div className="text-center">
+                            <StartButton link="/patient" label="Back to Dashboard" />
+                        </div>
+                    </div>
+                </Carousel.Item>
             </Carousel>
             <div className="handgest">
                 <HandGest index={index} setIndex={setIndex} />

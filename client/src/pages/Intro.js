@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
 import AppBar from "../components/AppBar";
-// import Nav from "../components/Nav";
 import StepCard from "../components/StepCard";
 import StartButton from "../components/StartButton";
 import "./style.css";
