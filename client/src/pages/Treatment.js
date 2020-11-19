@@ -14,7 +14,7 @@ function Treatment(props) {
             <div className="block treatment">
                 <Container fluid>
                     {/* replace "Jack Joe" with patient name {name} */}
-                    <h1>Jack Joe</h1>
+                    <h1>{props.location.user}</h1>
                     <h2>Here's a look at their regimen</h2>
                     <div>
                         {/* get(/api/users/:id) with current id in state,  then replace image prop with procedure image, title prop value with procedure name, text prop with procedure description*/}

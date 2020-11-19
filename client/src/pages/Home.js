@@ -33,7 +33,9 @@ class Home extends Component {
             console.log("Derived State");
             console.log(props.auth.user.id);
             getUser(props.auth.user.id)
-            return;
+            return props.auth.isAuthenticated;
+        } else {
+            return null;
         }
     }
 
