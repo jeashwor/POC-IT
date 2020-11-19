@@ -7,74 +7,6 @@ const keys = require("../config/keys");
 const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 
-// Assign base data for new users who register
-const patientArr = [{name:"Jacob Ashworth", email:"ashworth@email.test"}]
-const procedureArr = [{
-  name: "Wound Care",
-  description:
-    "A step-by-step guide for wound dressing change using clean technique",
-  image: "/assets/wound.png",
-  preparation: [
-    {
-      title: "Gather Supplies Needed",
-      step:
-        "Saline solution to clean the wound, Sterile gloves, Sterile gauze or wound dressings, Wound tape or surgical adhesive tape, Topical ointments or antibiotics per your provider, Scissors.",
-    },
-    {
-      title: "Wash your hands",
-      step:
-        "Make sure to scrub all portions of your hands completely: the palms, the back, each finger, and in between each finger.",
-    },
-    {
-      title: "Put on sterile gloves",
-      step:
-        "Always wear sterile gloves when handling an open wound, cut or burned skin.",
-    },
-    {
-      title: "Let POC-IT know you're ready",
-      step:
-        "Facing the camera, give POC-IT a thumbs up to begin, or click the button below.",
-    },
-  ],
-  instructions: [
-    {
-      title: "Remove the Dressing",
-      step:
-        "Use drops of either water or saline solution around the tape on the skin to loosen the tape. Gently remove the dressing.",
-    },
-    {
-      title: "Inspect the Wound",
-      step:
-        "Check to see if there are any signs of infection, such as pus or a foul smell. If you notice any of them, note the issues and let the patient’s healthcare provider know once you're done with the dressing change.",
-    },
-    {
-      title: "Clean the wound",
-      step:
-        "Wet a gauze with saline water and gently clean up any blood or other bodily fluids (a small amount of blood is ok. If it’s a substantial amount, the person needs medical attention).",
-    },
-    {
-      title: "Let the wound air dry",
-      step:
-        "Once clean, let the wound fully air dry (placing new dressings while the wound is still wet fosters bacteria growth).",
-    },
-    {
-      title: "Apply Ointment",
-      step: "Once dry, apply antibiotic ointment to the wound.",
-    },
-    {
-      title: "Place a new wound dressing",
-      step:
-        "Apply a new non-stick pad to the wound and extra gauze if needed. Once covered, gently secure with wound tape.",
-    },
-    {
-      title: "Place a new wound dressing",
-      step:
-        "Apply a new non-stick pad to the wound and extra gauze if needed. Once covered, gently secure with wound tape.",
-    },
-  ],
-}]
-
-
 module.exports = {
   findAll: (req, res) => {
     db.User.find(req.query)
@@ -82,6 +14,7 @@ module.exports = {
       .catch((err) => res.status(422).json(err));
   },
   register: (req, res) => {
+    // console.log("register api hit");
     const { errors, isValid } = validateRegisterInput(req.body);
     if (!isValid) {
       return res.status(400).json(errors);
@@ -95,8 +28,6 @@ module.exports = {
           email: req.body.email,
           password: req.body.password,
           isProvider: req.body.isProvider,
-          currentProcedures: procedureArr,
-          currentPatients: patientArr
         });
 
         bcrypt.genSalt(10, (err, salt) => {
@@ -219,7 +150,7 @@ module.exports = {
           name: req.body.name,
           description: req.body.description,
           image: req.body.image,
-          preparation: req.body.preparation,
+          preperation: req.body.preperation,
           instructions: req.body.instructions,
         });
         newProcedure
