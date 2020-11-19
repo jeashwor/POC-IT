@@ -14,7 +14,7 @@ function Clinician() {
                 <Container fluid>
                     <h1>{user.name}</h1>
                     <h2>Here are your patients</h2>
-                    {user.currentPatients.map(patient => <PatientCard title={patient.name} text={patient.email} link="/treatment" />)}
+                    {user.currentPatients.map((patient, index) => <PatientCard key={index + 1} title={patient.name} text={patient.email} link="/treatment" />)}
                 </Container>
             </div>
         </div>
