@@ -12,8 +12,7 @@ const poseParameters = {
   pose1: "Thumbs Up",
   pose2: "OK",
   pose3: "Go Back",
-  pose4: "Right",
-  classifySpeed: 2000,
+  classifySpeed: 1500,
   webcamWidth: 0,
   webcamHeight: 0,
   videoHidden: false,
@@ -55,8 +54,8 @@ function HandGest(props) {
 
     // set up my neural network parameters
     let options = {
-      inputs: 42,
-      outputs: 4,
+      inputs: 63,
+      outputs: 11,
       task: "classification",
       debug: true,
     };
@@ -108,6 +107,7 @@ function HandGest(props) {
       for (let i = 0; i < pose.landmarks.length; i++) {
         inputs.push(pose.landmarks[i][0]);
         inputs.push(pose.landmarks[i][1]);
+        inputs.push(pose.landmarks[i][2]);
       }
       brain.classify(inputs, gotResult);
     }
@@ -116,7 +116,7 @@ function HandGest(props) {
   // do something with the gesture results
   function gotResult(error, results) {
     if (results) {
-      if (results[0].confidence > 0.95) {
+      if (results[0].confidence > 0.85) {
         const gesture = results[0].label;
         console.log(gesture);
         if (gesture === poseParameters.pose1 || gesture === poseParameters.pose3) {
@@ -127,34 +127,30 @@ function HandGest(props) {
         // -----------------------------------------------------------------------------------------------------------------------
         // ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
         // -----------------------------------------------------------------------------------------------------------------------
-        // Thumbs Up Gesture
         if (gesture === poseParameters.pose1) {
-          // OK Gesture
+          return
         } else if (gesture === poseParameters.pose2) {
+          // Advance Gesture
           if (window.location.href.indexOf("procedure") > -1) {
             if (carNum >= 0 && carNum <= 5) {
               carNum += 1;
-              console.log(carNum)
               props.setIndex(carNum);
             } else {
               return;
             }
           } else {
             history.push("/procedure");
+            window.scrollTo(0, 175);
           }
-
-          // Go Back Gesture
         } else if (gesture === poseParameters.pose3) {
+          // Go Back Gesture
           if (carNum >= 1 && carNum <= 6) {
             carNum -= 1;
-            console.log(carNum)
             props.setIndex(carNum);
           } else {
             return;
           }
-        } else if (gesture === poseParameters.pose4) {
-          // window.scrollBy(0, 50);
-        }
+        } 
       }
     }
   }
