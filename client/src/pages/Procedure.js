@@ -1,92 +1,37 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Carousel from 'react-bootstrap/Carousel'
 import AppBar from "../components/AppBar";
-// import Nav from "../components/Nav";
 import StartButton from "../components/StartButton";
 import StepCard from "../components/StepCard";
 import HandGest from "../handGestures/HandGest";
 import "./style.css";
 
 function Procedure() {
-    // update later to take procedures from API call
     const [index, setIndex] = useState(0);
-    const [loading, setLoading] = useState(true);
     const handleSelect = (selectedIndex, e) => {
         setIndex(selectedIndex);
     };
-
-    // from the results of get(/api/users/:id) where id is patient _id logged in global state:
-    // store currentProcedure 'procedure' steps in an array, const procedureArray
-
-
+    const procedures = useSelector(state => state.user.user.currentProcedures);
+    let instrArr = (!procedures) ? [{title: "No Entries to List", text: "No Entries Found"}] : procedures[0].instructions;
     return (
         <div className="block steps">
             <AppBar />
             <Carousel activeIndex={index} onSelect={handleSelect} interval={null} wrap={false}>
-                {/* procedureArray.map((step, index) => {
+                {instrArr.map((step, index) => {
                         return (
-                            <Carousel.Item>
+                            <Carousel.Item key={index + 1}>
                                 <div id="block" className="steps">
                                     <Container fluid>
                                         <h1>Step {index+1}</h1>
-                                        <StepCard title={step.title} text={step.description}/>
+                                        <StepCard title={step.title} text={step.step}/>
                                     </Container>
                                 </div>
                             </Carousel.Item>
                         )
-                        
-                        remove the Carousel.Items below
-                }) */}
 
-                <Carousel.Item>
-                    <div id="block" className="steps">
-                        <Container fluid>
-                            <h1>Step 1</h1>
-                            <StepCard title="Remove the Dressing" text="Use drops of either water or saline solution around the tape on the skin to loosen the tape. Gently remove the dressing." />
-                        </Container>
-                    </div>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <div id="block" className="steps">
-                        <Container fluid>
-                            <h1>Step 2</h1>
-                            <StepCard title="Inspect the Wound" text="Check to see if there are any signs of infection, such as pus or a foul smell. If you notice any of them, note the issues and let the patient’s healthcare provider know once you're done with the dressing change." />
-                        </Container>
-                    </div>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <div id="block" className="steps">
-                        <Container fluid>
-                            <h1>Step 3</h1>
-                            <StepCard title="Clean the wound" text="Wet a gauze with saline water and gently clean up any blood or other bodily fluids (a small amount of blood is ok. If it’s a substantial amount, the person needs medical attention)." />
-                        </Container>
-                    </div>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <div id="block" className="steps">
-                        <Container fluid>
-                            <h1>Step 4</h1>
-                            <StepCard title="Let the wound air dry" text="Once clean, let the wound fully air dry (placing new dressings while the wound is still wet fosters bacteria growth)." />
-                        </Container>
-                    </div>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <div id="block" className="steps">
-                        <Container fluid>
-                            <h1>Step 5</h1>
-                            <StepCard title="Apply Ointment" text="Once dry, apply antibiotic ointment to the wound.    " />
-                        </Container>
-                    </div>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <div id="block" className="steps">
-                        <Container fluid>
-                            <h1>Step 6</h1>
-                            <StepCard title="Place a new wound dressing" text="Apply a new non-stick pad to the wound and extra gauze if needed. Once covered, gently secure with wound tape." />
-                        </Container>
-                    </div>
-                </Carousel.Item>
+                })}
                 <Carousel.Item>
                     <div id="block" className="steps">
                         <Container fluid>
@@ -100,7 +45,7 @@ function Procedure() {
                 </Carousel.Item>
             </Carousel>
             <div className="handgest">
-                <HandGest index={index} setIndex={setIndex} setLoading={setLoading} />
+                <HandGest index={index} setIndex={setIndex} />
             </div>
         </div >
     )

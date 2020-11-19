@@ -22,19 +22,16 @@ class Home extends Component {
 
     componentDidMount() {
         if (this.props.auth.isAuthenticated) {
-            console.log("ComponentDidMount");
-            console.log(this.props.auth.user.id);
             getUser(this.props.auth.user.id)
         }
     }
 
     static getDerivedStateFromProps(props, state) {
         if (props.auth.isAuthenticated) {
-            console.log("Derived State");
-            console.log(props.auth.user.id);
             getUser(props.auth.user.id)
-            return;
+            return null;
         }
+        return null;
     }
 
     render() {
@@ -45,7 +42,6 @@ class Home extends Component {
                     <Container fluid>
                         <Row>
                             <Col lg={6}>
-                                {/* <h1><img src={process.env.PUBLIC_URL + "./assets/transIcon.png"} alt="POC-IT" /></h1> */}
                                 <h1>POC-IT</h1>
                                 <h2>Say hi to personalized, point of care support all within your pocket</h2>
                                 <div>
@@ -76,37 +72,37 @@ class Home extends Component {
                             </Col>
                         </Row>
                         <Fade bottom>
-                        <CardDeck>
-                            <Card>
-                                <Card.Img variant="top" src={process.env.PUBLIC_URL + "/assets/connect.png"} />
-                                <Card.Body>
-                                    <Card.Title>We help providers set up their patients at home</Card.Title>
-                                    <Card.Text>
-                                        Providers can select which home care regimen is needed for the patient (e.g. Wound Care). POC-IT displays the home care regimen in an easy-to-understand way for patients.
+                            <CardDeck>
+                                <Card>
+                                    <Card.Img variant="top" src={process.env.PUBLIC_URL + "/assets/connect.png"} />
+                                    <Card.Body>
+                                        <Card.Title>We help providers set up their patients at home</Card.Title>
+                                        <Card.Text>
+                                            Providers can select which home care regimen is needed for the patient (e.g. Wound Care). POC-IT displays the home care regimen in an easy-to-understand way for patients.
                                     </Card.Text>
-                                </Card.Body>
-                            </Card>
-                            <Card>
-                                <Card.Img variant="top" src={process.env.PUBLIC_URL + "/assets/steps.png"} />
-                                <Card.Body>
-                                    <Card.Title>We help patients with their regimen</Card.Title>
-                                    <Card.Text>
-                                        Each home care regimen provides simplified, step-by-step procedures that patients or patient caretakers can follow along with when performing their care.
+                                    </Card.Body>
+                                </Card>
+                                <Card>
+                                    <Card.Img variant="top" src={process.env.PUBLIC_URL + "/assets/steps.png"} />
+                                    <Card.Body>
+                                        <Card.Title>We help patients with their regimen</Card.Title>
+                                        <Card.Text>
+                                            Each home care regimen provides simplified, step-by-step procedures that patients or patient caretakers can follow along with when performing their care.
                                     </Card.Text>
-                                </Card.Body>
-                            </Card>
-                            <Card>
-                                <Card.Img variant="top" src={process.env.PUBLIC_URL + "/assets/hand.png"} />
-                                <Card.Body>
-                                    <Card.Title>We help minimize infection risk</Card.Title>
-                                    <Card.Text>
-                                    Patients or caretakers can advance to the next step during procedures with hand gestures to minimize risk of introducing contaminants and pathogens to sensitive areas like wounds or the urinary tract. No need to leave any sterile or clean field.
+                                    </Card.Body>
+                                </Card>
+                                <Card>
+                                    <Card.Img variant="top" src={process.env.PUBLIC_URL + "/assets/hand.png"} />
+                                    <Card.Body>
+                                        <Card.Title>We help minimize infection risk</Card.Title>
+                                        <Card.Text>
+                                            Patients or caretakers can advance to the next step during procedures with hand gestures to minimize risk of introducing contaminants and pathogens to sensitive areas like wounds or the urinary tract. No need to leave any sterile or clean field.
                                     </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </CardDeck>
-
+                                    </Card.Body>
+                                </Card>
+                            </CardDeck>
                         </Fade>
+
                     </Container>
                 </div>
             </div>
