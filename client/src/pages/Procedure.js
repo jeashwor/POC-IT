@@ -21,7 +21,7 @@ function Procedure() {
             <Carousel activeIndex={index} onSelect={handleSelect} interval={null} wrap={false}>
                 {instrArr.map((step, index) => {
                         return (
-                            <Carousel.Item>
+                            <Carousel.Item key={index + 1}>
                                 <div id="block" className="steps">
                                     <Container fluid>
                                         <h1>Step {index+1}</h1>
