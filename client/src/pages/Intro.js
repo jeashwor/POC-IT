@@ -18,7 +18,7 @@ function Intro() {
                 <Container fluid>
                     <h1>Wound Care</h1>
                     <h2>Let's make sure you're ready to begin.</h2>
-                    {prepArr.map((step, index) => <StepCard title={(index + 1) + ". " + step.title} text={step.step} key={index}/>)}
+                    {prepArr.map((step, index) => <StepCard key={index} title={(index + 1) + ". " + step.title} text={step.step} />)}
                     <div className="text-center">
                         <StartButton  link="/procedure" label="Start"/>
                     </div>
