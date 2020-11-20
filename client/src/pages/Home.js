@@ -71,7 +71,7 @@ class Home extends Component {
                                 <h5>To get there, we're making it easier for patients to navigate their home care regimen</h5>
                             </Col>
                         </Row>
-                        <Fade direction="up">
+                        <Fade>
                             <CardDeck>
                                 <Card>
                                     <Card.Img variant="top" src={process.env.PUBLIC_URL + "/assets/connect.png"} />
