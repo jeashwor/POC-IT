@@ -5,7 +5,6 @@ import CareButton from "../components/CareButton";
 import "./style.css";
 
 function Treatment(props) {
-
   const handleClick = (e) => {
     this.handleClick = this.handleClick.bind(this);
     e.preventDefault();
