@@ -44,6 +44,7 @@
     "multer-gridfs-storage": "^4.2.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "react-awesome-reveal": "^3.5.0",
     "react-bootstrap": "^1.4.0",
     "react-icons": "^3.11.0",
     "react-reveal": "^1.2.2",

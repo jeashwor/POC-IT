@@ -9,7 +9,7 @@ import Nav from "../components/Nav";
 import StartButton from "../components/StartButton";
 import Card from 'react-bootstrap/Card';
 import CardDeck from 'react-bootstrap/CardDeck';
-import Fade from 'react-reveal/Fade';
+import { Fade } from "react-awesome-reveal";
 import "./style.css";
 
 class Home extends Component {
@@ -71,7 +71,7 @@ class Home extends Component {
                                 <h5>To get there, we're making it easier for patients to navigate their home care regimen</h5>
                             </Col>
                         </Row>
-                        <Fade bottom>
+                        <Fade direction="up">
                             <CardDeck>
                                 <Card>
                                     <Card.Img variant="top" src={process.env.PUBLIC_URL + "/assets/connect.png"} />
