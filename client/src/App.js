@@ -15,6 +15,7 @@ import Clinician from "./pages/Clinician";
 import Intro from "./pages/Intro";
 import Procedure from "./pages/Procedure";
 import Treatment from "./pages/Treatment";
+import NoMatch from "./pages/NoMatch";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import ClinicianRoute from "./components/clinician-route/ClinicianRoute";
 
@@ -47,6 +48,7 @@ function App() {
           <PrivateRoute exact path="/procedure" component={Procedure} />
           <ClinicianRoute exact path="/clinician" component={Clinician} />
           <PrivateRoute exact path="/treatment" component={Treatment} />
+          <Route component={NoMatch} />
         </Switch>
       </div>
     </Router>

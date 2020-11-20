@@ -6,6 +6,7 @@ import AppBar from "../components/AppBar";
 import StartButton from "../components/StartButton";
 import StepCard from "../components/StepCard";
 import HandGest from "../handGestures/HandGest";
+import GestureCard from "../components/GestureCard";
 import "./style.css";
 
 function Procedure() {
@@ -44,7 +45,9 @@ function Procedure() {
                     </div>
                 </Carousel.Item>
             </Carousel>
+            <GestureCard />
             <div className="handgest">
+                <h3>Use "OK" to go forward and "Point Up" to go back.</h3>
                 <HandGest index={index} setIndex={setIndex} />
             </div>
         </div >
