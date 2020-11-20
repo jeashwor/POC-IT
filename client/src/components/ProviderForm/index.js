@@ -29,7 +29,6 @@ class ProviderForm extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    console.log(props);
     if (props.errors) {
       return {
         errors: props.errors
