@@ -11,7 +11,7 @@ let pose;
 const poseParameters = {
   pose1: "Thumbs Up",
   pose2: "OK",
-  pose3: "Go Back",
+  pose3: "Point Up",
   classifySpeed: 1500,
   webcamWidth: 0,
   webcamHeight: 0,

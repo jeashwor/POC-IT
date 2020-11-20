@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
 import AppBar from "../components/AppBar";
@@ -14,7 +15,15 @@ function Clinician() {
                 <Container fluid>
                     <h1>{user.name}</h1>
                     <h2>Here are your patients</h2>
-                    {user.currentPatients.map((patient, index) => <PatientCard key={index + 1} title={patient.name} text={patient.email} link="/treatment" />)}
+                    {user.currentPatients.map((patient, i) => 
+                    (<Link 
+                        key={i} 
+                        to={{
+                        pathname: '/treatment',
+                        user: patient.name
+                        }}>
+                            <PatientCard title={patient.name} text={patient.email} />
+                    </Link>))}
                 </Container>
             </div>
         </div>

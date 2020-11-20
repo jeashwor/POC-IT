@@ -12,7 +12,7 @@
     "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
-    "build": "cd client && npm run build",
+    "build": "npm run seed && cd client && npm run build",
     "heroku-postbuild": "npm run build",
     "lint": "eslint **/*.js --quiet",
     "test": "npm run lint",
