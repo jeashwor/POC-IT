@@ -1,8 +1,7 @@
 const seeder = require("mongoose-seed");
 
-seeder.connect("mongodb://localhost:27017/pocIT", () => {
+seeder.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/pocIT", () => {
   seeder.loadModels(["../models/User.js", "../models/Procedure.js"]);
-  // seeder.clearModels(["User", "Procedure"]);
   seeder.populateModels(data, (err, done) => {
     if (err) {
       console.log(err);
