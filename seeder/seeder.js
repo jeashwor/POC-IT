@@ -29,7 +29,7 @@ const data = [
           description:
             "A step-by-step guide for wound dressing change using clean technique",
           image: "/assets/wound.png",
-          preperation: [
+          preparation: [
             {
               title: "Gather Supplies Needed",
               step:
@@ -48,7 +48,7 @@ const data = [
             {
               title: "Let POC-IT know you're ready",
               step:
-                "Facing the camera, give POC-IT a thumbs up to begin, or click the button below.",
+                "Facing the camera, give POC-IT an ok up to begin, or click the button below.",
             },
           ],
           instructions: [
@@ -75,11 +75,6 @@ const data = [
             {
               title: "Apply Ointment",
               step: "Once dry, apply antibiotic ointment to the wound.",
-            },
-            {
-              title: "Place a new wound dressing",
-              step:
-                "Apply a new non-stick pad to the wound and extra gauze if needed. Once covered, gently secure with wound tape.",
             },
             {
               title: "Place a new wound dressing",
@@ -100,7 +95,7 @@ const data = [
           description:
             "A step-by-step guide for wound dressing change using clean technique",
           image: "/assets/wound.png",
-          preperation: [
+          preparation: [
             {
               title: "Gather Supplies Needed",
               step:
@@ -119,7 +114,7 @@ const data = [
             {
               title: "Let POC-IT know you're ready",
               step:
-                "Facing the camera, give POC-IT a thumbs up to begin, or click the button below.",
+                "Facing the camera, give POC-IT an ok up to begin, or click the button below.",
             },
           ],
           instructions: [
@@ -146,11 +141,6 @@ const data = [
             {
               title: "Apply Ointment",
               step: "Once dry, apply antibiotic ointment to the wound.",
-            },
-            {
-              title: "Place a new wound dressing",
-              step:
-                "Apply a new non-stick pad to the wound and extra gauze if needed. Once covered, gently secure with wound tape.",
             },
             {
               title: "Place a new wound dressing",
@@ -171,7 +161,7 @@ const data = [
           description:
             "A step-by-step guide for wound dressing change using clean technique",
           image: "/assets/wound.png",
-          preperation: [
+          preparation: [
             {
               title: "Gather Supplies Needed",
               step:
@@ -190,7 +180,7 @@ const data = [
             {
               title: "Let POC-IT know you're ready",
               step:
-                "Facing the camera, give POC-IT a thumbs up to begin, or click the button below.",
+                "Facing the camera, give POC-IT an ok up to begin, or click the button below.",
             },
           ],
           instructions: [
@@ -217,11 +207,6 @@ const data = [
             {
               title: "Apply Ointment",
               step: "Once dry, apply antibiotic ointment to the wound.",
-            },
-            {
-              title: "Place a new wound dressing",
-              step:
-                "Apply a new non-stick pad to the wound and extra gauze if needed. Once covered, gently secure with wound tape.",
             },
             {
               title: "Place a new wound dressing",
@@ -242,7 +227,7 @@ const data = [
           description:
             "A step-by-step guide for wound dressing change using clean technique",
           image: "/assets/wound.png",
-          preperation: [
+          preparation: [
             {
               title: "Gather Supplies Needed",
               step:
@@ -261,7 +246,7 @@ const data = [
             {
               title: "Let POC-IT know you're ready",
               step:
-                "Facing the camera, give POC-IT a thumbs up to begin, or click the button below.",
+                "Facing the camera, give POC-IT an ok up to begin, or click the button below.",
             },
           ],
           instructions: [
@@ -288,11 +273,6 @@ const data = [
             {
               title: "Apply Ointment",
               step: "Once dry, apply antibiotic ointment to the wound.",
-            },
-            {
-              title: "Place a new wound dressing",
-              step:
-                "Apply a new non-stick pad to the wound and extra gauze if needed. Once covered, gently secure with wound tape.",
             },
             {
               title: "Place a new wound dressing",
@@ -313,7 +293,7 @@ const data = [
           description:
             "A step-by-step guide for wound dressing change using clean technique",
           image: "/assets/wound.png",
-          preperation: [
+          preparation: [
             {
               title: "Gather Supplies Needed",
               step:
@@ -332,7 +312,7 @@ const data = [
             {
               title: "Let POC-IT know you're ready",
               step:
-                "Facing the camera, give POC-IT a thumbs up to begin, or click the button below.",
+                "Facing the camera, give POC-IT an ok up to begin, or click the button below.",
             },
           ],
           instructions: [
@@ -359,11 +339,6 @@ const data = [
             {
               title: "Apply Ointment",
               step: "Once dry, apply antibiotic ointment to the wound.",
-            },
-            {
-              title: "Place a new wound dressing",
-              step:
-                "Apply a new non-stick pad to the wound and extra gauze if needed. Once covered, gently secure with wound tape.",
             },
             {
               title: "Place a new wound dressing",
@@ -402,7 +377,7 @@ const data = [
           description:
             "A step-by-step guide for wound dressing change using clean technique",
           image: "/assets/wound.png",
-          preperation: [
+          preparation: [
             {
               title: "Gather Supplies Needed",
               step:
@@ -421,7 +396,7 @@ const data = [
             {
               title: "Let POC-IT know you're ready",
               step:
-                "Facing the camera, give POC-IT a thumbs up to begin, or click the button below.",
+                "Facing the camera, give POC-IT an ok up to begin, or click the button below.",
             },
           ],
           instructions: [
@@ -448,11 +423,6 @@ const data = [
             {
               title: "Apply Ointment",
               step: "Once dry, apply antibiotic ointment to the wound.",
-            },
-            {
-              title: "Place a new wound dressing",
-              step:
-                "Apply a new non-stick pad to the wound and extra gauze if needed. Once covered, gently secure with wound tape.",
             },
             {
               title: "Place a new wound dressing",
