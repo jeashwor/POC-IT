@@ -1,0 +1,27 @@
+#gesture-card {
+    background-color: transparent;
+    border: none;
+    max-width: 500px;
+    overflow: hidden;
+    border-radius: 20px;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+#gesture-card .card-title {
+    font-family: "Jost", sans-serif;
+    font-size: 15px;
+}
+
+#gesture-card .card-text {
+    font-family: "Jost", sans-serif;
+    font-size: 10px;
+}
+
+#backGest {
+    max-width: 70px;
+}
+
+#fwdGest {
+    max-width: 80px;
+}
