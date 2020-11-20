@@ -55,7 +55,7 @@ function HandGest(props) {
     // set up my neural network parameters
     let options = {
       inputs: 63,
-      outputs: 11,
+      outputs: 8,
       task: "classification",
       debug: true,
     };

@@ -47,6 +47,7 @@ function Procedure() {
             </Carousel>
             <GestureCard />
             <div className="handgest">
+                <h3>Use "OK" to go forward and "Point Up" to go back.</h3>
                 <HandGest index={index} setIndex={setIndex} />
             </div>
         </div >
