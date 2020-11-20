@@ -7,6 +7,10 @@ import "./style.css";
 
 function Patient() {
   const user = useSelector((state) => state.user.user);
+  let procArr = !user.currentProcedures
+    ? [{ image: "/assets/wound.png", name: "", description: "" }]
+    : user.currentProcedures[0];
+
   return (
     <div>
       <AppBar />
@@ -16,9 +20,9 @@ function Patient() {
           <h2>Here's your home care regimen</h2>
           <div>
             <CareButton
-              image={process.env.PUBLIC_URL + user.currentProcedures[0].image}
-              title={user.currentProcedures[0].name}
-              text={user.currentProcedures[0].description}
+              image={process.env.PUBLIC_URL + procArr.image}
+              title={procArr.name}
+              text={procArr.description}
               link="/intro"
             />
           </div>
