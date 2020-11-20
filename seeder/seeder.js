@@ -1,17 +1,20 @@
 const seeder = require("mongoose-seed");
 
-seeder.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/pocIT", () => {
-  seeder.loadModels(["../models/User.js", "../models/Procedure.js"]);
-  seeder.populateModels(data, (err, done) => {
-    if (err) {
-      console.log(err);
-    }
-    if (done) {
-      console.log(done);
-    }
-    seeder.disconnect();
-  });
-});
+seeder.connect(
+  process.env.MONGODB_URI || "mongodb://localhost:27017/pocIT",
+  () => {
+    seeder.loadModels(["../models/User.js", "../models/Procedure.js"]);
+    seeder.populateModels(data, (err, done) => {
+      if (err) {
+        console.log(err);
+      }
+      if (done) {
+        console.log(done);
+      }
+      seeder.disconnect();
+    });
+  }
+);
 
 const data = [
   {

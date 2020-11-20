@@ -1,12 +1,12 @@
 # poc-IT [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
-    
-### 
+
+###
 
 <br>
 
 ## Description
 
-  * enter description\
+- enter description\
 
 ## Table of Contents
 
@@ -28,13 +28,13 @@
 
 ## Installation
 
-  * ### How to install poc-IT
+- ### How to install poc-IT
 
-    * tell them no instllation
+  - tell them no instllation
 
 ## Usage
 
-  * tell them instructions
+- tell them instructions
 
 ## License
 
@@ -46,28 +46,28 @@ Copyright 2020 "all of our names"
 
 ## Contributing
 
-  * ### Contributing to poc-IT
+- ### Contributing to poc-IT
 
-    * currently not accepting
+  - currently not accepting
 
 ## Tests
 
-  * no tests
+- no tests
 
 ## Known Bugs
 
-  * talk about bugs
+- talk about bugs
 
 ## Future Development
 
-  * future plans
+- future plans
 
 ## Questions
 
-  * If you would like to contact me with further questions you can reach me at 
+- If you would like to contact me with further questions you can reach me at
 
-    * https://github.com/"all of our githubs"
+  - https://github.com/"all of our githubs"
 
-    * "all of our emails"
+  - "all of our emails"
 
-    * Let's collaborate!
+  - Let's collaborate!
