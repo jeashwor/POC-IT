@@ -50,7 +50,7 @@ const data = [
             {
               title: "Let POC-IT know you're ready",
               step:
-                "Facing the camera, give POC-IT an ok up to begin, or click the button below.",
+                "Facing the camera, give POC-IT an 'OK' to begin, or click the button below.",
             },
           ],
           instructions: [
@@ -67,7 +67,7 @@ const data = [
             {
               title: "Clean the wound",
               step:
-                "Wet a gauze with saline water and gently clean up any blood or other bodily fluids (a small amount of blood is ok. If it’s a substantial amount, the person needs medical attention).",
+                "Wet a gauze with saline water and gently clean up any blood or other bodily fluids (a small amount of blood is 'OK'. If it’s a substantial amount, the person needs medical attention).",
             },
             {
               title: "Let the wound air dry",
@@ -116,7 +116,7 @@ const data = [
             {
               title: "Let POC-IT know you're ready",
               step:
-                "Facing the camera, give POC-IT an ok up to begin, or click the button below.",
+                "Facing the camera, give POC-IT an 'OK' to begin, or click the button below.",
             },
           ],
           instructions: [
@@ -133,7 +133,7 @@ const data = [
             {
               title: "Clean the wound",
               step:
-                "Wet a gauze with saline water and gently clean up any blood or other bodily fluids (a small amount of blood is ok. If it’s a substantial amount, the person needs medical attention).",
+                "Wet a gauze with saline water and gently clean up any blood or other bodily fluids (a small amount of blood is 'OK'. If it’s a substantial amount, the person needs medical attention).",
             },
             {
               title: "Let the wound air dry",
@@ -182,7 +182,7 @@ const data = [
             {
               title: "Let POC-IT know you're ready",
               step:
-                "Facing the camera, give POC-IT an ok up to begin, or click the button below.",
+                "Facing the camera, give POC-IT an 'OK' to begin, or click the button below.",
             },
           ],
           instructions: [
@@ -199,7 +199,7 @@ const data = [
             {
               title: "Clean the wound",
               step:
-                "Wet a gauze with saline water and gently clean up any blood or other bodily fluids (a small amount of blood is ok. If it’s a substantial amount, the person needs medical attention).",
+                "Wet a gauze with saline water and gently clean up any blood or other bodily fluids (a small amount of blood is 'OK'. If it’s a substantial amount, the person needs medical attention).",
             },
             {
               title: "Let the wound air dry",
@@ -248,7 +248,7 @@ const data = [
             {
               title: "Let POC-IT know you're ready",
               step:
-                "Facing the camera, give POC-IT an ok up to begin, or click the button below.",
+                "Facing the camera, give POC-IT an 'OK' to begin, or click the button below.",
             },
           ],
           instructions: [
@@ -265,7 +265,7 @@ const data = [
             {
               title: "Clean the wound",
               step:
-                "Wet a gauze with saline water and gently clean up any blood or other bodily fluids (a small amount of blood is ok. If it’s a substantial amount, the person needs medical attention).",
+                "Wet a gauze with saline water and gently clean up any blood or other bodily fluids (a small amount of blood is 'OK'. If it’s a substantial amount, the person needs medical attention).",
             },
             {
               title: "Let the wound air dry",
@@ -314,7 +314,7 @@ const data = [
             {
               title: "Let POC-IT know you're ready",
               step:
-                "Facing the camera, give POC-IT an ok up to begin, or click the button below.",
+                "Facing the camera, give POC-IT an 'OK' to begin, or click the button below.",
             },
           ],
           instructions: [
@@ -331,7 +331,7 @@ const data = [
             {
               title: "Clean the wound",
               step:
-                "Wet a gauze with saline water and gently clean up any blood or other bodily fluids (a small amount of blood is ok. If it’s a substantial amount, the person needs medical attention).",
+                "Wet a gauze with saline water and gently clean up any blood or other bodily fluids (a small amount of blood is 'OK'. If it’s a substantial amount, the person needs medical attention).",
             },
             {
               title: "Let the wound air dry",
@@ -398,7 +398,7 @@ const data = [
             {
               title: "Let POC-IT know you're ready",
               step:
-                "Facing the camera, give POC-IT an ok up to begin, or click the button below.",
+                "Facing the camera, give POC-IT an 'OK' to begin, or click the button below.",
             },
           ],
           instructions: [
@@ -415,7 +415,7 @@ const data = [
             {
               title: "Clean the wound",
               step:
-                "Wet a gauze with saline water and gently clean up any blood or other bodily fluids (a small amount of blood is ok. If it’s a substantial amount, the person needs medical attention).",
+                "Wet a gauze with saline water and gently clean up any blood or other bodily fluids (a small amount of blood is 'OK'. If it’s a substantial amount, the person needs medical attention).",
             },
             {
               title: "Let the wound air dry",
