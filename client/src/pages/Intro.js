@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
 import AppBar from "../components/AppBar";
 import StepCard from "../components/StepCard";
+import GestureCard from "../components/GestureCard";
 import StartButton from "../components/StartButton";
 import "./style.css";
 import HandGest from "../handGestures/HandGest";
@@ -19,6 +20,7 @@ function Intro() {
                     <h1>Wound Care</h1>
                     <h2>Let's make sure you're ready to begin.</h2>
                     {prepArr.map((step, index) => <StepCard key={index} title={(index + 1) + ". " + step.title} text={step.step} />)}
+                    <GestureCard />
                     <div className="text-center">
                         <StartButton  link="/procedure" label="Start"/>
                     </div>
