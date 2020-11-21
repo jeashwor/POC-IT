@@ -1,4 +1,4 @@
-# poc-IT [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
+# POC-IT [![License: ISC](https://img.shields.io/badge/License-ISC-blue.svg)](https://opensource.org/licenses/ISC)
 
 ###
 
@@ -6,7 +6,7 @@
 
 ## Description
 
-- enter description\
+- POC-IT (Point of Care Information Technology) is our solution to both the risks of self wound treatment and the stress placed on the healthcare industry due to infections and complications caused by improper home care. We provide an application that allows users to get detailed instructions and information on their healthcare needs from their computer or mobile device, making use of machine learning to provide hand gesture control to allow users to maintain a clean environment while performing procedures.
 
 ## Table of Contents
 
@@ -18,8 +18,6 @@
 
 [Contributing](#contributing)
 
-[Tests](#tests)
-
 [Known Bugs](#known-bugs)
 
 [Future Development](#future-development)
@@ -28,13 +26,13 @@
 
 ## Installation
 
-- ### How to install poc-IT
+- ### How to install POC-IT
 
-  - tell them no instllation
+  - POC-IT is designed to be a mobile-first progressive web application that will function on desktops, tablets, and phones without any installation.
 
 ## Usage
 
-- tell them instructions
+- First time users will be asked to create an account as either a patient or provider. Upon creation, users may login to their account from the home screen. Once a user has succesfully logged in they will be presented with a list of their active procedures if they are a patient or a list of their patients if they are a provider. Selecting a procedure will display the user with a list of preperation steps as well as instructions for navigating through the procedure with hand gestures. When ready, click start or give the camera an 'OK' gesture to begin your procedure in a clean hands-free environment.
 
 ## License
 
@@ -46,28 +44,40 @@ Copyright 2020 "all of our names"
 
 ## Contributing
 
-- ### Contributing to poc-IT
+- ### Contributing to POC-IT
 
-  - currently not accepting
-
-## Tests
-
-- no tests
+  - POC-IT is currently in a development phase that is no longer accepting additional contributions, but check back later to see how you can help the team!
 
 ## Known Bugs
 
-- talk about bugs
+- The machine learning process is an ongoing endeavor that is always providing new challenges. Currently the accuracy of the gesture recognition suffers in low lighting environments and we are still working to optimize its performance.
 
 ## Future Development
 
-- future plans
+- Their are several features in active development including patient/procedure assignment, on-the-fly photo's and storage as well as communication tools for providers and patients.
 
 ## Questions
 
-- If you would like to contact me with further questions you can reach me at
+- If you would like to contact us with further questions you can reach any of us at
 
-  - https://github.com/"all of our githubs"
+  - Hoang Nguyen
 
-  - "all of our emails"
+    - hd.nguyen11@gmail.com
+    - https://github.com/hngdngng
+
+  - Jacob Ashworth
+
+    - jeashwor@gmail.com
+    - https://github.com/jeashwor
+
+  - Jacob Lovins
+
+    - lovins.jacob@yahoo.com
+    - https://github.com/jacoblovins
+
+  - TJ Fitzpatrick
+
+    - tjfitz@comcast.net
+    - https://github.com/TJFitz
 
   - Let's collaborate!
