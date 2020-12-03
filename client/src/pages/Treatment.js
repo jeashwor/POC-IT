@@ -2,6 +2,7 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import AppBar from "../components/AppBar";
 import CareButton from "../components/CareButton";
+import GalleryModal from "../components/GalleryModal";
 import "./style.css";
 
 function Treatment(props) {
@@ -26,6 +27,9 @@ function Treatment(props) {
               text="A step-by-step guide for wound dressing change using clean technique"
               link="/intro"
             />
+          </div>
+          <div className="text-center">
+            <GalleryModal />
           </div>
         </Container>
       </div>
