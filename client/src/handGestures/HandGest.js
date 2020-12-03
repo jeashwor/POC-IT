@@ -88,8 +88,13 @@ function HandGest(props) {
 // -----------------------------------------------------------------------------------------------------------------------
 
 const saveImg = () => {
-  const data = JSON.stringify(imgSrc)
-  axios.put("/api/image/upload", data)
+  // const data = JSON.stringify(imgSrc)
+  const data = new FormData();
+  data.append("image", imgSrc)
+  axios.put("/api/image/upload", data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    }})
       .then(alert("Image saved"))
       .catch(err => {
         console.log(err);
