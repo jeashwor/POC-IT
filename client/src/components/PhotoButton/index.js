@@ -9,10 +9,21 @@ import Modal from 'react-bootstrap/Modal';
 
 function PhotoButton() {
     const [show, setShow] = useState(false);
-
+    const webcamRef = useRef(null);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [imgSrc, setImgSrc] = useState(null);
+
+    const capture = useCallback(() => {
+
+        // Image data saved here in imageSrc variable:
+        const imageSrc = webcamRef.current.getScreenshot();
+        setImgSrc(imageSrc);
+    }, [webcamRef, setImgSrc]);
+
+    // -----------------------------------------------------------------------------------------------------------------------
+    //      Send Image to Server
+    // -----------------------------------------------------------------------------------------------------------------------
 
     const saveImg = () => {
         // const data = JSON.stringify(imgSrc)
@@ -30,6 +41,10 @@ function PhotoButton() {
             });
     };
 
+    // -----------------------------------------------------------------------------------------------------------------------
+    //
+    // -----------------------------------------------------------------------------------------------------------------------
+
     return (
         <div>
             <Button variant="primary" id="cam-btn" onClick={handleShow}><FaCamera /></Button>
@@ -40,6 +55,24 @@ function PhotoButton() {
                 </Modal.Header>
                 <Modal.Body>
                     <p>Share photos to let your provider know how you're healing or if there's anything of concern</p>
+                    <div id="webcamDiv">
+                    <Webcam
+                        id="webcam"
+                        ref={webcamRef}
+                        audio={false}
+                        mirrored={true}
+                        screenshotFormat="image/jpeg"
+                        style={{
+                            width: 320,
+                            height: 240,
+                        }}
+                    />
+                    </div>
+                    <button id="captureBtn" onClick={capture}>Capture photo</button>
+                    <button id="saveBtn" onClick={saveImg}>Save photo</button>
+                    <div id="imageDiv">
+                    {imgSrc && (<img src={imgSrc} alt="" />)}
+                    </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" id="any-btn" onClick={handleClose}>Done</Button>

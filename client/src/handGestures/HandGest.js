@@ -1,7 +1,6 @@
-import React, { useRef, useEffect, useState, useCallback } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import * as Webcam from "react-webcam";
 import * as ml5 from "ml5";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Loader from "../components/Loader";
 import "./gesture.css";
@@ -25,7 +24,6 @@ function HandGest(props) {
   const webcamRef = useRef(null);
   let history = useHistory();
   const [loading, setLoading] = useState(true);
-  const [imgSrc, setImgSrc] = useState(null);
   const runHandpose = async () => {
 
     // set up the video parameters to work with the model
@@ -75,36 +73,6 @@ function HandGest(props) {
     runHandpose();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const capture = useCallback(() => {
-
-    // Image data saved here in imageSrc variable:
-    const imageSrc = webcamRef.current.getScreenshot();
-    setImgSrc(imageSrc);
-}, [webcamRef, setImgSrc]);
-
-// -----------------------------------------------------------------------------------------------------------------------
-//      Send Image to Server
-// -----------------------------------------------------------------------------------------------------------------------
-
-const saveImg = () => {
-  // const data = JSON.stringify(imgSrc)
-  const data = new FormData();
-  data.append("image", imgSrc)
-  axios.put("/api/image/upload", data, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    }})
-      .then(alert("Image saved"))
-      .catch(err => {
-        console.log(err);
-        alert("There was an error uploading your image")
-      });
-};
-
-// -----------------------------------------------------------------------------------------------------------------------
-//
-// -----------------------------------------------------------------------------------------------------------------------
 
   // Start collecting the poses if there are any
   function detect(poses) {
@@ -194,15 +162,11 @@ const saveImg = () => {
         ref={webcamRef}
         audio={false}
         mirrored={true}
-        screenshotFormat="image/jpeg"
         style={{
           width: poseParameters.webcamWidth,
           height: poseParameters.webcamHeight,
         }}
       />
-      <button onClick={capture}>Capture photo</button>
-      <button onClick={saveImg}>Save photo</button>
-      {imgSrc && (<img src={imgSrc} alt="" />)}
     </div>
   );
 }
