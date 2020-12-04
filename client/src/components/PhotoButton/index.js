@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useCallback } from "react";
 import { FaCamera } from "react-icons/fa";
+import * as Webcam from "react-webcam";
+import axios from "axios";
 import "./style.css";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -10,10 +12,27 @@ function PhotoButton() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const [imgSrc, setImgSrc] = useState(null);
+
+    const saveImg = () => {
+        // const data = JSON.stringify(imgSrc)
+        const data = new FormData();
+        data.append("image", imgSrc)
+        axios.put("/api/image/upload", data, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            }
+        })
+            .then(alert("Image saved"))
+            .catch(err => {
+                console.log(err);
+                alert("There was an error uploading your image")
+            });
+    };
 
     return (
         <div>
-            <Button variant="primary" id="cam-btn" onClick={handleShow}><FaCamera/></Button>
+            <Button variant="primary" id="cam-btn" onClick={handleShow}><FaCamera /></Button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
