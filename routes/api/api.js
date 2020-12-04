@@ -41,19 +41,19 @@ const upload = multer({ storage });
 router.put("/upload", upload.single("image"), (req, res) => {
   console.log(req.body);
 
-  res.json({"status": "ok"})
-  // let uploadId = req.file.filename;
-  // db.User.findOneAndUpdate(
-  //   { email: req.query.email },
-  //   { $push: { storedImages: uploadId } },
-  //   { new: true }
-  // )
-  //   .then((patient) => {
-  //     res.json(patient);
-  //   })
-  //   .catch((err) => {
-  //     res.json(err);
-  //   });
+  res.json({ status: "ok" });
+  let uploadId = req.file.filename;
+  db.User.findOneAndUpdate(
+    { email: req.query.email },
+    { $push: { storedImages: uploadId } },
+    { new: true }
+  )
+    .then((patient) => {
+      res.json(patient);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 });
 
 // Retrieve images

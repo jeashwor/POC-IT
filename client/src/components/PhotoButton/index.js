@@ -3,51 +3,62 @@ import { FaCamera } from "react-icons/fa";
 import * as Webcam from "react-webcam";
 import axios from "axios";
 import "./style.css";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import WebcamCapture from "../WebcamCapture";
 
 function PhotoButton() {
-    const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    const [imgSrc, setImgSrc] = useState(null);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [imgSrc, setImgSrc] = useState(null);
 
-    const saveImg = () => {
-        // const data = JSON.stringify(imgSrc)
-        const data = new FormData();
-        data.append("image", imgSrc)
-        axios.put("/api/image/upload", data, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            }
-        })
-            .then(alert("Image saved"))
-            .catch(err => {
-                console.log(err);
-                alert("There was an error uploading your image")
-            });
-    };
+  const saveImg = () => {
+    // const data = JSON.stringify(imgSrc)
+    const data = new FormData();
+    data.append("image", imgSrc);
+    axios
+      .put("/api/image/upload", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then(alert("Image saved"))
+      .catch((err) => {
+        console.log(err);
+        alert("There was an error uploading your image");
+      });
+  };
 
-    return (
-        <div>
-            <Button variant="primary" id="cam-btn" onClick={handleShow}><FaCamera /></Button>
+  return (
+    <div>
+      <Button variant="primary" id="cam-btn" onClick={handleShow}>
+        <FaCamera />
+      </Button>
 
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title><h4>Photo Sharing</h4></Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <p>Share photos to let your provider know how you're healing or if there's anything of concern</p>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" id="any-btn" onClick={handleClose}>Done</Button>
-                </Modal.Footer>
-            </Modal>
-        </div>
-
-    )
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <h4>Photo Sharing</h4>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>
+            Share photos to let your provider know how you're healing or if
+            there's anything of concern
+          </p>
+          <WebcamCapture />
+          <Button onClick={saveImg}>Save Photo</Button>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" id="any-btn" onClick={handleClose}>
+            Done
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
 }
 
 export default PhotoButton;
