@@ -26,12 +26,9 @@ function PhotoButton() {
     // -----------------------------------------------------------------------------------------------------------------------
 
     const saveImg = () => {
-        // const data = JSON.stringify(imgSrc)
-        const data = new FormData();
-        data.append("image", imgSrc)
-        axios.put("/api/image/upload", data, {
+        axios.put("/api/image/upload", imgSrc, {
             headers: {
-                "Content-Type": "multipart/form-data",
+                "Content-Type": "imageFile.type",
             }
         })
             .then(alert("Image saved"))
