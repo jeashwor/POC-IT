@@ -9,19 +9,26 @@ import WebcamCapture from "../WebcamCapture";
 
 function PhotoButton() {
   const [show, setShow] = useState(false);
-
+  const webcamRef = useRef(null);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [imgSrc, setImgSrc] = useState(null);
 
+  const capture = useCallback(() => {
+    // Image data saved here in imageSrc variable:
+    const imageSrc = webcamRef.current.getScreenshot();
+    setImgSrc(imageSrc);
+  }, [webcamRef, setImgSrc]);
+
+  // -----------------------------------------------------------------------------------------------------------------------
+  //      Send Image to Server
+  // -----------------------------------------------------------------------------------------------------------------------
+
   const saveImg = () => {
-    // const data = JSON.stringify(imgSrc)
-    const data = new FormData();
-    data.append("image", imgSrc);
     axios
-      .put("/api/image/upload", data, {
+      .put("/api/image/upload", imgSrc, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "imageFile.type",
         },
       })
       .then(alert("Image saved"))
@@ -30,6 +37,10 @@ function PhotoButton() {
         alert("There was an error uploading your image");
       });
   };
+
+  // -----------------------------------------------------------------------------------------------------------------------
+  //
+  // -----------------------------------------------------------------------------------------------------------------------
 
   return (
     <div>
@@ -48,8 +59,26 @@ function PhotoButton() {
             Share photos to let your provider know how you're healing or if
             there's anything of concern
           </p>
-          <WebcamCapture />
-          <Button onClick={saveImg}>Save Photo</Button>
+          <div id="webcamDiv">
+            <Webcam
+              id="webcam"
+              ref={webcamRef}
+              audio={false}
+              mirrored={true}
+              screenshotFormat="image/jpeg"
+              style={{
+                width: 320,
+                height: 240,
+              }}
+            />
+          </div>
+          <button id="captureBtn" onClick={capture}>
+            Capture photo
+          </button>
+          <button id="saveBtn" onClick={saveImg}>
+            Save photo
+          </button>
+          <div id="imageDiv">{imgSrc && <img src={imgSrc} alt="" />}</div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" id="any-btn" onClick={handleClose}>
