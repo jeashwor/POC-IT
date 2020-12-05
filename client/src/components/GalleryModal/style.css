@@ -1,0 +1,27 @@
+#photo-card {
+    border: none;
+    max-width: 500px;
+    overflow: hidden;
+    border-radius: 40px;
+    margin-bottom: 30px;
+    color: white;
+}
+
+#gal-btn {
+    color: rgb(253, 253, 253);
+    transition: 0.3s;
+    font-size: 25px;
+    display: inline-block;
+    border: none;
+    background: none;
+    font-weight: 600;
+}
+  
+#gal-btn:hover {
+    font-size: 30px;
+}
+
+.carousel-item img {
+      height: 60vw;
+      object-fit: cover;
+}

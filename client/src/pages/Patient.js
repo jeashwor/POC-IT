@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
 import AppBar from "../components/AppBar";
 import CareButton from "../components/CareButton";
+import PhotoButton from "../components/PhotoButton";
 import "./style.css";
 
 function Patient() {
@@ -25,6 +26,9 @@ function Patient() {
               text={procArr.description}
               link="/intro"
             />
+          </div>
+          <div className="text-center">
+              <PhotoButton/>
           </div>
         </Container>
       </div>
