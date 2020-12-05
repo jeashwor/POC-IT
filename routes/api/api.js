@@ -45,8 +45,6 @@ const upload = multer({ storage });
 router.post("/upload/:email", upload.single("image"), (req, res) => {
 
   let uploadId = req.file.filename;
-  console.log(uploadId);
-  console.log(req.params.email);
   db.User.findOneAndUpdate(
     { email: req.params.email },
     { $push: { storedImages: uploadId } },
@@ -62,8 +60,8 @@ router.post("/upload/:email", upload.single("image"), (req, res) => {
 });
 
 // Retrieve images
-router.get("/files", (req, res) => {
-  db.User.findOne({ email: req.body.email }).then((patient) => {
+router.get("/files/:email", (req, res) => {
+  db.User.findOne({ email: req.params.email }).then((patient) => {
     let imageFilename = patient.storedImages[0];
     gfs.files.findOne({ filename: imageFilename }, (err, file) => {
       let readstream = gfs.createReadStream(file.filename);
