@@ -42,15 +42,18 @@ const upload = multer({ storage });
 
 
 // Save images
-router.post("/upload", upload.single("image"), (req, res) => {
+router.post("/upload/:email", upload.single("image"), (req, res) => {
 
   let uploadId = req.file.filename;
+  console.log(uploadId);
+  console.log(req.params.email);
   db.User.findOneAndUpdate(
-    { email: req.query.email },
+    { email: req.params.email },
     { $push: { storedImages: uploadId } },
-    { new: true }
+    {upsert: true}
   )
     .then((patient) => {
+      console.log("Stored!")
       res.json(patient);
     })
     .catch((err) => {

@@ -1,4 +1,5 @@
 import React, { useRef, useState, useCallback } from "react";
+import { useSelector } from "react-redux";
 import { FaCamera } from "react-icons/fa";
 import * as Webcam from "react-webcam";
 import axios from "axios";
@@ -8,6 +9,7 @@ import Modal from 'react-bootstrap/Modal';
 
 
 function PhotoButton() {
+    const user = useSelector(state => state.user.user);
     const [show, setShow] = useState(false);
     const webcamRef = useRef(null);
     const handleClose = () => setShow(false);
@@ -15,7 +17,6 @@ function PhotoButton() {
     const [imgSrc, setImgSrc] = useState(null);
 
     const capture = useCallback(() => {
-
         // Image data saved here in imageSrc variable:
         const imageSrc = webcamRef.current.getScreenshot();
         setImgSrc(imageSrc);
@@ -46,12 +47,13 @@ function PhotoButton() {
     }
 
     const saveImg = () => {
-        console.log(imgSrc)
+        console.log(user.email)
+        // console.log(imgSrc)
         var blob = dataURItoBlob(imgSrc);
         const formData = new FormData();
         formData.append("image", blob)
 
-        axios.post("/api/image/upload", formData, {
+        axios.post("/api/image/upload/" + user.email, formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
             }
