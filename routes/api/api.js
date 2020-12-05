@@ -9,6 +9,8 @@ const db = require("../../models");
 const mongoose = require("mongoose");
 
 // Initialiaze multer
+let filename;
+let fileInfo;
 
 let gfs;
 mongoose.connection.once("open", () => {
@@ -24,8 +26,8 @@ const storage = new GridFsStorage({
         if (err) {
           return reject(err);
         }
-        const filename = buf.toString("hex") + path.extname(file.originalname);
-        const fileInfo = {
+        filename = buf.toString("hex") + path.extname(file.originalname);
+        fileInfo = {
           filename: filename,
           bucketName: "uploads",
         };
@@ -37,23 +39,23 @@ const storage = new GridFsStorage({
 
 const upload = multer({ storage });
 
-// Save images
-router.put("/upload", upload.single("image"), (req, res) => {
-  console.log(req.body);
 
-  res.json({"status": "ok"})
-  // let uploadId = req.file.filename;
-  // db.User.findOneAndUpdate(
-  //   { email: req.query.email },
-  //   { $push: { storedImages: uploadId } },
-  //   { new: true }
-  // )
-  //   .then((patient) => {
-  //     res.json(patient);
-  //   })
-  //   .catch((err) => {
-  //     res.json(err);
-  //   });
+
+// Save images
+router.post("/upload", upload.single("image"), (req, res) => {
+
+  let uploadId = req.file.filename;
+  db.User.findOneAndUpdate(
+    { email: req.query.email },
+    { $push: { storedImages: uploadId } },
+    { new: true }
+  )
+    .then((patient) => {
+      res.json(patient);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
 });
 
 // Retrieve images
