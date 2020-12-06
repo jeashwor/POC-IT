@@ -23,19 +23,39 @@ function PhotoButton() {
   // -----------------------------------------------------------------------------------------------------------------------
   //      Send Image to Server
   // -----------------------------------------------------------------------------------------------------------------------
-
+  var fs = require("fs");
+  var FormData = require("form-data");
   const saveImg = () => {
-    axios
-      .put("/api/image/upload", imgSrc, {
-        headers: {
-          "Content-Type": "imageFile.type",
-        },
+    var data = new FormData();
+
+    var config = {
+      method: "put",
+      url: "localhost:3001/api/image/upload?email=fitzpatrick@test.com",
+      headers: {
+        ...data.getHeaders(),
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
       })
-      .then(alert("Image saved"))
-      .catch((err) => {
-        console.log(err);
-        alert("There was an error uploading your image");
+      .catch(function (error) {
+        console.log(error);
       });
+
+    // axios
+    //   .put("/api/image/upload", imgSrc, {
+    //     headers: {
+    //       // "Content-Type": "multipart/form-data",
+    //     },
+    //   })
+    //   .then(alert("Image saved"))
+    //   .catch((err) => {
+    //     console.log(err);
+    //     alert("There was an error uploading your image");
+    //   });
   };
 
   // -----------------------------------------------------------------------------------------------------------------------
