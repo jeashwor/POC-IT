@@ -9,6 +9,8 @@ const db = require("../../models");
 const mongoose = require("mongoose");
 
 // Initialiaze multer
+let filename;
+let fileInfo;
 
 let gfs;
 mongoose.connection.once("open", () => {
@@ -24,8 +26,8 @@ const storage = new GridFsStorage({
         if (err) {
           return reject(err);
         }
-        const filename = buf.toString("hex") + path.extname(file.originalname);
-        const fileInfo = {
+        filename = buf.toString("hex") + path.extname(file.originalname);
+        fileInfo = {
           filename: filename,
           bucketName: "uploads",
         };
@@ -38,14 +40,15 @@ const storage = new GridFsStorage({
 const upload = multer({ storage });
 
 // Save images
-router.put("/upload", upload.single("image"), (req, res) => {
+router.post("/upload/:email", upload.single("image"), (req, res) => {
   let uploadId = req.file.filename;
   db.User.findOneAndUpdate(
-    { email: req.query.email },
+    { email: req.params.email },
     { $push: { storedImages: uploadId } },
-    { new: true }
+    { upsert: true }
   )
     .then((patient) => {
+      console.log("Stored!");
       res.json(patient);
     })
     .catch((err) => {
@@ -54,12 +57,19 @@ router.put("/upload", upload.single("image"), (req, res) => {
 });
 
 // Retrieve images
-router.get("/files", (req, res) => {
-  db.User.findOne({ email: req.body.email }).then((patient) => {
+router.get("/files/", (req, res) => {
+  // console.log(req.query);
+  // res.json({ status: "ok" });
+  db.User.findOne({ email: req.query.email }).then((patient) => {
     let imageFilename = patient.storedImages[0];
-    gfs.files.findOne({ filename: imageFilename }, (err, file) => {
-      let readstream = gfs.createReadStream(file.filename);
-      readstream.pipe(res);
+
+    gfs.files.find().toArray((err, files) => {
+      let readstream = gfs.createReadStream(files[1].filename);
+      readstream.on("data", (chunk) => {
+        readstream.pipe(res);
+        // res.render({ image: chunk.toString("base64") });
+      });
+      // readstream.pipe(res);
     });
   });
 });
