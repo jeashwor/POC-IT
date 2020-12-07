@@ -57,12 +57,19 @@ router.post("/upload/:email", upload.single("image"), (req, res) => {
 });
 
 // Retrieve images
-router.get("/files/:email", (req, res) => {
-  db.User.findOne({ email: req.params.email }).then((patient) => {
+router.get("/files/", (req, res) => {
+  // console.log(req.query);
+  // res.json({ status: "ok" });
+  db.User.findOne({ email: req.query.email }).then((patient) => {
     let imageFilename = patient.storedImages[0];
-    gfs.files.findOne({ filename: imageFilename }, (err, file) => {
-      let readstream = gfs.createReadStream(file.filename);
-      readstream.pipe(res);
+
+    gfs.files.find().toArray((err, files) => {
+      let readstream = gfs.createReadStream(files[1].filename);
+      readstream.on("data", (chunk) => {
+        readstream.pipe(res);
+        // res.render({ image: chunk.toString("base64") });
+      });
+      // readstream.pipe(res);
     });
   });
 });

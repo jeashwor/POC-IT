@@ -29,7 +29,6 @@ function PhotoButton() {
   var FormData = require("form-data");
   const saveImg = () => {
     var data = new FormData();
-
     function dataURItoBlob(dataURI) {
       // convert base64/URLEncoded data component to raw binary data held in a string
       var byteString;
@@ -49,32 +48,22 @@ function PhotoButton() {
       return new Blob([ia], { type: mimeString });
     }
 
-    const saveImg = () => {
-      console.log(user.email);
-      // console.log(imgSrc)
-      var blob = dataURItoBlob(imgSrc);
-      const formData = new FormData();
-      formData.append("image", blob);
+    console.log(user.email);
+    // console.log(imgSrc)
+    var blob = dataURItoBlob(imgSrc);
+    const formData = new FormData();
+    formData.append("image", blob);
 
-      axios
-        .post("/api/image/upload/" + user.email, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then(console.log("Image saved"))
-        .catch((err) => {
-          console.log(err);
-          alert("There was an error uploading your image");
-        });
-    };
-
-    axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
+    axios
+      .post("/api/image/upload/" + user.email, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       })
-      .catch(function (error) {
-        console.log(error);
+      .then(console.log("Image saved"))
+      .catch((err) => {
+        console.log(err);
+        alert("There was an error uploading your image");
       });
 
     // axios
