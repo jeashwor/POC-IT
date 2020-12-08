@@ -57,12 +57,19 @@ router.post("/upload/:email", upload.single("image"), (req, res) => {
     });
 });
 
-// Retrieve images
-router.get("/files/", (req, res) => {
+router.get("/patient/", (req, res) => {
   // console.log(req.query);
   // res.json({ status: "ok" });
   db.User.findOne({ email: req.query.email }).then((patient) => {
-    let imageFilenames = patient.storedImages[0];
+    let imageFilenames = patient.storedImages;
+    res.send(imageFilenames)
+  })
+})
+
+// Retrieve images
+router.get("/files/", (req, res) => {
+  db.User.findOne({ email: req.query.email }).then((patient) => {
+    let imageFilenames = patient.storedImages[req.query.num];
     console.log(imageFilenames)
     gfs.files.findOne({ filename: imageFilenames }, (err, file) => {
       // Check if file
@@ -83,7 +90,7 @@ router.get("/files/", (req, res) => {
 
           bufs.push(chunk);
 
-        }).on('end', function () { // done
+        }).on('end', function () {
 
           var fbuf = Buffer.concat(bufs);
 
