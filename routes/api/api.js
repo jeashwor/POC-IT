@@ -70,7 +70,7 @@ router.get("/patient/", (req, res) => {
 router.get("/files/", (req, res) => {
   db.User.findOne({ email: req.query.email }).then((patient) => {
     let imageFilenames = patient.storedImages[req.query.num];
-    console.log(imageFilenames)
+    // console.log(imageFilenames)
     gfs.files.findOne({ filename: imageFilenames }, (err, file) => {
       // Check if file
       if (!file || file.length === 0) {
