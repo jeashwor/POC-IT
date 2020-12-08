@@ -3,6 +3,8 @@ import Container from "react-bootstrap/Container";
 import AppBar from "../components/AppBar";
 import CareButton from "../components/CareButton";
 import GalleryModal from "../components/GalleryModal";
+import { Link } from "react-router-dom";
+import { RiArrowGoBackFill } from "react-icons/ri"
 import "./style.css";
 
 function Treatment(props) {
@@ -30,6 +32,11 @@ function Treatment(props) {
           </div>
           <div className="text-center">
             <GalleryModal email={props.location.email}/>
+          </div>
+          <div className="text-center">
+            <Link to="/clinician">
+              <RiArrowGoBackFill />
+            </Link>
           </div>
         </Container>
       </div>

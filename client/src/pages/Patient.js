@@ -18,6 +18,7 @@ function Patient() {
   axios.get("/api/image/files/" + user.email)
     .then(function (response) {
       // <img src={response.data} alt=""></img>)
+      // eslint-disable-next-line no-unused-vars
       img = response
       // handle success
       console.log(response);
