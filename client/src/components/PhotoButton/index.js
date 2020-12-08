@@ -1,6 +1,6 @@
 import React, { useRef, useState, useCallback } from "react";
 import { useSelector } from "react-redux";
-import { FaCamera } from "react-icons/fa";
+import { FaCamera, FaSave } from "react-icons/fa";
 import * as Webcam from "react-webcam";
 import axios from "axios";
 import "./style.css";
@@ -95,10 +95,9 @@ function PhotoButton() {
             <h4>Photo Sharing</h4>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="modal-bdy">
           <p>
-            Share photos to let your provider know how you're healing or if
-            there's anything of concern
+            Share photos of your progress or if there's anything of concern. Take a photo and save.
           </p>
           <div id="webcamDiv">
             <Webcam
@@ -114,10 +113,10 @@ function PhotoButton() {
             />
           </div>
           <button id="captureBtn" onClick={capture}>
-            Capture photo
+            <FaCamera />
           </button>
           <button id="saveBtn" onClick={saveImg}>
-            Save photo
+            <FaSave />
           </button>
           <div id="imageDiv">{imgSrc && <img src={imgSrc} alt="" />}</div>
         </Modal.Body>
