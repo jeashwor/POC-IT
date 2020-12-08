@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { HiPhotograph } from "react-icons/hi";
+import { useSelector } from "react-redux";
 import "./style.css";
 import Button from "react-bootstrap/Button";
 import Carousel from "react-bootstrap/Carousel";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
-function GalleryModal() {
+function GalleryModal(props) {
+  const user = useSelector((state) => state.user.user);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -16,14 +18,16 @@ function GalleryModal() {
     setShow(true);
   };
 
-  let currentPhoto;
+  const [currentPhoto, setCurrentPhoto] = useState()
+  // let currentPhoto;
 
   let getPhoto = () => {
     axios
-      .get("/api/image/files?email=fitzpatrick@test.com")
+      .get("/api/image/files?email="+ props.email)
       .then((response) => {
-        currentPhoto = response.data.toString("base64");
-        console.log(currentPhoto);
+        console.log(response)
+        setCurrentPhoto(response.data);
+        // console.log(currentPhoto);
       });
   };
 

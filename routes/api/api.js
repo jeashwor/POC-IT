@@ -7,6 +7,7 @@ const Grid = require("gridfs-stream");
 const methodOverride = require("method-override");
 const db = require("../../models");
 const mongoose = require("mongoose");
+let buffer = "";
 
 // Initialiaze multer
 let filename;
@@ -61,15 +62,41 @@ router.get("/files/", (req, res) => {
   // console.log(req.query);
   // res.json({ status: "ok" });
   db.User.findOne({ email: req.query.email }).then((patient) => {
-    let imageFilename = patient.storedImages[0];
+    let imageFilenames = patient.storedImages[5];
+    console.log(imageFilenames)
+    gfs.files.findOne({ filename: imageFilenames }, (err, file) => {
+      // Check if file
+      if (!file || file.length === 0) {
+        return res.status(404).json({
+          err: 'No file exists'
+        });
+      }
 
-    gfs.files.find().toArray((err, files) => {
-      let readstream = gfs.createReadStream(files[1].filename);
-      readstream.on("data", (chunk) => {
-        readstream.pipe(res);
-        // res.render({ image: chunk.toString("base64") });
-      });
-      // readstream.pipe(res);
+      // Check if image
+      if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+        // Read output to browser
+        const readstream = gfs.createReadStream(file.filename);
+        // readstream.pipe(res);
+        var bufs = [];
+
+        readstream.on('data', function (chunk) {
+
+          bufs.push(chunk);
+
+        }).on('end', function () { // done
+
+          var fbuf = Buffer.concat(bufs);
+
+          var base64 = (fbuf.toString('base64'));
+
+          res.send("data:image/jpeg;base64," + base64 );
+        });
+
+      } else {
+        res.status(404).json({
+          err: 'Not an image'
+        });
+      }
     });
   });
 });

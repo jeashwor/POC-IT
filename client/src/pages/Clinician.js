@@ -20,7 +20,8 @@ function Clinician() {
                         key={i} 
                         to={{
                         pathname: '/treatment',
-                        user: patient.name
+                        user: patient.name,
+                        email: patient.email
                         }}>
                             <PatientCard title={patient.name} text={patient.email} />
                     </Link>))}

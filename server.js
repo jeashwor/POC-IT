@@ -2,11 +2,13 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const passport = require("passport");
+const bodyParser= require('body-parser')
 const users = require("./routes/api/users");
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Configure body parsing for AJAX requests
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 

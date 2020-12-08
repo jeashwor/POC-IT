@@ -29,7 +29,7 @@ function Treatment(props) {
             />
           </div>
           <div className="text-center">
-            <GalleryModal />
+            <GalleryModal email={props.location.email}/>
           </div>
         </Container>
       </div>
