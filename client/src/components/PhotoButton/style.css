@@ -21,22 +21,62 @@
     font-size: 30px;
 }
 
-#captureBtn {
+.modal-bdy {
+    text-align: center;
+}
 
+/*--------------------------------------------------------------
+# Buttons
+--------------------------------------------------------------*/
+#captureBtn {
+    color: white;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;;
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    transition: 0.3s;
+    display: inline-block;
+    border: none;
+    background: #03186b;
+    margin-right: 20px;
+}
+  
+#captureBtn:hover {
+    background: #0f2991;
+    text-decoration: none;
 }
 
 #saveBtn {
-
+    color: white;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;;
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    transition: 0.3s;
+    display: inline-block;
+    border: none;
+    background: #2e066e;
+    margin-left: 20px;
+}
+  
+#saveBtn:hover {
+    background: #50209e;
+    text-decoration: none;
 }
 
-#webcam {
-    display: block;
-}
-
-#webcamDiv{
-
+@media (max-width: 575px) {
+    #captureBtn {
+        margin-right: 10px;
+    }
+    #saveBtn {
+        margin-left: 10px;
+    }
 }
 
 #imageDiv {
-    
+    margin-top: 5px;
 }

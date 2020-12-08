@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { HiPhotograph } from "react-icons/hi";
-import { useSelector } from "react-redux";
 import "./style.css";
 import Button from "react-bootstrap/Button";
 import Carousel from "react-bootstrap/Carousel";
@@ -8,28 +7,33 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
 function GalleryModal(props) {
-  const user = useSelector((state) => state.user.user);
   const [show, setShow] = useState(false);
+  // const [currentPhoto, setCurrentPhoto] = useState()
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
-    console.log("hit");
     getPhoto();
     setShow(true);
   };
 
-  const [currentPhoto, setCurrentPhoto] = useState()
-  // let currentPhoto;
-
   let getPhoto = () => {
+    let pictures = [];
     axios
-      .get("/api/image/files?email="+ props.email)
+      .get("/api/image/patient?email=" + props.email)
       .then((response) => {
-        console.log(response)
-        setCurrentPhoto(response.data);
-        // console.log(currentPhoto);
-      });
+        for (let i = 0; i < response.data.length; i++) {
+          axios
+            .get("/api/image/files?email=" + props.email + "&num=" + i)
+            .then((response) => {
+              pictures.push(response)
+
+            });
+        };
+      })
+      console.log(pictures)
   };
+
+
 
   return (
     <div>
@@ -48,7 +52,7 @@ function GalleryModal(props) {
             <Carousel.Item>
               <img
                 className="d-block w-100"
-                src={currentPhoto}
+                src={""}
                 alt="progress upload"
               />
               <Carousel.Caption>
