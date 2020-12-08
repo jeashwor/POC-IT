@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { HiPhotograph } from "react-icons/hi";
 import "./style.css";
 import Button from "react-bootstrap/Button";
@@ -7,17 +7,35 @@ import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
 function GalleryModal(props) {
-  const [show, setShow] = useState(false);
-  // const [currentPhoto, setCurrentPhoto] = useState()
+  const [show, setShow] = useState({
+    show: false,
+    currentPhoto: []
+  });
+  let pictures = [];
 
-  const handleClose = () => setShow(false);
+  // Grab photos whenever component is re-rendered
+  useEffect(() => {
+    getPhoto()
+  });
+
+  // Open Image Gallery Modal
   const handleShow = () => {
-    getPhoto();
-    setShow(true);
+    setShow({
+      ...show,
+      show: true,
+      currentPhoto: pictures
+    });
   };
 
+  // Close Image Gallery Modal
+  const handleClose = () => {
+    setShow({
+      ...show,
+      show: false
+    });
+  }
+
   let getPhoto = () => {
-    let pictures = [];
     axios
       .get("/api/image/patient?email=" + props.email)
       .then((response) => {
@@ -26,14 +44,38 @@ function GalleryModal(props) {
             .get("/api/image/files?email=" + props.email + "&num=" + i)
             .then((response) => {
               pictures.push(response)
-
             });
         };
       })
-      console.log(pictures)
   };
 
-
+  const displayImages = () => {
+    if(show.currentPhoto.length > 0){
+      return (
+        show.currentPhoto.map((image, i) => (
+          <Carousel.Item key={i} >
+            <img
+              className="d-block w-100"
+              src={image.data}
+              alt="progress upload"
+            />
+          </Carousel.Item>
+        ))
+      )
+    } else {
+      return (
+        <div>
+          <h3>No Images To Display!</h3>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+        </div>
+        
+      )
+    }
+  }
 
   return (
     <div>
@@ -41,7 +83,7 @@ function GalleryModal(props) {
         <HiPhotograph />
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show.show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>
             <h4>Patient Photos</h4>
@@ -49,27 +91,7 @@ function GalleryModal(props) {
         </Modal.Header>
         <Modal.Body>
           <Carousel>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={""}
-                alt="progress upload"
-              />
-              <Carousel.Caption>
-                <h3>Nov 21, 2020</h3>
-              </Carousel.Caption>
-            </Carousel.Item>
-            <Carousel.Item>
-              <img
-                className="d-block w-100"
-                src={process.env.PUBLIC_URL + "assets/foot2.jpg"}
-                alt="progress upload"
-              />
-
-              <Carousel.Caption>
-                <h3>Dec 21, 2020</h3>
-              </Carousel.Caption>
-            </Carousel.Item>
+            {displayImages()}
           </Carousel>
         </Modal.Body>
         <Modal.Footer>

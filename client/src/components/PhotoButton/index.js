@@ -6,7 +6,6 @@ import axios from "axios";
 import "./style.css";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import WebcamCapture from "../WebcamCapture";
 
 function PhotoButton() {
   const user = useSelector((state) => state.user.user);
@@ -15,9 +14,11 @@ function PhotoButton() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [imgSrc, setImgSrc] = useState(null);
+  const [saved, setSaved] = useState(false);
 
   const capture = useCallback(() => {
     // Image data saved here in imageSrc variable:
+    setSaved(false);
     const imageSrc = webcamRef.current.getScreenshot();
     setImgSrc(imageSrc);
   }, [webcamRef, setImgSrc]);
@@ -25,10 +26,8 @@ function PhotoButton() {
   // -----------------------------------------------------------------------------------------------------------------------
   //      Send Image to Server
   // -----------------------------------------------------------------------------------------------------------------------
-  var fs = require("fs");
   var FormData = require("form-data");
   const saveImg = () => {
-    var data = new FormData();
     function dataURItoBlob(dataURI) {
       // convert base64/URLEncoded data component to raw binary data held in a string
       var byteString;
@@ -48,8 +47,6 @@ function PhotoButton() {
       return new Blob([ia], { type: mimeString });
     }
 
-    console.log(user.email);
-    // console.log(imgSrc)
     var blob = dataURItoBlob(imgSrc);
     const formData = new FormData();
     formData.append("image", blob);
@@ -60,28 +57,21 @@ function PhotoButton() {
           "Content-Type": "multipart/form-data",
         },
       })
-      .then(console.log("Image saved"))
+      .then(
+        console.log("Image saved"),
+        setSaved(true)
+        )
       .catch((err) => {
         console.log(err);
         alert("There was an error uploading your image");
       });
-
-    // axios
-    //   .put("/api/image/upload", imgSrc, {
-    //     headers: {
-    //       // "Content-Type": "multipart/form-data",
-    //     },
-    //   })
-    //   .then(alert("Image saved"))
-    //   .catch((err) => {
-    //     console.log(err);
-    //     alert("There was an error uploading your image");
-    //   });
   };
 
-  // -----------------------------------------------------------------------------------------------------------------------
-  //
-  // -----------------------------------------------------------------------------------------------------------------------
+  const isItSaved = () => {
+    if(saved){
+      return (<h4>Image Saved</h4>)
+    }
+  }
 
   return (
     <div>
@@ -118,7 +108,10 @@ function PhotoButton() {
           <button id="saveBtn" onClick={saveImg}>
             <FaSave />
           </button>
-          <div id="imageDiv">{imgSrc && <img src={imgSrc} alt="" />}</div>
+          <div id="imageDiv">
+            {imgSrc && <img src={imgSrc} alt="" />}
+            {isItSaved()}
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" id="any-btn" onClick={handleClose}>
