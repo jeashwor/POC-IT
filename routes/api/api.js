@@ -9,7 +9,7 @@ const db = require("../../models");
 const mongoose = require("mongoose");
 let buffer = "";
 
-// Initialiaze multer
+// Initialize multer
 let filename;
 let fileInfo;
 
