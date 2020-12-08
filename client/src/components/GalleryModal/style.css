@@ -22,6 +22,7 @@
 }
 
 .carousel-item img {
-      height: 60vw;
-      object-fit: cover;
+      /* height: 60vw; */
+      width: 100%;
+      /* object-fit: cover; */
 }
