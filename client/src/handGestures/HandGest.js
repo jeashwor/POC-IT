@@ -25,11 +25,9 @@ function HandGest(props) {
   let history = useHistory();
   const [loading, setLoading] = useState(true);
   const runHandpose = async () => {
-
     // -----------------------------------------------------------------------------------------------------------------------
     //
     // -----------------------------------------------------------------------------------------------------------------------
-
 
     // set up the video parameters to work with the model
     const video = await webcamRef.current.video;
@@ -119,7 +117,10 @@ function HandGest(props) {
       if (results[0].confidence > 0.85) {
         const gesture = results[0].label;
         console.log(gesture);
-        if (gesture === poseParameters.pose1 || gesture === poseParameters.pose3) {
+        if (
+          gesture === poseParameters.pose1 ||
+          gesture === poseParameters.pose3
+        ) {
           clearInterval(inter);
           setTimeout(startClass(), 3000);
         }
@@ -128,7 +129,7 @@ function HandGest(props) {
         // ADD LOGIC FOR WHAT YOU WANT EACH GESTURE TO DO HERE
         // -----------------------------------------------------------------------------------------------------------------------
         if (gesture === poseParameters.pose1) {
-          return
+          return;
         } else if (gesture === poseParameters.pose2) {
           // Advance Gesture
           if (window.location.href.indexOf("procedure") > -1) {
@@ -150,7 +151,7 @@ function HandGest(props) {
           } else {
             return;
           }
-        } 
+        }
       }
     }
   }
@@ -160,9 +161,7 @@ function HandGest(props) {
 
   return (
     <div>
-      {loading ? (
-        <Loader />
-      ) : null}
+      {loading ? <Loader /> : null}
       <Webcam
         ref={webcamRef}
         audio={false}
